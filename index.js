@@ -18,7 +18,7 @@ app.post('/',function(req,res){
     console.log(JSON.parse(data));
     return res.json(200,
         {
-            'fulfillmentText':data
+            'fulfillmentText':JSON.parse(data)
         });
   });
 
