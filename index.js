@@ -15,12 +15,12 @@ app.post('/',function(req,res){
 
   // The whole response has been received. Print out the result.
   resp.on('end', () => {
-  	dt = JSON.parse(data)
-    toSend: "Title: ",dt[0].title, "\nURL: ",dt[0].url
-    console.log(toSend);
+    dt = JSON.parse(data)
+    send = "Title: "+dt[0].title+"\nURL: "+dt[0].url
+    console.log(send);
     return res.json(200,
         {
-            'fulfillmentText':toSend
+            'fulfillmentText':send
         });
   });
 
