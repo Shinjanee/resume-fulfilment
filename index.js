@@ -1,9 +1,6 @@
-const express = require('express');
-const port = process.env.PORT;
-const app= express();
-const https = require('https');
-app.use(express.urlencoded({extended:false}));
-app.post('/',function(req,res){
+
+
+  const https = require('https');
 
   https.get("https://jobs.github.com/positions.json?page=1&search=code", (resp) => {
   let data = '';
@@ -25,13 +22,7 @@ app.post('/',function(req,res){
   }).on("error", (err) => {
   console.log("Error: " + err.message);
 });
-   
- })
-app.listen(port,function(err){
-    if(err){
-       console.log("Error in running server");
-    }
-    console.log("server started");
-})
+
+
 
 
