@@ -15,7 +15,7 @@ app.post('/',function(req,res){
 
   // The whole response has been received. Print out the result.
   resp.on('end', () => {
-  	dt = JSON.parse(data)
+  	dt = JSON.parse(data.toString().trim())
     console.log(dt);
     return res.json(200,
         {
