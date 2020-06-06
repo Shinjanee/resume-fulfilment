@@ -3,9 +3,10 @@ const port = process.env.PORT;
 const app= express();
 const https = require('https');
 app.use(express.urlencoded({extended:false}));
-if(request.body.result.parameters['skills']) {}
+app.post('/',function(req,res){
+  if(request.body.result.parameters['skills']) {}
 
-  https.get("https://jobs.github.com/positions.json?pdescription="+param+"&page=1", (resp) => {
+  https.get("https://jobs.github.com/positions.json?page=1&search=code", (resp) => {
   let data = '';
 
   // A chunk of data has been recieved.
@@ -27,6 +28,8 @@ if(request.body.result.parameters['skills']) {}
   }).on("error", (err) => {
   console.log("Error: " + err.message);
 });
+   
+ })
 app.listen(port,function(err){
     if(err){
        console.log("Error in running server");
