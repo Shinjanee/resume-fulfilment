@@ -17,7 +17,7 @@ app.post('/',function(req,res){
   resp.on('end', () => {
   	dt = JSON.parse(data)
     console.log(dt);
-    toSend = 'Title:' $dt.title
+    toSend = 'Title:' ${dt.title}
     return res.json(200,
         {
             'fulfillmentText':toSend
