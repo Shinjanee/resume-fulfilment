@@ -15,10 +15,11 @@ app.post('/',function(req,res){
 
   // The whole response has been received. Print out the result.
   resp.on('end', () => {
-    console.log(JSON.parse(data));
+  	dt = JSON.parse(data)
+    console.log(dt);
     return res.json(200,
         {
-            'fulfillmentText':"123"
+            'fulfillmentText':dt
         });
   });
 
