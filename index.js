@@ -18,7 +18,7 @@ app.post('/',function(req,res){
     dt = JSON.parse(data)
     send = "Title: "+dt[0].title+"\nURL: "+dt[0].url
     console.log(send);
-    return res.json(200
+    return res.json(200,
         {
             'fulfillmentText':send
         });
