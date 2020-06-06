@@ -16,8 +16,8 @@ app.post('/',function(req,res){
   // The whole response has been received. Print out the result.
   resp.on('end', () => {
   	dt = JSON.parse(data)
-    console.log(dt);
-    toSend = 'Title:' ${dt.title}
+    toSend: "Title: ",dt[0].title, "\nURL: ",dt[0].url
+    console.log(toSend);
     return res.json(200,
         {
             'fulfillmentText':toSend
