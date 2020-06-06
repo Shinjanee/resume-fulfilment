@@ -4,7 +4,7 @@ const app= express();
 const https = require('https');
 app.use(express.urlencoded({extended:false}));
 app.post('/',function(req,res){
-  if(request.body.result.parameters['skills']) {}
+  if(req.body.result.parameters['skills']) {}
 
   https.get("https://jobs.github.com/positions.json?page=1&search=code", (resp) => {
   let data = '';
