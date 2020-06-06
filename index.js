@@ -3,7 +3,7 @@ const port = process.env.PORT;
 const app= express();
 const https = require('https');
 app.use(express.urlencoded({extended:false}));
-param = request.body.result.parameters['skills']
+if(request.body.result.parameters['skills']) {}
 
   https.get("https://jobs.github.com/positions.json?pdescription="+param+"&page=1", (resp) => {
   let data = '';
