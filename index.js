@@ -19,7 +19,7 @@ app.post('/',function(req,res){
     console.log(dt);
     return res.json(200,
         {
-            'fulfillmentText':dt
+            'fulfillmentText':data
         });
   });
 
