@@ -3,9 +3,9 @@ const port = process.env.PORT;
 const app= express();
 const https = require('https');
 app.use(express.urlencoded({extended:false}));
-app.post('/',function(req,res){
+param = request.body.result.parameters['skills']
 
-  https.get("https://jobs.github.com/positions.json?page=1&search=code", (resp) => {
+  https.get("https://jobs.github.com/positions.json?pdescription="+param+"&page=1", (resp) => {
   let data = '';
 
   // A chunk of data has been recieved.
