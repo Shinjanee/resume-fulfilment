@@ -23,17 +23,11 @@ app.post('/',function(req,res){
      var result="";
      for(var i=0;i<jobsArray.length;i++)
      {
-        result+= (i+1).toString()+" Title: "+jobsArray[i].title +" \nURL: "+ jobsArray[i].url;
+        result+= (i+1).toString()+" Title: "+jobsArray[i].title +" ,URL: "+ jobsArray[i].url+"\n";
      }
     return res.json(200,
         {
-          "fulfillmentMessages": [
-            {
-              "text": {
-                "text": [result]
-              }
-            }
-          ]
+          "fulfillmentText": result
             
         });
    ;
