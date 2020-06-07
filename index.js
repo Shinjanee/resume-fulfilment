@@ -28,12 +28,26 @@ app.post('/',function(req,res){
     return res.json(200,
         {
           "fulfillmentMessages": [
-            {
-              "text": {
-                "text": [result]
-              }
-            }
-          ]
+  {
+    "buttons": [
+      {
+        "openUrlAction": {
+          "url": "https://linkUrl.com"
+        },
+        "title": "AoG Card Link title"
+      }
+    ],
+    "formattedText": "AoG Card Description",
+    "image": {
+      "url": "http://imageUrl.com"
+      "accessibilityText": "Image description for screen readers"
+    },
+    "platform": "google",
+    "subtitle": "AoG Card Subtitle",
+    "title": "AoG Card Title",
+    "type": "basic_card"
+  }
+]
             
         });
    ;
