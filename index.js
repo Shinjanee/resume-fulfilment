@@ -1,32 +1,48 @@
 const express = require('express');
 const port = process.env.PORT;
 const app= express();
+
 const https = require('https');
+app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.post('/',function(req,res){
 
-  https.get("https://jobs.github.com/positions.json?page=1&search=code", (resp) => {
+  var skill = req.body.queryResult.parameters["skill_name"];
+
+  https.get("https://jobs.github.com/positions.json?description="+skill+"&location=new+york", (resp) => {
   let data = '';
 
-  // A chunk of data has been recieved.
   resp.on('data', (chunk) => {
     data += chunk;
   });
 
-  // The whole response has been received. Print out the result.
   resp.on('end', () => {
-    dt = JSON.parse(data)
-    send = "Title: "+dt[0].title+"\nURL: "+dt[0].url
-    console.log(send);
+     console.log(skill+",");
+     console.log(JSON.parse(data));
+     var jobsArray =  JSON.parse(data);
+     var result="";
+     for(var i=0;i<jobsArray.length;i++)
+     {
+        result+= (i+1).toString()+" "+jobsArray[i].title +" and "+ jobsArray[i].url +"\n";
+     }
     return res.json(200,
         {
-            'fulfillmentText':send
+          "fulfillmentMessages": [
+            {
+              "text": {
+                "text": [result]
+              }
+            }
+          ]
+            
         });
+   ;
   });
 
-  }).on("error", (err) => {
+}).on("error", (err) => {
   console.log("Error: " + err.message);
 });
+   
    
  })
 app.listen(port,function(err){
@@ -35,5 +51,3 @@ app.listen(port,function(err){
     }
     console.log("server started");
 })
-
-
