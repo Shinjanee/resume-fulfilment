@@ -23,7 +23,7 @@ app.post('/',function(req,res){
      var result="";
      for(var i=0;i<jobsArray.length;i++)
      {
-        result+= (i+1).toString()+" "+jobsArray[i].title +" and "+ jobsArray[i].url +"\n\n";
+        result+= (i+1).toString()+" Title:"+jobsArray[i].title +" \nURL: "+ jobsArray[i].url;
      }
     return res.json(200,
         {
