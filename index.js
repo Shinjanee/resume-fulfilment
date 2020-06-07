@@ -20,10 +20,11 @@ app.post('/',function(req,res){
      console.log(skill+",");
      console.log(JSON.parse(data));
      var jobsArray =  JSON.parse(data);
+     line="\n"
      var result="";
      for(var i=0;i<jobsArray.length;i++)
      {
-        result = result + "\n" + (i+1).toString()+" "+jobsArray[i].title +" and "+ jobsArray[i].url+"\n";
+        result = result + line.toString() + (i+1).toString()+" "+jobsArray[i].title +" and "+ jobsArray[i].url+"\n";
      }
     return res.json(200,
         {
