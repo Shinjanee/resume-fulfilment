@@ -35,7 +35,22 @@ app.post('/',function(req,res){
   {
       return res.json(200,
         {
-          "fulfillmentText": user_name + "\n Education?"
+          //"fulfillmentText": user_name + "\n Education?"
+          "fulfillmentMessages": [
+              {
+                "card": {
+                  "title": "card title",
+                  "subtitle": "card text",
+                  "imageUri": "https://example.com/images/example.png",
+                  "buttons": [
+                    {
+                      "text": "button text",
+                      "postback": "https://example.com/path/for/end-user/to/follow"
+                    }
+                  ]
+                }
+              }
+            ]
             
         });
   }
