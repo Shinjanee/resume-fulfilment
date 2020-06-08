@@ -8,23 +8,26 @@ app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.post('/',function(req,res){
 
-  param = req.body.queryResult.parameters;
-  if(param == "given-name")
-    {
-      var user_name = req.body.queryResult.parameters["given-name"];
+  var user_name = req.body.queryResult.parameters["given-name"];
+  if (user_name != "")
+  {
       return res.json(200,
         {
           "fulfillmentText": user_name + "\n Education?"
             
         });
-    }
+  }
+
 
   var skill = req.body.queryResult.parameters["Skills"];
+  if (skill != "")
+  {
     return res.json(200,
         {
           "fulfillmentText": skill + "\n Would you like to save your resume?"
             
         });
+  }
   });
 
 app.listen(port,function(err){
