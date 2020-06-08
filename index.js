@@ -5,6 +5,26 @@ var skill = ""
 const https = require('https');
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
+
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://mongo_user:VwvmBKZFmXARA5ME@cluster0-r121x.gcp.mongodb.net/chatbot?retryWrites=true&w=majority";
+
+MongoClient.connect(uri, function(err, client) {
+   if(err) {
+        console.log('Error occurred while connecting to MongoDB Atlas...\n',err);
+   }
+   console.log('Connected...');
+   const collection = client.db("chatbot").collection("user_details");
+   var myobj = { name: "hello", location: "India" };
+  collection.insertOne(myobj, function(err, res) {
+    if (err) throw err;
+    console.log("1 document inserted");
+    client.close();
+  });
+   client.close();
+ });
+
+
 app.post('/',function(req,res){
 
   skill = req.body.queryResult.parameters["skill_name"];
@@ -36,24 +56,6 @@ app.post('/',function(req,res){
   console.log("Error: " + err.message);
 });
 })
-
-const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://mongo_user:VwvmBKZFmXARA5ME@cluster0-r121x.gcp.mongodb.net/chatbot?retryWrites=true&w=majority";
-
-MongoClient.connect(uri, function(err, client) {
-   if(err) {
-        console.log('Error occurred while connecting to MongoDB Atlas...\n',err);
-   }
-   console.log('Connected...');
-   const collection = client.db("chatbot").collection("user_details");
-   var myobj = { name: skill, location: "India" };
-  collection.insertOne(myobj, function(err, res) {
-    if (err) throw err;
-    console.log("1 document inserted");
-    client.close();
-  });
-   client.close();
- });
 
 app.listen(port,function(err){
     if(err){
