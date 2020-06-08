@@ -9,55 +9,15 @@ app.use(express.urlencoded({extended:false}));
 app.post('/',function(req,res){
 
   var skill = req.body.queryResult.parameters["Skills"];
-  var user_name = req.body.queryResult.parameters["name"];
+  //var user_name = req.body.queryResult.parameters["name"];
 
-  https.get("https://jobs.github.com/positions.json?description="+skill+"&location=new+york", (resp) => {
-  let data = '';
-
-  resp.on('data', (chunk) => {
-    data += chunk;
-  });
-
-  resp.on('end', () => {
-     console.log(skill+",");
-     console.log(JSON.parse(data));
-     var jobsArray =  JSON.parse(data);
-     var result="";
-     for(var i=0;i<jobsArray.length;i++)
-     {
-        result = result + " \n" + (i+1).toString() + " " + jobsArray[i].title + " and " + jobsArray[i].url + "\n";
-     }
     return res.json(200,
         {
-          "fulfillmentText": result + "\n Would you like to save your resume?"
+          "fulfillmentText": skill + "\n Would you like to save your resume?"
             
         });
    ;
   });
-
-}).on("error", (err) => {
-  console.log("Error: " + err.message);
-});
-   
-
-MongoClient.connect(uri, function(err, client) {
-   if(err) {
-        console.log('Error occurred while connecting to MongoDB Atlas...\n',err);
-   }
-   console.log('Connected...');
-   const collection = client.db("chatbot").collection("user_details");
-
-  //insert
-  var myobj = { name: skill, location: user_name };
-  collection.insertOne(myobj, function(err, res) {
-    if (err) throw err;
-    console.log("1 document inserted");
-    client.close();
-  });
-   client.close();
-});
-
-})
 
 app.listen(port,function(err){
     if(err){
