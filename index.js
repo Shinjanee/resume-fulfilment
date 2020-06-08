@@ -41,20 +41,20 @@ app.post('/',function(req,res){
    
  })
 
-MongoClient.connect(uri, function(err, client) {
-   if(err) {
-        console.log('Error occurred while connecting to MongoDB Atlas...\n',err);
-   }
-   console.log('Connected...');
-   const collection = client.db("chatbot").collection("user_details");
-   var myobj = { name: skill, location: "India" };
-  collection.insertOne(myobj, function(err, res) {
-    if (err) throw err;
-    console.log("1 document inserted");
-    client.close();
-  });
-   client.close();
-});
+// MongoClient.connect(uri, function(err, client) {
+//    if(err) {
+//         console.log('Error occurred while connecting to MongoDB Atlas...\n',err);
+//    }
+//    console.log('Connected...');
+//    const collection = client.db("chatbot").collection("user_details");
+//    var myobj = { name: skill, location: "India" };
+//   collection.insertOne(myobj, function(err, res) {
+//     if (err) throw err;
+//     console.log("1 document inserted");
+//     client.close();
+//   });
+//    client.close();
+// });
 
 app.listen(port,function(err){
     if(err){
