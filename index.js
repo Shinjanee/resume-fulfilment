@@ -39,7 +39,6 @@ app.post('/',function(req,res){
   console.log("Error: " + err.message);
 });
    
- })
 
 MongoClient.connect(uri, function(err, client) {
    if(err) {
@@ -57,6 +56,8 @@ MongoClient.connect(uri, function(err, client) {
   });
    client.close();
 });
+
+})
 
 app.listen(port,function(err){
     if(err){
