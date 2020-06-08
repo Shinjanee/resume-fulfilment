@@ -9,7 +9,7 @@ app.use(express.urlencoded({extended:false}));
 app.post('/',function(req,res){
 
   var user_name = req.body.queryResult.parameters["given-name"];
-  if (String(user_name).length != "undefined")
+  if (String(user_name) != "undefined")
   {
       return res.json(200,
         {
@@ -20,7 +20,7 @@ app.post('/',function(req,res){
 
 
   var skill = req.body.queryResult.parameters["Skills"];
-  if (String(skill).length != "undefined")
+  if (String(skill) != "undefined")
   {
     return res.json(200,
         {
