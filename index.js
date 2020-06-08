@@ -8,15 +8,23 @@ app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.post('/',function(req,res){
 
-  var skill = req.body.queryResult.parameters["Skills"];
-  //var user_name = req.body.queryResult.parameters["name"];
+  param = req.body.queryResult.queryText;
+  if(param == "yes")
+    {
+      var user_name = req.body.queryResult.parameters["name"];
+      return res.json(200,
+        {
+          "fulfillmentText": user_name + "\n Education?"
+            
+        });
+    }
 
+  var skill = req.body.queryResult.parameters["Skills"];
     return res.json(200,
         {
           "fulfillmentText": skill + "\n Would you like to save your resume?"
             
         });
-   ;
   });
 
 app.listen(port,function(err){
