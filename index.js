@@ -20,7 +20,7 @@ app.post('/',function(req,res){
 
 
   var skill = req.body.queryResult.parameters["Skills"];
-  if (length(skill)>1)
+  if (skill=="python")
   {
     return res.json(200,
         {
