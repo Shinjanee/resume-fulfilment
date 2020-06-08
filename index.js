@@ -9,6 +9,7 @@ app.use(express.urlencoded({extended:false}));
 app.post('/',function(req,res){
 
   var skill = req.body.queryResult.parameters["Skills"];
+  var user_name = req.body.queryResult.parameters["Skills"];
 
   https.get("https://jobs.github.com/positions.json?description="+skill+"&location=new+york", (resp) => {
   let data = '';
@@ -48,7 +49,7 @@ MongoClient.connect(uri, function(err, client) {
    const collection = client.db("chatbot").collection("user_details");
 
   //insert
-  var myobj = { name: skill, location: "Highway 37" };
+  var myobj = { name: skill, location: user_name };
   collection.insertOne(myobj, function(err, res) {
     if (err) throw err;
     console.log("1 document inserted");
