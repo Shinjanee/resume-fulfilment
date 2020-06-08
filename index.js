@@ -4,6 +4,7 @@ const app= express();
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://mongo_user:VwvmBKZFmXARA5ME@cluster0-r121x.gcp.mongodb.net/chatbot?retryWrites=true&w=majority";
 const https = require('https');
+var user_name="";
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.post('/',function(req,res){
@@ -14,7 +15,7 @@ app.post('/',function(req,res){
   {
       return res.json(200,
         {
-          "fulfillmentText": pos + " " + yr + " Thank you your response has been recorded"
+          "fulfillmentText": pos + " " + yr + " Thank you! Your response has been recorded"
             
         });
   }
@@ -24,7 +25,7 @@ app.post('/',function(req,res){
   {
       return res.json(200,
         {
-          "fulfillmentText": deg + "\n Experience?"
+          "fulfillmentText": user_name + deg + "\n Experience?"
             
         });
   }
