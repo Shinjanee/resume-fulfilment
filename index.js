@@ -9,6 +9,10 @@ app.use(express.urlencoded({extended:false}));
 app.post('/',function(req,res){
 
   var skill = req.body.queryResult.parameters["Skills"];
+  var param = req.body.queryResult.queryText;
+  var user_name=" "
+  if(param=="yes")
+    user_name = req.body.queryResult.parameters["name"];
 
   https.get("https://jobs.github.com/positions.json?description="+skill+"&location=new+york", (resp) => {
   let data = '';
@@ -46,7 +50,7 @@ app.post('/',function(req,res){
    const collection = client.db("chatbot").collection("user_details");
 
   //insert
-  var myobj = { name: skill, location: "Highway 37" };
+  var myobj = { name: user_name, location: "Highway 37" };
   collection.insertOne(myobj, function(err, res) {
     if (err) throw err;
     console.log("1 document inserted");
