@@ -8,8 +8,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.post('/',function(req,res){
 
-  param = req.body.queryResult.queryText;
-  if(param == "yes")
+  param = req.body.queryResult.parameters;
+  if(param == "given-name")
     {
       var user_name = req.body.queryResult.parameters["given-name"];
       return res.json(200,
