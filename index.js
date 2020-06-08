@@ -23,7 +23,7 @@ app.post('/',function(req,res){
   var deg = req.body.queryResult.parameters["degree"];
   if (String(deg) != "undefined")
   {
-      var name = req.body.queryResult.contexts["name.given-name"];
+      var name = req.body.queryResult.contexts;
       return res.json(200,
         {
           "fulfillmentText": deg + name + "\n Experience?"
