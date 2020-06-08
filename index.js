@@ -52,7 +52,6 @@ app.post('/',function(req,res){
     console.log("1 document inserted");
     client.close();
   });
-   // perform actions on the collection object
    client.close();
 });
    
