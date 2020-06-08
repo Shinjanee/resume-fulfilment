@@ -14,7 +14,7 @@ app.post('/',function(req,res){
   {
       return res.json(200,
         {
-          "fulfillmentText": pos + yr + "Thank you your response has been recorded"
+          "fulfillmentText": pos + " " + yr + " Thank you your response has been recorded"
             
         });
   }
