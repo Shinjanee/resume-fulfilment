@@ -10,7 +10,7 @@ app.post('/',function(req,res){
 
   var pos = req.body.queryResult.parameters["position"];
   var yr = req.body.queryResult.parameters["exp_years"];
-  if (String(user_name) != "undefined")
+  if (String(pos) != "undefined" && String(yr) != "undefined")
   {
       return res.json(200,
         {
@@ -20,7 +20,7 @@ app.post('/',function(req,res){
   }
 
   var deg = req.body.queryResult.parameters["degree"];
-  if (String(user_name) != "undefined")
+  if (String(deg) != "undefined")
   {
       return res.json(200,
         {
