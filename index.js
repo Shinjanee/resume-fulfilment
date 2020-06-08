@@ -9,7 +9,7 @@ app.use(express.urlencoded({extended:false}));
 app.post('/',function(req,res){
 
   var user_name = req.body.queryResult.parameters["given-name"];
-  if (user_name.toString().trim().length() > 1)
+  if (user_name.toString().trim().length() != 0)
   {
       return res.json(200,
         {
@@ -20,7 +20,7 @@ app.post('/',function(req,res){
 
 
   var skill = req.body.queryResult.parameters["Skills"];
-  if (skill.toString().trim().length() > 1)
+  if (skill.toString().trim().length() != 0)
   {
     return res.json(200,
         {
