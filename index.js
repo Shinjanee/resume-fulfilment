@@ -43,13 +43,37 @@ app.post('/',function(req,res){
   var skill = req.body.queryResult.parameters["Skills"];
   if (String(skill) != "undefined")
   {
-    return res.json(200,
-        {
-          "fulfillmentText": skill + "\n Would you like to save your resume?"
-            
+        https.get("https://jobs.github.com/positions.json?description="+skill+"&location=new+york", (resp) => {
+        let data = '';
+
+        resp.on('data', (chunk) => {
+          data += chunk;
         });
+
+        resp.on('end', () => {
+           console.log(skill+",");
+           console.log(JSON.parse(data));
+           var jobsArray =  JSON.parse(data);
+           var result="";
+           for(var i=0;i<jobsArray.length;i++)
+           {
+              result = result + " \n" + (i+1).toString() + " " + jobsArray[i].title + " and " + jobsArray[i].url + "\n";
+           }
+          return res.json(200,
+              {
+                "fulfillmentText": result + "\n Would you like to save your resume?"
+                  
+              });
+         ;
+        });
+
+      }).on("error", (err) => {
+        console.log("Error: " + err.message);
+      });
   }
-  });
+});
+
+  
 
 app.listen(port,function(err){
     if(err){
