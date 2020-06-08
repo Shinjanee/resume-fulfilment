@@ -37,13 +37,6 @@ app.post('/',function(req,res){
 });
 })
 
-app.listen(port,function(err){
-    if(err){
-       console.log("Error in running server");
-    }
-    console.log("server started");
-})
-
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://mongo_user:VwvmBKZFmXARA5ME@cluster0-r121x.gcp.mongodb.net/chatbot?retryWrites=true&w=majority";
 
@@ -61,3 +54,10 @@ MongoClient.connect(uri, function(err, client) {
   });
    client.close();
  });
+
+app.listen(port,function(err){
+    if(err){
+       console.log("Error in running server");
+    }
+    console.log("server started");
+})
