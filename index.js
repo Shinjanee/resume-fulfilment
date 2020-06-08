@@ -35,7 +35,16 @@ app.post('/',function(req,res){
   {
       return res.json(200,
         {
-          "fulfillmentText": user_name + "\n Education?"
+          "fulfillmentText": user_name + "\n Education?",
+            "outputContexts": [
+              {
+                "name": "name",
+                "lifespanCount": 5,
+                "parameters": {
+                  "user_name": user_name
+                }
+              }
+            ],
             
         });
   }
