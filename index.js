@@ -11,7 +11,7 @@ app.post('/',function(req,res){
   param = req.body.queryResult.queryText;
   if(param == "yes")
     {
-      var user_name = req.body.queryResult.parameters["name"];
+      var user_name = req.body.queryResult.parameters["given-name"];
       return res.json(200,
         {
           "fulfillmentText": user_name + "\n Education?"
