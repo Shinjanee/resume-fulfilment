@@ -8,6 +8,27 @@ app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.post('/',function(req,res){
 
+  var pos = req.body.queryResult.parameters["position"];
+  var yr = req.body.queryResult.parameters["exp_years"];
+  if (String(user_name) != "undefined")
+  {
+      return res.json(200,
+        {
+          "fulfillmentText": pos + yr + "Thank you your response has been recorded"
+            
+        });
+  }
+
+  var deg = req.body.queryResult.parameters["degree"];
+  if (String(user_name) != "undefined")
+  {
+      return res.json(200,
+        {
+          "fulfillmentText": deg + "\n Experience?"
+            
+        });
+  }
+
   var user_name = req.body.queryResult.parameters["given-name"];
   if (String(user_name) != "undefined")
   {
