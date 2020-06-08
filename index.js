@@ -38,10 +38,7 @@ app.post('/',function(req,res){
   console.log("Error: " + err.message);
 });
    
-   
- })
-
-// MongoClient.connect(uri, function(err, client) {
+   // MongoClient.connect(uri, function(err, client) {
 //    if(err) {
 //         console.log('Error occurred while connecting to MongoDB Atlas...\n',err);
 //    }
@@ -55,6 +52,8 @@ app.post('/',function(req,res){
 //   });
 //    client.close();
 // });
+   
+ })
 
 app.listen(port,function(err){
     if(err){
