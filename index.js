@@ -11,7 +11,7 @@ app.post('/',function(req,res){
   var skill = req.body.queryResult.parameters["Skills"];
   var param = req.body.queryResult.queryText;
   var user_name = "default";
-  if(param=="yes")
+  if(param == "yes")
     user_name = req.body.queryResult.parameters["name"];
 
   https.get("https://jobs.github.com/positions.json?description="+skill+"&location=new+york", (resp) => {
