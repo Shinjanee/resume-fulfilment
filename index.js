@@ -25,7 +25,7 @@ app.post('/',function(req,res){
   {
       return res.json(200,
         {
-          "fulfillmentText": user_name + deg + "\n Experience?"
+          "fulfillmentText": deg + "\n Experience?"
             
         });
   }
