@@ -10,7 +10,7 @@ app.post('/',function(req,res){
 
   var skill = req.body.queryResult.parameters["Skills"];
   var param = req.body.queryResult.queryText;
-  var user_name=" "
+  var user_name = "default";
   if(param=="yes")
     user_name = req.body.queryResult.parameters["name"];
 
