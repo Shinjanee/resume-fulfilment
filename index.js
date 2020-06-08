@@ -8,19 +8,19 @@ app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.post('/',function(req,res){
 
-  // var user_name = req.body.queryResult.parameters["given-name"];
-  // if (length(user_name)>1)
-  // {
-  //     return res.json(200,
-  //       {
-  //         "fulfillmentText": user_name + "\n Education?"
+  var user_name = req.body.queryResult.parameters["given-name"];
+  if (user_name.toString().trim().length() > 1)
+  {
+      return res.json(200,
+        {
+          "fulfillmentText": user_name + "\n Education?"
             
-  //       });
-  // }
+        });
+  }
 
 
   var skill = req.body.queryResult.parameters["Skills"];
-  if (skill.toString().trim() === "python")
+  if (skill.toString().trim().length() > 1)
   {
     return res.json(200,
         {
