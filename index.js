@@ -23,15 +23,14 @@ app.post('/',function(req,res){
   var deg = req.body.queryResult.parameters["degree"];
   if (String(deg) != "undefined")
   {
-      var name = req.body.queryResult.outputContexts["name.given-name"];
       return res.json(200,
         {
-          "fulfillmentText": deg + name + "\n Experience?"
+          "fulfillmentText": deg + user_name + "\n Experience?"
             
         });
   }
 
-  var user_name = req.body.queryResult.parameters["given-name"];
+  user_name = req.body.queryResult.parameters["given-name"];
   if (String(user_name) != "undefined")
   {
       return res.json(200,
