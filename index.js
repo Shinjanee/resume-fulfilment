@@ -237,7 +237,9 @@ app.post('/',function(req,res){
   });
     
   }
-  else if(action == "showSkills"){
+  else if(action == "showDetails"){
+    var val = req.body.queryResult.parameters["details"];
+    var id = req.body.queryResult.parameters["id"];
     User.findOne({_id: id},function(err,user)
         {
            if(err)
