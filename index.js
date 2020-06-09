@@ -15,7 +15,7 @@ var yr = ";"
 app.post('/',function(req,res){
 
   pos = req.body.queryResult.parameters["position"];
-  yr = req.body.queryResult.parameters["exp_years"];
+  yr = req.body.queryResult.parameters["duration"];
   if (String(pos) != "undefined" && String(yr) != "undefined")
   {
       MongoClient.connect(uri, function(err, client) {
