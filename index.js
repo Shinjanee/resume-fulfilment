@@ -18,7 +18,7 @@ app.post('/',function(req,res){
     educationArray = [];
       User.create({
         name:req.body.queryResult.queryText,
-        email:"N.A",
+        email:"guptashivansh@hotmail.com",
         education:[],
         experience:[],
         project:"N.A",
@@ -46,7 +46,6 @@ app.post('/',function(req,res){
               ]
                 
             });    
-        
     });
   }
   else if(action=="getEmail"){
