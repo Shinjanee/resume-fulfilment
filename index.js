@@ -238,7 +238,7 @@ app.post('/',function(req,res){
     
   }
   else if(action == "showSkills"){
-    User.findById({'skills'},function(err,user)
+    User.findById(id,{'skills'},function(err,user)
         {
            if(err)
            {
