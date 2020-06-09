@@ -1,118 +1,250 @@
 const express = require('express');
 const port = process.env.PORT;
 const app= express();
-const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://mongo_user:VwvmBKZFmXARA5ME@cluster0-r121x.gcp.mongodb.net/chatbot?retryWrites=true&w=majority";
+const mongoose = require("./config/mongoose");
+const User = require('./models/user');
 const https = require('https');
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
-
-var user_name = "";
-var deg = "";
-var univ_name="";
-var univ_loc="";
-var marks="";
-var pos = "";
-var comp_name="";
-var comp_loc="";
-var duration = "";
-
+var id;
+var educationArray = [];
+var experienceArray=[];
 app.post('/',function(req,res){
 
-  pos = req.body.queryResult.parameters["position"];
-  comp_name = req.body.queryResult.parameters["comp_name"];
-  comp_loc = req.body.queryResult.parameters["location"];
-  duration = req.body.queryResult.parameters["duration"];
-  if (String(pos) != "undefined" && String(comp_name) != "undefined" && String(comp_loc) != "undefined" && String(duration) != "undefined")
-  {
-      MongoClient.connect(uri, function(err, client) {
-       if(err) {
-            console.log('Error occurred while connecting to MongoDB Atlas...\n',err);
-       }
-       console.log('Connected...');
-       const collection = client.db("chatbot").collection("user_details");
+ 
+  var action = req.body.queryResult.action;
+  if(action =="getName"){
+    experienceArray=[];
+    educationArray = [];
+      User.create({
+        name:req.body.queryResult.queryText,
+        education:[],
+        experience:[],
+        project:"N.A",
+        skills:"N.A",
+        interests:"N.A",
+        achievements:"N.A"
 
-      //insert
-      var myobj = { name: user_name, education: {degree: deg, school: univ_name, location: univ_loc, grade: marks}, experience: {title: pos, company: comp_name, location: comp_loc, duration : duration }};
-      collection.insertOne(myobj, function(err, res) {
-        if (err) throw err;
-        console.log("1 document inserted");
-        client.close();
-      });
-       client.close();
-    });
-
-      return res.json(200,
+        
+    },function(err,user)
+    {
+        if(err)
         {
-          "fulfillmentText": "Thank you! Your response has been recorded"
-            
-        });
-  }
-
-	  deg = req.body.queryResult.parameters["degree"];
-      univ_name = req.body.queryResult.parameters["univ_name"];
-      univ_loc = req.body.queryResult.parameters["location"];
-      marks = req.body.queryResult.parameters["percentage"];
-      if (String(deg) != "undefined" && String(univ_name) != "undefined" && String(univ_loc) != "undefined" && String(marks) != "undefined")
-      {
+            console.log("Error");
+            return;
+        }
+        console.log(" user created \n");
+          id = user._id;
+          console.log(id);
           return res.json(200,
             {
-              "fulfillmentText": "Experience?"    
-            });
-      }
-
-
-  user_name = req.body.queryResult.parameters["given-name"];
-  if (String(user_name) != "undefined")
-  {
-      return res.json(200,
-        {
-          "fulfillmentText": "Education?"
-            
-        });
+              "fulfillmentMessages": [
+                {
+                  "text": {
+                    "text": ["Enter skills"]
+                  }
+                }
+              ]
+                
+            });    
+        
+    });
+  
   }
+  else if(action=="getSkills"){
 
 
-  var skill = req.body.queryResult.parameters["Skills"];
-  if (String(skill) != "undefined")
-  {
-        https.get("https://jobs.github.com/positions.json?description="+skill+"&location=new+york", (resp) => {
-        let data = '';
-
-        resp.on('data', (chunk) => {
-          data += chunk;
-        });
-
-        resp.on('end', () => {
-           console.log(skill+",");
-           console.log(JSON.parse(data));
-           var jobsArray =  JSON.parse(data);
-           var result="";
-           for(var i=0;i<jobsArray.length;i++)
+    User.findByIdAndUpdate(id,{"skills":req.body.queryResult.queryText},function(err,user)
+        {
+           if(err)
            {
-              result = result + " \n" + (i+1).toString() + " " + jobsArray[i].title + " and " + jobsArray[i].url + "\n";
+             console.log("cant be update");
+             return;
            }
-          return res.json(200,
-              {
-                "fulfillmentText": result + "\n Would you like to save your resume?"
-                  
-              });
-         ;
+           console.log("updated");
+           return res.json(200,
+            {
+              "fulfillmentMessages": [
+                {
+                  "text": {
+                    "text": ["Enter interests"]
+                  }
+                }
+              ]
+                
+            });
         });
 
-      }).on("error", (err) => {
-        console.log("Error: " + err.message);
-      });
+  }
+  else if(action=="getInterest"){
+
+
+    User.findByIdAndUpdate(id,{"interests":req.body.queryResult.queryText},function(err,user)
+        {
+           if(err)
+           {
+             console.log("cant be update");
+             return;
+           }
+           console.log("updated");
+           return res.json(200,
+            {
+              "fulfillmentMessages": [
+                {
+                  "text": {
+                    "text": ["Enter achievements"]
+                  }
+                }
+              ]
+                
+            });
+        });
+       
+
+  }
+  else if(action=="getAchievements"){
+
+
+    User.findByIdAndUpdate(id,{"achievements":req.body.queryResult.queryText},function(err,user)
+        {
+           if(err)
+           {
+             console.log("cant be update");
+             return;
+           }
+           console.log("updated");
+           return res.json(200,
+            {
+              "fulfillmentMessages": [
+                {
+                  "text": {
+                    "text": ["Enter experience"]
+                  }
+                }
+              ]
+                
+            });
+        });
+
+  }
+  else if(action=="getEducation"){
+      
+    var degree = req.body.queryResult.parameters["degree"];
+    var university_name = req.body.queryResult.parameters["university_name"];
+    var location = req.body.queryResult.parameters["city"];
+    var percentage = req.body.queryResult.parameters["percentage"];
+    educationArray.push({
+      "degree": degree,
+       "university_name":university_name,
+       "location":location,
+       "percentage":percentage
+
+    });
+
+    User.findByIdAndUpdate(id,{"education":educationArray},function(err,user)
+        {
+           if(err)
+           {
+             console.log("cant be update");
+             return;
+           }
+           console.log("updated");
+           return res.json(200,
+            {
+              "fulfillmentMessages": [
+                {
+                  "text": {
+                    "text": ["Want to enter more?"]
+                  }
+                }
+              ]
+                
+            });
+        });
+
+  }
+  else if(action=="getExperience"){
+
+
+    var position = req.body.queryResult.parameters["position"];
+    var duration = req.body.queryResult.parameters["duration"];
+    var location = req.body.queryResult.parameters["city"];
+    var company_name = req.body.queryResult.parameters["company_name"];
+    experienceArray.push({
+      "position":position,
+      "duration":duration,
+      "location":location,
+      "company_name":company_name
+    });
+
+    User.findByIdAndUpdate(id,{"experience":experienceArray},function(err,user)
+        {
+           if(err)
+           {
+             console.log("cant be update");
+             return;
+           }
+           console.log("updated");
+           return res.json(200,
+            {
+              "fulfillmentMessages": [
+                {
+                  "text": {
+                    "text": ["Want to enter more?"]
+                  }
+                }
+              ]
+                
+            });
+        });
+
+    
+
+  }
+  else if(action == "getJobBySkill"){
+    var skill = req.body.queryResult.parameters["skill_name"];
+
+    https.get("https://jobs.github.com/positions.json?description="+skill+"&location=new+york", (resp) => {
+    let data = '';
+
+    resp.on('data', (chunk) => {
+      data += chunk;
+    });
+
+    resp.on('end', () => {
+      
+      var jobsArray =  JSON.parse(data);
+      var result="";
+      for(var i=0;i<jobsArray.length;i++)
+      {
+          result+= (i+1).toString()+jobsArray[i].title +" and "+ jobsArray[i].url +"  \n";
+      }
+      return res.json(200,
+          {
+            "fulfillmentMessages": [
+              {
+                "text": {
+                  "text": [result +"Want to create resume?"]
+                }
+              }
+            ]
+              
+          });
+
+      
+    
+    });
+
+  }).on("error", (err) => {
+    console.log("Error: " + err.message);
+  });
+    
   }
 });
-  
-
 app.listen(port,function(err){
     if(err){
        console.log("Error in running server");
     }
     console.log("server started");
-})
-
-
-
+    
+});
