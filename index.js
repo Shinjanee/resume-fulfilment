@@ -10,7 +10,7 @@ app.use(express.urlencoded({extended:false}));
 var user_name = "";
 var deg = "";
 var pos = "";
-var yr = ";"
+var yr = "";
 
 app.post('/',function(req,res){
 
