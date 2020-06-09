@@ -9,6 +9,7 @@ app.use(express.urlencoded({extended:false}));
 var id;
 var educationArray = [];
 var experienceArray=[];
+var projectArray = [];
 app.post('/',function(req,res){
 
  
@@ -166,10 +167,9 @@ app.post('/',function(req,res){
     var year = req.body.queryResult.parameters["year"];
     var description = req.body.queryResult.parameters["description"];
     projectArray.push({
-      "title": title,
+      "title":title,
        "year":year,
        "description":description
-
     });
 
     User.findByIdAndUpdate(id,{"project":projectArray},function(err,user)
