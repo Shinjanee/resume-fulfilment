@@ -18,13 +18,7 @@ app.post('/',function(req,res){
   yr = req.body.queryResult.parameters["exp_years"];
   if (String(pos) != "undefined" && String(yr) != "undefined")
   {
-      return res.json(200,
-        {
-          "fulfillmentText": "Thank you! Your response has been recorded"
-            
-        });
-
-        MongoClient.connect(uri, function(err, client) {
+      MongoClient.connect(uri, function(err, client) {
        if(err) {
             console.log('Error occurred while connecting to MongoDB Atlas...\n',err);
        }
@@ -40,6 +34,12 @@ app.post('/',function(req,res){
       });
        client.close();
     });
+
+      return res.json(200,
+        {
+          "fulfillmentText": "Thank you! Your response has been recorded"
+            
+        });
   }
 
   deg = req.body.queryResult.parameters["degree"];
