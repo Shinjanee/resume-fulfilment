@@ -58,7 +58,7 @@ app.post('/',function(req,res){
         {
            if(err)
            {
-             console.log("cant be update");
+             console.log("cant be updated");
              return;
            }
            console.log("updated");
@@ -83,7 +83,7 @@ app.post('/',function(req,res){
         {
            if(err)
            {
-             console.log("cant be update");
+             console.log("cant be updated");
              return;
            }
            console.log("updated");
@@ -109,7 +109,7 @@ app.post('/',function(req,res){
         {
            if(err)
            {
-             console.log("cant be update");
+             console.log("cant be updated");
              return;
            }
            console.log("updated");
@@ -145,7 +145,7 @@ app.post('/',function(req,res){
         {
            if(err)
            {
-             console.log("cant be update");
+             console.log("cant be updated");
              return;
            }
            console.log("updated");
@@ -181,7 +181,7 @@ app.post('/',function(req,res){
         {
            if(err)
            {
-             console.log("cant be update");
+             console.log("cant be updated");
              return;
            }
            console.log("updated");
@@ -230,9 +230,6 @@ app.post('/',function(req,res){
             ]
               
           });
-
-      
-    
     });
 
   }).on("error", (err) => {
@@ -240,7 +237,32 @@ app.post('/',function(req,res){
   });
     
   }
+  else if(action == "showSkills"){
+    User.findById(id,'skills',function(err,user)
+        {
+           if(err)
+           {
+             console.log("cant be found");
+             return;
+           }
+           console.log("found");
+           return res.json(200,
+            {
+              "fulfillmentMessages": [
+                {
+                  "text": {
+                    "text": [User.skills]
+                  }
+                }
+              ]
+                
+            });
+        });
+
+  }
+
 });
+
 app.listen(port,function(err){
     if(err){
        console.log("Error in running server");
