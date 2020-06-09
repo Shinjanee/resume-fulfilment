@@ -254,7 +254,7 @@ app.post('/',function(req,res){
               "fulfillmentMessages": [
                 {
                   "text": {
-                    "text": String(toSend)
+                    "text": [String(toSend)]
                   }
                 }
               ]
