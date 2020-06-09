@@ -47,7 +47,7 @@ const userSchema = new mongoose.Schema(
                     type:String,
                     required:true
                 },
-                duration:{
+                year:{
                     type:String,
                     required:true
                 },

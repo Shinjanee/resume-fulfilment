@@ -167,7 +167,7 @@ app.post('/',function(req,res){
     var description = req.body.queryResult.parameters["description"];
     projectArray.push({
       "title": title,
-       "duration":duration,
+       "year":year,
        "description":description
 
     });
