@@ -302,7 +302,25 @@ app.post('/',function(req,res){
              return;
            }
            console.log("found");
-           toSend = user.skills;
+           if(val == "name")
+            toSend = user.name;
+           else if(val == "email")
+            toSend = user.email;
+           else if(val == "skills")
+            toSend = user.skills;
+           else if(val == "interests")
+            toSend = user.interests;
+           else if(val == "education")
+            toSend = user.education;
+           else if (val == "projects")
+            toSend = user.project;
+           else if(val == "experience")
+            toSend = user.experience;
+           else if(val == "achievements")
+            toSend = user.achievements;
+           else
+            toSend = "Not a valid query";
+
            return res.json(200,
             {
               "fulfillmentMessages": [
