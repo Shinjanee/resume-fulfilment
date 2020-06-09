@@ -238,7 +238,7 @@ app.post('/',function(req,res){
     
   }
   else if(action == "showSkills"){
-    User.findOne({_id: id},'skills',function(err,user)
+    User.findOne({_id: id},function(err,user)
         {
            if(err)
            {
