@@ -23,6 +23,23 @@ app.post('/',function(req,res){
           "fulfillmentText": "Thank you! Your response has been recorded"
             
         });
+
+        MongoClient.connect(uri, function(err, client) {
+       if(err) {
+            console.log('Error occurred while connecting to MongoDB Atlas...\n',err);
+       }
+       console.log('Connected...');
+       const collection = client.db("chatbot").collection("user_details");
+
+      //insert
+      var myobj = { name: user_name, education: deg, position: pos, years: yr };
+      collection.insertOne(myobj, function(err, res) {
+        if (err) throw err;
+        console.log("1 document inserted");
+        client.close();
+      });
+       client.close();
+    });
   }
 
   deg = req.body.queryResult.parameters["degree"];
@@ -77,23 +94,6 @@ app.post('/',function(req,res){
         console.log("Error: " + err.message);
       });
   }
-});
-
-MongoClient.connect(uri, function(err, client) {
-   if(err) {
-        console.log('Error occurred while connecting to MongoDB Atlas...\n',err);
-   }
-   console.log('Connected...');
-   const collection = client.db("chatbot").collection("user_details");
-
-  //insert
-  var myobj = { name: user_name, education: deg, position: pos, years: yr };
-  collection.insertOne(myobj, function(err, res) {
-    if (err) throw err;
-    console.log("1 document inserted");
-    client.close();
-  });
-   client.close();
 });
   
 
