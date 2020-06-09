@@ -313,18 +313,27 @@ app.post('/',function(req,res){
            else if(val == "education")
            {
             for(i=0;i<educationArray.length;i++)
-              toSend += "Degree: " + String(user.education[i].degree) +" School Name: "+ String(user.education[i].university_name) +" Location: " + String(user.education[i].location) +" Percentage: "+ String(user.education[i].percentage) + "\n";
-           } 
+              {
+                toSend="";
+                toSend += "Degree: " + String(user.education[i].degree) +" School Name: "+ String(user.education[i].university_name) +" Location: " + String(user.education[i].location) +" Percentage: "+ String(user.education[i].percentage) + "\n";
+              } 
+           }
            else if (val == "projects")
            {
             for(i=0;i<projectArray.length;i++)
-              toSend += "Title: " + String(user.project[i].title) +" Year: "+ String(user.project[i].year) +" Description: " + String(user.project[i].description) + "\n";
-           } 
+              {
+                toSend="";
+                toSend += "Title: " + String(user.project[i].title) +" Year: "+ String(user.project[i].year) +" Description: " + String(user.project[i].description) + "\n";
+              } 
+           }
            else if(val == "experience")
            {
             for(i=0;i<experienceArray.length;i++)
-              toSend += "Position: " + String(user.experience[i].position) +" Company: "+ String(user.experience[i].company_name) +" Location: " + String(user.experience[i].location) +" Duration: "+ String(user.experience[i].duration) + "\n";
-           } 
+              {
+                toSend="";
+                toSend += "Position: " + String(user.experience[i].position) +" Company: "+ String(user.experience[i].company_name) +" Location: " + String(user.experience[i].location) +" Duration: "+ String(user.experience[i].duration) + "\n";
+              } 
+           }
            else if(val == "achievements")
             toSend = user.achievements;
            else
