@@ -292,7 +292,8 @@ app.post('/',function(req,res){
     
   }
   else if(action == "showDetails"){
-    var toSend="";
+    var toSend = "";
+    var len = 0;
     var val = req.body.queryResult.parameters["details"];
     var search_id = req.body.queryResult.parameters["id"];
     User.findOne({_id: search_id},function(err,user)
@@ -313,20 +314,23 @@ app.post('/',function(req,res){
             toSend = user.interests;
            else if(val == "education")
            {
-            toSend="";
-            for(i=0;i<educationArray.length;i++)
+            toSend = "";
+            len = user.education.length;
+            for(i=0;i<len;i++)
                 toSend += "Degree: " + String(user.education[i].degree) +" School Name: "+ String(user.education[i].university_name) +" Location: " + String(user.education[i].location) +" Percentage: "+ String(user.education[i].percentage) + "\n";
            }
            else if (val == "projects")
            {
-            toSend="";
-            for(i=0;i<projectArray.length;i++)
+            toSend = "";
+            len = user.project.length;
+            for(i=0;i<len;i++)
                 toSend += "Title: " + String(user.project[i].title) +" Year: "+ String(user.project[i].year) +" Description: " + String(user.project[i].description) + "\n";
            }
            else if(val == "experience")
            {
-            toSend="";
-            for(i=0;i<experienceArray.length;i++)
+            toSend = "";
+            len = user.experience.length;
+            for(i=0;i<len;i++)
                 toSend += "Position: " + String(user.experience[i].position) +" Company: "+ String(user.experience[i].company_name) +" Location: " + String(user.experience[i].location) +" Duration: "+ String(user.experience[i].duration) + "\n";
            }
            else if(val == "achievements")
