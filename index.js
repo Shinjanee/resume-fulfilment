@@ -16,12 +16,13 @@ app.post('/',function(req,res){
   if(action =="getName"){
     experienceArray=[];
     educationArray = [];
+    projectArray = [];
       User.create({
         name:req.body.queryResult.queryText,
         email:"N.A",
         education:[],
         experience:[],
-        project:"N.A",
+        project:[],
         skills:"N.A",
         interests:"N.A",
         achievements:"N.A" 
@@ -134,6 +135,40 @@ app.post('/',function(req,res){
        "university_name":university_name,
        "location":location,
        "percentage":percentage
+
+    });
+
+    User.findByIdAndUpdate(id,{"education":educationArray},function(err,user)
+        {
+           if(err)
+           {
+             console.log("cant be updated");
+             return;
+           }
+           console.log("updated");
+           return res.json(200,
+            {
+              "fulfillmentMessages": [
+                {
+                  "text": {
+                    "text": ["Want to enter more?"]
+                  }
+                }
+              ]
+                
+            });
+        });
+
+  }
+  else if(action=="getProjects"){
+      
+    var title = req.body.queryResult.parameters["title"];
+    var year = req.body.queryResult.parameters["year"];
+    var description = req.body.queryResult.parameters["description"];
+    projectArray.push({
+      "title": title,
+       "duration":duration,
+       "description":description
 
     });
 
