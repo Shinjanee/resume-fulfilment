@@ -49,18 +49,18 @@ app.post('/',function(req,res){
         });
   }
 
-  deg = req.body.queryResult.parameters["degree"];
-  univ_name = req.body.queryResult.parameters["univ_name"];
-  univ_loc = req.body.queryResult.parameters["location"];
-  marks = req.body.queryResult.parameters["percentage"];
-  if (String(deg) != "undefined" && String(univ_name) != "undefined" && String(univ_loc) != "undefined" && String(marks) != "undefined")
-  {
-      return res.json(200,
-        {
-          "fulfillmentText": "Experience?"
-            
-        });
-  }
+	  deg = req.body.queryResult.parameters["degree"];
+      univ_name = req.body.queryResult.parameters["univ_name"];
+      univ_loc = req.body.queryResult.parameters["location"];
+      marks = req.body.queryResult.parameters["percentage"];
+      if (String(deg) != "undefined" && String(univ_name) != "undefined" && String(univ_loc) != "undefined" && String(marks) != "undefined")
+      {
+          return res.json(200,
+            {
+              "fulfillmentText": "Experience?"    
+            });
+      }
+
 
   user_name = req.body.queryResult.parameters["given-name"];
   if (String(user_name) != "undefined")
