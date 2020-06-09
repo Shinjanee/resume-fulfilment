@@ -253,7 +253,7 @@ app.post('/',function(req,res){
               "fulfillmentMessages": [
                 {
                   "text": {
-                    "text": [User.skills]
+                    "text": User.name
                   }
                 }
               ]
