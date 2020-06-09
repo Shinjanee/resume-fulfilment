@@ -24,9 +24,7 @@ app.post('/',function(req,res){
         project:"N.A",
         skills:"N.A",
         interests:"N.A",
-        achievements:"N.A"
-
-        
+        achievements:"N.A" 
     },function(err,user)
     {
         if(err)
@@ -50,11 +48,8 @@ app.post('/',function(req,res){
             });    
         
     });
-  
   }
   else if(action=="getEmail"){
-
-
     User.findByIdAndUpdate(id,{"email":req.body.queryResult.queryText},function(err,user)
         {
            if(err)
