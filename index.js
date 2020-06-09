@@ -9,14 +9,21 @@ app.use(express.urlencoded({extended:false}));
 
 var user_name = "";
 var deg = "";
+var univ_name="";
+var univ_loc="";
+var marks="";
 var pos = "";
-var yr = "";
+var comp_name="";
+var comp_loc="";
+var duration = "";
 
 app.post('/',function(req,res){
 
   pos = req.body.queryResult.parameters["position"];
-  yr = req.body.queryResult.parameters["duration"];
-  if (String(pos) != "undefined" && String(yr) != "undefined")
+  comp_name = req.body.queryResult.parameters["comp_name"];
+  comp_loc = req.body.queryResult.parameters["location"];
+  duration = req.body.queryResult.parameters["duration"];
+  if (String(pos) != "undefined" && String(comp_name) != "undefined" && String(comp_loc) != "undefined" && String(duration) != "undefined")
   {
       MongoClient.connect(uri, function(err, client) {
        if(err) {
@@ -26,7 +33,7 @@ app.post('/',function(req,res){
        const collection = client.db("chatbot").collection("user_details");
 
       //insert
-      var myobj = { name: user_name, education: deg, position: pos, years: yr };
+      var myobj = { name: user_name, education: {degree: deg, school: univ_name, location: univ_loc, grade: marks}, experience: {title: pos, company: comp_name, location: comp_loc, duration : duration }};
       collection.insertOne(myobj, function(err, res) {
         if (err) throw err;
         console.log("1 document inserted");
@@ -43,7 +50,10 @@ app.post('/',function(req,res){
   }
 
   deg = req.body.queryResult.parameters["degree"];
-  if (String(deg) != "undefined")
+  univ_name = req.body.queryResult.parameters["univ_name"];
+  univ_loc = req.body.queryResult.parameters["location"];
+  marks = req.body.queryResult.parameters["percentage"];
+  if (String(deg) != "undefined" && String(univ_name) != "undefined" && String(univ_loc) != "undefined" && String(marks) != "undefined")
   {
       return res.json(200,
         {
