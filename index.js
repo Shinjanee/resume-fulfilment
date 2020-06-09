@@ -20,11 +20,11 @@ app.post('/',function(req,res){
       User.create({
         name:req.body.queryResult.queryText,
         email:"N.A",
-        education:[],
-        experience:[],
-        project:[],
         skills:"N.A",
         interests:"N.A",
+        education:[],
+        project:[],
+        experience:[],
         achievements:"N.A" 
     },function(err,user)
     {
@@ -172,7 +172,7 @@ app.post('/',function(req,res){
 
     });
 
-    User.findByIdAndUpdate(id,{"education":educationArray},function(err,user)
+    User.findByIdAndUpdate(id,{"project":projectArray},function(err,user)
         {
            if(err)
            {
