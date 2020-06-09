@@ -18,7 +18,7 @@ app.post('/',function(req,res){
     educationArray = [];
       User.create({
         name:req.body.queryResult.queryText,
-        email:"guptashivansh@hotmail.com",
+        email:"N.A",
         education:[],
         experience:[],
         project:"N.A",
@@ -258,8 +258,8 @@ app.post('/',function(req,res){
   }
   else if(action == "showDetails"){
     var val = req.body.queryResult.parameters["details"];
-    var id = req.body.queryResult.parameters["id"];
-    User.findOne({_id: id},function(err,user)
+    var search_id = req.body.queryResult.parameters["id"];
+    User.findOne({_id: search_id},function(err,user)
         {
            if(err)
            {
