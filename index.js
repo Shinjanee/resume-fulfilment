@@ -4,28 +4,33 @@ const app= express();
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://mongo_user:VwvmBKZFmXARA5ME@cluster0-r121x.gcp.mongodb.net/chatbot?retryWrites=true&w=majority";
 const https = require('https');
-var user_name="";
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
+
+var user_name = "";
+var deg = "";
+var pos = "";
+var yr = ";"
+
 app.post('/',function(req,res){
 
-  var pos = req.body.queryResult.parameters["position"];
-  var yr = req.body.queryResult.parameters["exp_years"];
+  pos = req.body.queryResult.parameters["position"];
+  yr = req.body.queryResult.parameters["exp_years"];
   if (String(pos) != "undefined" && String(yr) != "undefined")
   {
       return res.json(200,
         {
-          "fulfillmentText": pos + " " + yr + " Thank you! Your response has been recorded"
+          "fulfillmentText": "Thank you! Your response has been recorded"
             
         });
   }
 
-  var deg = req.body.queryResult.parameters["degree"];
+  deg = req.body.queryResult.parameters["degree"];
   if (String(deg) != "undefined")
   {
       return res.json(200,
         {
-          "fulfillmentText": deg + user_name + "\n Experience?"
+          "fulfillmentText": "Experience?"
             
         });
   }
@@ -35,7 +40,7 @@ app.post('/',function(req,res){
   {
       return res.json(200,
         {
-          "fulfillmentText": user_name + "\n Education?"
+          "fulfillmentText": "Education?"
             
         });
   }
@@ -74,6 +79,22 @@ app.post('/',function(req,res){
   }
 });
 
+MongoClient.connect(uri, function(err, client) {
+   if(err) {
+        console.log('Error occurred while connecting to MongoDB Atlas...\n',err);
+   }
+   console.log('Connected...');
+   const collection = client.db("chatbot").collection("user_details");
+
+  //insert
+  var myobj = { name: skill, location: "Highway 37" };
+  collection.insertOne(myobj, function(err, res) {
+    if (err) throw err;
+    console.log("1 document inserted");
+    client.close();
+  });
+   client.close();
+});
   
 
 app.listen(port,function(err){
