@@ -248,12 +248,13 @@ app.post('/',function(req,res){
              return;
            }
            console.log("found");
+           toSend = User.skills;
            return res.json(200,
             {
               "fulfillmentMessages": [
                 {
                   "text": {
-                    "text": User.name
+                    "text": String(toSend)
                   }
                 }
               ]
