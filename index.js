@@ -311,7 +311,7 @@ app.post('/',function(req,res){
            else if(val == "interests")
             toSend = user.interests;
            else if(val == "education")
-            toSend = user.education;
+            toSend = user.education.degree + user.education.university + user.education.location + user.education.percentage;
            else if (val == "projects")
             toSend = user.project;
            else if(val == "experience")
