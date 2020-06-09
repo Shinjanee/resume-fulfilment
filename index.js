@@ -311,11 +311,20 @@ app.post('/',function(req,res){
            else if(val == "interests")
             toSend = user.interests;
            else if(val == "education")
-            toSend = String(user.education[0].degree) + String(user.education[0].university_name) + String(user.education[0].location) + String(user.education[0].percentage);
+           {
+            for(i=0;i<educationArray.length;i++)
+              toSend += "Degree: " + String(user.education[i].degree) +" School Name: "+ String(user.education[i].university_name) +" Location: " + String(user.education[i].location) +" Percentage: "+ String(user.education[i].percentage) + "\n";
+           } 
            else if (val == "projects")
-            toSend = user.project;
+           {
+            for(i=0;i<projectArray.length;i++)
+              toSend += "Title: " + String(user.project[i].title) +" Year: "+ String(user.project[i].year) +" Description: " + String(user.project[i].description) + "\n";
+           } 
            else if(val == "experience")
-            toSend = user.experience;
+           {
+            for(i=0;i<experienceArray.length;i++)
+              toSend += "Position: " + String(user.experience[i].position) +" Company: "+ String(user.experience[i].company_name) +" Location: " + String(user.experience[i].location) +" Duration: "+ String(user.experience[i].duration) + "\n";
+           } 
            else if(val == "achievements")
             toSend = user.achievements;
            else
