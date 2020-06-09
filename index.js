@@ -41,7 +41,7 @@ app.post('/',function(req,res){
               "fulfillmentMessages": [
                 {
                   "text": {
-                    "text": ["Enter skills"]
+                    "text": ["Enter email"]
                   }
                 }
               ]
@@ -50,6 +50,31 @@ app.post('/',function(req,res){
         
     });
   
+  }
+  else if(action=="getEmail"){
+
+
+    User.findByIdAndUpdate(id,{"email":req.body.queryResult.queryText},function(err,user)
+        {
+           if(err)
+           {
+             console.log("cant be updated");
+             return;
+           }
+           console.log("updated");
+           return res.json(200,
+            {
+              "fulfillmentMessages": [
+                {
+                  "text": {
+                    "text": ["Enter skills"]
+                  }
+                }
+              ]
+                
+            });
+        });
+
   }
   else if(action=="getSkills"){
 
