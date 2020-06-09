@@ -87,7 +87,7 @@ MongoClient.connect(uri, function(err, client) {
    const collection = client.db("chatbot").collection("user_details");
 
   //insert
-  var myobj = { name: skill, location: "Highway 37" };
+  var myobj = { name: user_name, education: deg, position: pos, years: yr };
   collection.insertOne(myobj, function(err, res) {
     if (err) throw err;
     console.log("1 document inserted");
