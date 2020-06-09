@@ -117,7 +117,7 @@ app.post('/',function(req,res){
               "fulfillmentMessages": [
                 {
                   "text": {
-                    "text": ["Enter achievements"]
+                    "text": ["Enter education"]
                   }
                 }
               ]
@@ -127,31 +127,7 @@ app.post('/',function(req,res){
        
 
   }
-  else if(action=="getAchievements"){
 
-
-    User.findByIdAndUpdate(id,{"achievements":req.body.queryResult.queryText},function(err,user)
-        {
-           if(err)
-           {
-             console.log("cant be updated");
-             return;
-           }
-           console.log("updated");
-           return res.json(200,
-            {
-              "fulfillmentMessages": [
-                {
-                  "text": {
-                    "text": ["Enter experience"]
-                  }
-                }
-              ]
-                
-            });
-        });
-
-  }
   else if(action=="getEducation"){
       
     var degree = req.body.queryResult.parameters["degree"];
@@ -221,9 +197,32 @@ app.post('/',function(req,res){
               ]
                 
             });
-        });
+        }); 
 
-    
+  }
+    else if(action=="getAchievements"){
+
+
+    User.findByIdAndUpdate(id,{"achievements":req.body.queryResult.queryText},function(err,user)
+        {
+           if(err)
+           {
+             console.log("cant be updated");
+             return;
+           }
+           console.log("updated");
+           return res.json(200,
+            {
+              "fulfillmentMessages": [
+                {
+                  "text": {
+                    "text": ["Thank you! Your resume has been recorded"]
+                  }
+                }
+              ]
+                
+            });
+        });
 
   }
   else if(action == "getJobBySkill"){
