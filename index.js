@@ -85,13 +85,13 @@ app.post('/',function(req,res){
              console.log("cant be updated");
              return;
            }
-           if(flag == "modify")
+           if(flag == "add")
             var query = user.skills + " " + req.body.queryResult.queryText;
            else if (flag == "delete")
             {
               var main_str = user.skills;
               var str = req.body.queryResult.queryText;
-              var query = main_str.replace(str, " ");
+              var query = main_str.replace(str, "");
             }
            User.findByIdAndUpdate(id,{"skills":query}, function(err,user)
            {
@@ -104,7 +104,7 @@ app.post('/',function(req,res){
            });
            if(flag == "create")
             nextRes = "Enter interests";
-           else if (flag == "modify")
+           else 
             nextRes = "Your resume has been updated";
            return res.json(200,
             {
@@ -127,7 +127,14 @@ app.post('/',function(req,res){
              console.log("cant be updated");
              return;
            }
-           var query = user.interests + " " + req.body.queryResult.queryText;
+           if(flag == "add")
+              var query = user.interests + " " + req.body.queryResult.queryText;
+           else if (flag == "delete")
+            {
+              var main_str = user.skills;
+              var str = req.body.queryResult.queryText;
+              var query = main_str.replace(str, "");
+            }
            User.findByIdAndUpdate(id,{"interests":query}, function(err,user)
            {
              if(err)
@@ -139,7 +146,7 @@ app.post('/',function(req,res){
            });
            if(flag == "create")
             nextRes = "Enter education";
-           else if (flag == "modify")
+           else 
             nextRes = "Your resume has been updated";
            return res.json(200,
             {
@@ -185,7 +192,7 @@ app.post('/',function(req,res){
            });
            if(flag == "create")
             nextRes = "Want to enter more?";
-           else if (flag == "modify")
+           else 
             nextRes = "Your resume has been updated";
            return res.json(200,
             {
@@ -229,7 +236,7 @@ app.post('/',function(req,res){
            });
            if(flag == "create")
             nextRes = "Want to enter more?";
-           else if (flag == "modify")
+           else 
             nextRes = "Your resume has been updated";
            return res.json(200,
             {
@@ -276,7 +283,7 @@ app.post('/',function(req,res){
            });
            if(flag == "create")
             nextRes = "Want to enter more?";
-           else if (flag == "modify")
+           else 
             nextRes = "Your resume has been updated";
            return res.json(200,
             {
@@ -299,7 +306,14 @@ app.post('/',function(req,res){
              console.log("cant be updated");
              return;
            }
-           var query = user.achievements + " " + req.body.queryResult.queryText;
+           if(flag == "add")
+            var query = user.achievements + " " + req.body.queryResult.queryText;
+           else if (flag == "delete")
+            {
+              var main_str = user.skills;
+              var str = req.body.queryResult.queryText;
+              var query = main_str.replace(str, "");
+            }
            User.findByIdAndUpdate(id,{"achievements":query}, function(err,user)
            {
              if(err)
@@ -309,13 +323,16 @@ app.post('/',function(req,res){
              }
               console.log("updated");
            });
-           var toSend = "Thank you! Your resume gas been recorded. Please note your id for accessing later. ID : " + id;
+           if(flag == "create")
+            nextRes = "Thank you! Your resume gas been recorded. Please note your id for accessing later. ID : " + id;
+           else if (flag == "add")
+            nextRes = "Your resume has been updated";
            return res.json(200,
             {
               "fulfillmentMessages": [
                 {
                   "text": {
-                    "text": [String(toSend)]
+                    "text": [nextRes]
                 }
               }
               ]
@@ -485,7 +502,7 @@ app.post('/',function(req,res){
     var val = req.body.queryResult.queryText;
            if(val == "add")
            {
-              flag = "modify";
+              flag = "add";
               toSend = "Enter " + field;
            }
            else if (val == "delete")
@@ -526,6 +543,33 @@ app.post('/',function(req,res){
               ]
                 
             });
+     }
+     else if (action == "getIndex"){
+      var index = req.body.queryResult.queryText;
+      if(field == "education")
+      {
+        User.findOne({_id:id},function(err,user)
+        {
+           if(err)
+           {
+             console.log("cant be updated");
+             return;
+           }
+           var array = user.education;
+           array.splice(index,1);
+           nextRes = "Your resume has been updated";
+           return res.json(200,
+            {
+              "fulfillmentMessages": [
+                {
+                  "text": {
+                    "text": [nextRes]
+                  }
+                }
+              ]  
+            });
+        });
+      }
      }
 
 });
