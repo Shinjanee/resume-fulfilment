@@ -86,7 +86,7 @@ app.post('/',function(req,res){
              console.log("cant be updated");
              return;
            }
-           if(flag == "add")
+           if(flag == "add" || flag == "create")
             query = user.skills + " " + req.body.queryResult.queryText;
            else if (flag == "delete")
             {
@@ -128,7 +128,7 @@ app.post('/',function(req,res){
              console.log("cant be updated");
              return;
            }
-           if(flag == "add")
+           if(flag == "add" || flag == "create")
               query = user.interests + " " + req.body.queryResult.queryText;
            else if (flag == "delete")
             {
@@ -307,7 +307,7 @@ app.post('/',function(req,res){
              console.log("cant be updated");
              return;
            }
-           if(flag == "add")
+           if(flag == "add" || flag == "create")
             query = user.achievements + " " + req.body.queryResult.queryText;
            else if (flag == "delete")
             {
