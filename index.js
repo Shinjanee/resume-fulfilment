@@ -344,7 +344,7 @@ app.post('/',function(req,res){
   else if(action == "getSkills"){
     var skill = req.body.queryResult.queryText;
 
-    https.get("https://jobs.github.com/positions.json?description="+skill+"&location=new+york", (resp) => {
+    https.get("https://jobs.github.com/positions.json?description="+String(skill).toLowerCase()+"&location=new+york", (resp) => {
     let data = '';
 
     resp.on('data', (chunk) => {
