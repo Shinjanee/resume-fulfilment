@@ -353,6 +353,65 @@ app.post('/',function(req,res){
         });
 
   }
+  else if(action == "updateResume"){
+    var len = 0;
+    var val = req.body.queryResult.parameters["details"];
+    var search_id = req.body.queryResult.parameters["id"];
+    User.findOne({_id: search_id},function(err,user)
+        {
+           if(err)
+           {
+             console.log("cant be found");
+             return;
+           }
+           console.log("found");
+           if(val == "skills")
+            toSend = user.skills + "Delete or add new?";
+           else if(val == "interests")
+            toSend = user.interests + "Delete or add new?";
+           else if(val == "education")
+           {
+            toSend = "";
+            len = user.education.length;
+            for(i=0;i<len;i++)
+                toSend += (i+1).toString() + " Degree: " + String(user.education[i].degree) +" School Name: "+ String(user.education[i].university_name) +" Location: " + String(user.education[i].location) +" Percentage: "+ String(user.education[i].percentage) + "\n";
+            toSend += "Delete some entry or add new?";
+           }
+           else if (val == "projects")
+           {
+            toSend = "";
+            len = user.project.length;
+            for(i=0;i<len;i++)
+                toSend += (i+1).toString() + " Title: " + String(user.project[i].title) +" Year: "+ String(user.project[i].year) +" Description: " + String(user.project[i].description) + "\n";
+            toSend += "Delete some entry or add new?";
+           }
+           else if(val == "experience")
+           {
+            toSend = "";
+            len = user.experience.length;
+            for(i=0;i<len;i++)
+                toSend += (i+1).toString() + " Position: " + String(user.experience[i].position) +" Company: "+ String(user.experience[i].company_name) +" Location: " + String(user.experience[i].location) +" Duration: "+ String(user.experience[i].duration) + "\n";
+            toSend += "Delete some entry or add new?"
+           }
+           else if(val == "achievements")
+            toSend = user.achievements + "Delete or add new?";
+           else
+            toSend = "Not a valid query";
+
+           return res.json(200,
+            {
+              "fulfillmentMessages": [
+                {
+                  "text": {
+                    "text": [String(toSend)]
+                  }
+                }
+              ]
+                
+            });
+        });
+
+  }
 
 });
 
