@@ -85,7 +85,14 @@ app.post('/',function(req,res){
              console.log("cant be updated");
              return;
            }
-           var query = user.skills + " " + req.body.queryResult.queryText;
+           if(flag == "modify")
+            var query = user.skills + " " + req.body.queryResult.queryText;
+           else if (flag == "delete")
+            {
+              var main_str = user.skills;
+              var str = req.body.queryResult.queryText;
+              var query = main_str.replace(str, " ");
+            }
            User.findByIdAndUpdate(id,{"skills":query}, function(err,user)
            {
              if(err)
@@ -483,6 +490,7 @@ app.post('/',function(req,res){
            }
            else if (val == "delete")
            {
+              flag = "delete";
               if(field == "skills"){
                   toSend = "Enter skill to be deleted";
               }
