@@ -79,14 +79,15 @@ app.post('/',function(req,res){
 
   }
   else if(action=="getSkills"){
-    skill += " " + req.body.queryResult.queryText;
-    User.findByIdAndUpdate(id,{"skills":skill},function(err,user)
+    User.findOne(id,{_id:id},function(err,user)
         {
            if(err)
            {
              console.log("cant be updated");
              return;
            }
+           skill = user.skills + " " + req.body.queryResult.queryText;
+           User.findByIdAndUpdate(id,{"skills":skill}) ;
            console.log(user.name);
            return res.json(200,
             {
