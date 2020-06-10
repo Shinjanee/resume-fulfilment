@@ -8,9 +8,9 @@ app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 var id;
 var field = "";
-var skill = "";
-var interest = "";
-var achievement = "";
+var skill = " ";
+var interest = " ";
+var achievement = " ";
 var search_id = "";
 var educationArray = [];
 var experienceArray=[];
@@ -80,7 +80,7 @@ app.post('/',function(req,res){
   }
   else if(action=="getSkills"){
 
-    skill += " " + req.body.queryResult.queryText;
+    skill += req.body.queryResult.queryText;
     User.findByIdAndUpdate(id,{"skills":skill},function(err,user)
         {
            if(err)
