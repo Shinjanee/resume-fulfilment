@@ -86,12 +86,12 @@ app.post('/',function(req,res){
              return;
            }
            if(flag == "add")
-            var query = user.skills + " " + req.body.queryResult.queryText;
+            query = user.skills + " " + req.body.queryResult.queryText;
            else if (flag == "delete")
             {
               var main_str = user.skills;
               var str = req.body.queryResult.queryText;
-              var query = main_str.replace(str, "");
+              query = main_str.replace(str, "");
             }
            User.findByIdAndUpdate(id,{"skills":query}, function(err,user)
            {
@@ -128,12 +128,12 @@ app.post('/',function(req,res){
              return;
            }
            if(flag == "add")
-              var query = user.interests + " " + req.body.queryResult.queryText;
+              query = user.interests + " " + req.body.queryResult.queryText;
            else if (flag == "delete")
             {
               var main_str = user.skills;
               var str = req.body.queryResult.queryText;
-              var query = main_str.replace(str, "");
+              query = main_str.replace(str, "");
             }
            User.findByIdAndUpdate(id,{"interests":query}, function(err,user)
            {
@@ -307,12 +307,12 @@ app.post('/',function(req,res){
              return;
            }
            if(flag == "add")
-            var query = user.achievements + " " + req.body.queryResult.queryText;
+            query = user.achievements + " " + req.body.queryResult.queryText;
            else if (flag == "delete")
             {
               var main_str = user.skills;
               var str = req.body.queryResult.queryText;
-              var query = main_str.replace(str, "");
+              query = main_str.replace(str, "");
             }
            User.findByIdAndUpdate(id,{"achievements":query}, function(err,user)
            {
