@@ -416,13 +416,13 @@ app.post('/',function(req,res){
         });
 
   }
-  else if(action == "modifyAction"){
-    var toSend = "";
-    var val = req.body.queryResult.queryText;
-           if(val == "add")
-           {
-              toSend = "Enter" + field;
-           }
+  // else if(action == "modifyAction"){
+  //   var toSend = "";
+  //   var val = req.body.queryResult.queryText;
+  //          if(val == "add")
+  //          {
+  //             toSend = "Enter" + field;
+  //          }
            // else if (val == "delete")
            // {
            //    if(field == "skills"){
@@ -476,20 +476,20 @@ app.post('/',function(req,res){
                 
            //    }
            // }
-           else 
-            toSend = "Invalid Request";
-           return res.json(200,
-            {
-              "fulfillmentMessages": [
-                {
-                  "text": {
-                    "text": [String(toSend)]
-                  }
-                }
-              ]
+     //       else 
+     //        toSend = "Invalid Request";
+     //       return res.json(200,
+     //        {
+     //          "fulfillmentMessages": [
+     //            {
+     //              "text": {
+     //                "text": [String(toSend)]
+     //              }
+     //            }
+     //          ]
                 
-            });
-     }
+     //        });
+     // }
 
 });
 
