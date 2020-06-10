@@ -89,7 +89,7 @@ app.post('/',function(req,res){
              return;
            }
            console.log("updated");
-           user.skills = skill;
+           user.skills = String(skill);
            return res.json(200,
             {
               "fulfillmentMessages": [
