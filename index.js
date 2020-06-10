@@ -647,6 +647,21 @@ app.post('/',function(req,res){
         });
       }
      }
+    else if(action == "showResume")
+    {
+       search_id = req.body.queryResult.parameters["id"];
+       return res.json(200,
+        {
+          "fulfillmentMessages": [
+            {
+              "text": {
+                "text": ["https://resume-fulfilment.herokuapp.com/getResume"]
+              }
+            }
+          ]
+            
+        });
+    }
 
 });
 
