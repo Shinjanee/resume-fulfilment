@@ -7,6 +7,10 @@ const https = require('https');
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 var id;
+var field = "";
+var skills = "";
+var interests = "";
+var acievements = "";
 var educationArray = [];
 var experienceArray=[];
 var projectArray = [];
@@ -21,12 +25,12 @@ app.post('/',function(req,res){
       User.create({
         name:req.body.queryResult.queryText,
         email:"N.A",
-        skills:"N.A",
-        interests:"N.A",
+        skills:"",
+        interests:"",
         education:[],
         project:[],
         experience:[],
-        achievements:"N.A" 
+        achievements:"" 
     },function(err,user)
     {
         if(err)
@@ -75,8 +79,8 @@ app.post('/',function(req,res){
   }
   else if(action=="getSkills"){
 
-
-    User.findByIdAndUpdate(id,{"skills":req.body.queryResult.queryText},function(err,user)
+    skills += " " + req.body.queryResult.queryText;
+    User.findByIdAndUpdate(id,{"skills":skills},function(err,user)
         {
            if(err)
            {
@@ -100,8 +104,8 @@ app.post('/',function(req,res){
   }
   else if(action=="getInterest"){
 
-
-    User.findByIdAndUpdate(id,{"interests":req.body.queryResult.queryText},function(err,user)
+    interests += " " + req.body.queryResult.queryText;
+    User.findByIdAndUpdate(id,{"interests":interests},function(err,user)
         {
            if(err)
            {
@@ -232,8 +236,8 @@ app.post('/',function(req,res){
   }
     else if(action=="getAchievements"){
 
-
-    User.findByIdAndUpdate(id,{"achievements":req.body.queryResult.queryText},function(err,user)
+    achievements += " " + req.body.queryResult.queryText
+    User.findByIdAndUpdate(id,{"achievements":achievements},function(err,user)
         {
            if(err)
            {
@@ -355,7 +359,7 @@ app.post('/',function(req,res){
   }
   else if(action == "updateResume"){
     var len = 0;
-    var val = req.body.queryResult.parameters["details"];
+    field = req.body.queryResult.parameters["details"];
     var search_id = req.body.queryResult.parameters["id"];
     User.findOne({_id: search_id},function(err,user)
         {
@@ -365,36 +369,36 @@ app.post('/',function(req,res){
              return;
            }
            console.log("found");
-           if(val == "skills")
-            toSend = user.skills + "Delete or add new?";
-           else if(val == "interests")
-            toSend = user.interests + "Delete or add new?";
-           else if(val == "education")
+           if(field == "skills")
+            toSend = user.skills + "\n Delete all or add new?";
+           else if(field == "interests")
+            toSend = user.interests + "\n Delete all or add new?";
+           else if(field == "education")
            {
             toSend = "";
             len = user.education.length;
             for(i=0;i<len;i++)
                 toSend += (i+1).toString() + " Degree: " + String(user.education[i].degree) +" School Name: "+ String(user.education[i].university_name) +" Location: " + String(user.education[i].location) +" Percentage: "+ String(user.education[i].percentage) + "\n";
-            toSend += "Delete some entry or add new?";
+            toSend += "\n Delete some entry or add new?";
            }
-           else if (val == "projects")
+           else if (field == "projects")
            {
             toSend = "";
             len = user.project.length;
             for(i=0;i<len;i++)
                 toSend += (i+1).toString() + " Title: " + String(user.project[i].title) +" Year: "+ String(user.project[i].year) +" Description: " + String(user.project[i].description) + "\n";
-            toSend += "Delete some entry or add new?";
+            toSend += "\n Delete some entry or add new?";
            }
-           else if(val == "experience")
+           else if(field == "experience")
            {
             toSend = "";
             len = user.experience.length;
             for(i=0;i<len;i++)
                 toSend += (i+1).toString() + " Position: " + String(user.experience[i].position) +" Company: "+ String(user.experience[i].company_name) +" Location: " + String(user.experience[i].location) +" Duration: "+ String(user.experience[i].duration) + "\n";
-            toSend += "Delete some entry or add new?"
+            toSend += "\n Delete some entry or add new?"
            }
-           else if(val == "achievements")
-            toSend = user.achievements + "Delete or add new?";
+           else if(field == "achievements")
+            toSend = user.achievements + "\n Delete all or add new?";
            else
             toSend = "Not a valid query";
 
@@ -412,6 +416,80 @@ app.post('/',function(req,res){
         });
 
   }
+  else if(action == "modifyAction"){
+    var toSend = "";
+    var val = req.body.queryResult.queryText;
+           if(val == "add")
+           {
+              toSend = "Enter" + field;
+           }
+           else if (val == "delete")
+           {
+              if(field == "skills"){
+                  User.findByIdAndUpdate(id,{"skills":""},function(err,user)
+                  {
+                     if(err)
+                     {
+                       console.log("cant be deleted");
+                       return;
+                     }
+                     console.log("deleted");
+                     var toSend = "Deleted skils";
+                  });  
+
+              }
+              else if(field == "interests"){
+                User.findByIdAndUpdate(id,{"interests":""},function(err,user)
+                  {
+                     if(err)
+                     {
+                       console.log("cant be deleted");
+                       return;
+                     }
+                     console.log("deleted");
+                     var toSend = "Deleted interests";
+                  }); 
+              }
+              else if(field == "achievements"){
+                User.findByIdAndUpdate(id,{"achievements":""},function(err,user)
+                  {
+                     if(err)
+                     {
+                       console.log("cant be deleted");
+                       return;
+                     }
+                     console.log("deleted");
+                     var toSend = "Deleted achievements";
+                  }); 
+                
+              }
+              else if(field == "education"){
+                toSend = "Enter record index to be deleted";
+                
+              }
+              else if(field == "projects"){
+                toSend = "Enter record index to be deleted";
+                
+              }
+              else if(field == "experience"){
+                toSend = "Enter record index to be deleted";
+                
+              }
+           }
+           else 
+            toSend = "Invalid Request";
+           return res.json(200,
+            {
+              "fulfillmentMessages": [
+                {
+                  "text": {
+                    "text": [String(toSend)]
+                  }
+                }
+              ]
+                
+            });
+     }
 
 });
 
