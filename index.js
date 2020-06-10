@@ -579,6 +579,72 @@ app.post('/',function(req,res){
             });
         });
       }
+      else if(field == "projects")
+      {
+        User.findOne({_id:id},function(err,user)
+        {
+           if(err)
+           {
+             console.log("cant be updated");
+             return;
+           }
+           var array = user.project;
+           array.splice(index,1);
+           User.findByIdAndUpdate(id,{project:array}, function(err,user)
+           {
+             if(err)
+             {
+               console.log("cant be updated");
+               return;
+             }
+              console.log("updated");
+           });
+           nextRes = "Your resume has been updated";
+           return res.json(200,
+            {
+              "fulfillmentMessages": [
+                {
+                  "text": {
+                    "text": [nextRes]
+                  }
+                }
+              ]  
+            });
+        });
+      }
+      else if(field == "experience")
+      {
+        User.findOne({_id:id},function(err,user)
+        {
+           if(err)
+           {
+             console.log("cant be updated");
+             return;
+           }
+           var array = user.experience;
+           array.splice(index,1);
+           User.findByIdAndUpdate(id,{experience:array}, function(err,user)
+           {
+             if(err)
+             {
+               console.log("cant be updated");
+               return;
+             }
+              console.log("updated");
+           });
+           nextRes = "Your resume has been updated";
+           return res.json(200,
+            {
+              "fulfillmentMessages": [
+                {
+                  "text": {
+                    "text": [nextRes]
+                  }
+                }
+              ]  
+            });
+        });
+      }
      }
 
 });
