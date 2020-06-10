@@ -363,7 +363,7 @@ app.post('/',function(req,res){
     var toSend = "";
     field = req.body.queryResult.parameters["details"];
     id = req.body.queryResult.parameters["id"];
-    User.findOne({_id: search_id},function(err,user)
+    User.findOne({_id: id},function(err,user)
         {
            if(err)
            {
