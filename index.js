@@ -21,7 +21,7 @@ var projectArray = [];
 
 app.get('/getResume',function(req,res){
 
-  User.findById(search_id,function(err,user){
+  User.findOne({_id : search_id},function(err,user){
     return res.render('resume',{
       title:"Resume",
       users:user
