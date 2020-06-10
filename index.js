@@ -342,7 +342,7 @@ app.post('/',function(req,res){
         });
   }
   else if(action == "getJobBySkill"){
-    var skill = req.body.queryResult.parameters["skill_name"];
+    var skill = req.body.queryResult.queryText;
 
     https.get("https://jobs.github.com/positions.json?description="+skill+"&location=new+york", (resp) => {
     let data = '';
