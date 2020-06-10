@@ -11,6 +11,7 @@ var field = "";
 var skill = "";
 var interest = "";
 var achievement = "";
+var search_id = "";
 var educationArray = [];
 var experienceArray=[];
 var projectArray = [];
@@ -80,7 +81,7 @@ app.post('/',function(req,res){
   else if(action=="getSkills"){
 
     skill += " " + req.body.queryResult.queryText;
-    User.findByIdAndUpdate(id,{"skills":skill},function(err,user)
+    User.findOne(id,function(err,user)
         {
            if(err)
            {
@@ -88,6 +89,7 @@ app.post('/',function(req,res){
              return;
            }
            console.log("updated");
+           user.skills = skill;
            return res.json(200,
             {
               "fulfillmentMessages": [
@@ -359,6 +361,7 @@ app.post('/',function(req,res){
   }
   else if(action == "updateResume"){
     var len = 0;
+    var toSend = "";
     field = req.body.queryResult.parameters["details"];
     var search_id = req.body.queryResult.parameters["id"];
     User.findOne({_id: search_id},function(err,user)
