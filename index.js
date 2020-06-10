@@ -416,80 +416,80 @@ app.post('/',function(req,res){
         });
 
   }
-  else if(action == "modifyAction"){
-    var toSend = "";
-    var val = req.body.queryResult.queryText;
-           if(val == "add")
-           {
-              toSend = "Enter" + field;
-           }
-           else if (val == "delete")
-           {
-              if(field == "skills"){
-                  User.findByIdAndUpdate(id,{"skills":""},function(err,user)
-                  {
-                     if(err)
-                     {
-                       console.log("cant be deleted");
-                       return;
-                     }
-                     console.log("deleted");
-                     var toSend = "Deleted skils";
-                  });  
+  // else if(action == "modifyAction"){
+  //   var toSend = "";
+  //   var val = req.body.queryResult.queryText;
+  //          if(val == "add")
+  //          {
+  //             toSend = "Enter" + field;
+  //          }
+  //          else if (val == "delete")
+  //          {
+  //             if(field == "skills"){
+  //                 User.findByIdAndUpdate(id,{"skills":""},function(err,user)
+  //                 {
+  //                    if(err)
+  //                    {
+  //                      console.log("cant be deleted");
+  //                      return;
+  //                    }
+  //                    console.log("deleted");
+  //                    var toSend = "Deleted skils";
+  //                 });  
 
-              }
-              else if(field == "interests"){
-                User.findByIdAndUpdate(id,{"interests":""},function(err,user)
-                  {
-                     if(err)
-                     {
-                       console.log("cant be deleted");
-                       return;
-                     }
-                     console.log("deleted");
-                     var toSend = "Deleted interests";
-                  }); 
-              }
-              else if(field == "achievements"){
-                User.findByIdAndUpdate(id,{"achievements":""},function(err,user)
-                  {
-                     if(err)
-                     {
-                       console.log("cant be deleted");
-                       return;
-                     }
-                     console.log("deleted");
-                     var toSend = "Deleted achievements";
-                  }); 
+  //             }
+  //             else if(field == "interests"){
+  //               User.findByIdAndUpdate(id,{"interests":""},function(err,user)
+  //                 {
+  //                    if(err)
+  //                    {
+  //                      console.log("cant be deleted");
+  //                      return;
+  //                    }
+  //                    console.log("deleted");
+  //                    var toSend = "Deleted interests";
+  //                 }); 
+  //             }
+  //             else if(field == "achievements"){
+  //               User.findByIdAndUpdate(id,{"achievements":""},function(err,user)
+  //                 {
+  //                    if(err)
+  //                    {
+  //                      console.log("cant be deleted");
+  //                      return;
+  //                    }
+  //                    console.log("deleted");
+  //                    var toSend = "Deleted achievements";
+  //                 }); 
                 
-              }
-              else if(field == "education"){
-                toSend = "Enter record index to be deleted";
+  //             }
+  //             else if(field == "education"){
+  //               toSend = "Enter record index to be deleted";
                 
-              }
-              else if(field == "projects"){
-                toSend = "Enter record index to be deleted";
+  //             }
+  //             else if(field == "projects"){
+  //               toSend = "Enter record index to be deleted";
                 
-              }
-              else if(field == "experience"){
-                toSend = "Enter record index to be deleted";
+  //             }
+  //             else if(field == "experience"){
+  //               toSend = "Enter record index to be deleted";
                 
-              }
-           }
-           else 
-            toSend = "Invalid Request";
-           return res.json(200,
-            {
-              "fulfillmentMessages": [
-                {
-                  "text": {
-                    "text": [String(toSend)]
-                  }
-                }
-              ]
+  //             }
+  //          }
+  //          else 
+  //           toSend = "Invalid Request";
+  //          return res.json(200,
+  //           {
+  //             "fulfillmentMessages": [
+  //               {
+  //                 "text": {
+  //                   "text": [String(toSend)]
+  //                 }
+  //               }
+  //             ]
                 
-            });
-     }
+  //           });
+  //    }
 
 });
 
