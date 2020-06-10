@@ -241,12 +241,13 @@ app.post('/',function(req,res){
              return;
            }
            console.log("updated");
+           var toSend = "Thank you! Your resume has been recorded. Please note your id for accessing later. \n ID : " + id;
            return res.json(200,
             {
               "fulfillmentMessages": [
                 {
                   "text": {
-                    "text": ["Thank you! Your resume has been recorded"]
+                    "text": [String(toSend)]
                   }
                 }
               ]
