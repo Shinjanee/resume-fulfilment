@@ -79,7 +79,7 @@ app.post('/',function(req,res){
 
   }
   else if(action=="getSkills"){
-    User.findOne(id,{_id:id},function(err,user)
+    User.findOne({_id:id},function(err,user)
         {
            if(err)
            {
@@ -87,8 +87,15 @@ app.post('/',function(req,res){
              return;
            }
            skill = user.skills + " " + req.body.queryResult.queryText;
-           User.findByIdAndUpdate(id,{"skills":skill}) ;
-           console.log(user.name);
+           User.findByIdAndUpdate(id,{"skills":skill}, function(err,user)
+           {
+             if(err)
+             {
+               console.log("cant be updated");
+               return;
+             }
+              console.log(skill);
+           });
            return res.json(200,
             {
               "fulfillmentMessages": [
@@ -101,7 +108,6 @@ app.post('/',function(req,res){
                 
             });
         });
-
   }
   else if(action=="getInterest"){
     interest += " " + req.body.queryResult.queryText;
