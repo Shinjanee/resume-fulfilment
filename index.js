@@ -79,8 +79,7 @@ app.post('/',function(req,res){
 
   }
   else if(action=="getSkills"){
-
-    skill += req.body.queryResult.queryText;
+    skill += " " + req.body.queryResult.queryText;
     User.findByIdAndUpdate(id,{"skills":skill},function(err,user)
         {
            if(err)
@@ -237,7 +236,7 @@ app.post('/',function(req,res){
   }
     else if(action=="getAchievements"){
 
-    achievement += " " + req.body.queryResult.queryText
+    achievement += " " + req.body.queryResult.queryText;
     User.findByIdAndUpdate(id,{"achievements":achievement},function(err,user)
         {
            if(err)
@@ -423,7 +422,7 @@ app.post('/',function(req,res){
     var val = req.body.queryResult.queryText;
            if(val == "add")
            {
-              toSend = "Enter" + field;
+              toSend = "Enter " + field;
            }
            // else if (val == "delete")
            // {
