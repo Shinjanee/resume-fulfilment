@@ -86,8 +86,8 @@ app.post('/',function(req,res){
              console.log("cant be updated");
              return;
            }
-         });
            skill = user.skills + req.body.queryResult.queryText;
+         });
            User.findByIdAndUpdate(id,{"skills": skill});
            console.log("updated");
            return res.json(200,
