@@ -87,7 +87,7 @@ app.post('/',function(req,res){
              console.log("cant be updated");
              return;
            }
-           console.log("updated");
+           console.log(id + " " + skill);
            return res.json(200,
             {
               "fulfillmentMessages": [
