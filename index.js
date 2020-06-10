@@ -149,30 +149,35 @@ app.post('/',function(req,res){
        "university_name":university_name,
        "location":location,
        "percentage":percentage
-
     });
-
-    User.findByIdAndUpdate(id,{"education":educationArray},function(err,user)
+    User.findOne({_id:id},function(err,user)
         {
            if(err)
            {
              console.log("cant be updated");
              return;
            }
-           console.log("updated");
+           User.findByIdAndUpdate(id,{$push:{education:educationArray}}, function(err,user)
+           {
+             if(err)
+             {
+               console.log("cant be updated");
+               return;
+             }
+              console.log("updated");
+           });
            return res.json(200,
             {
               "fulfillmentMessages": [
                 {
                   "text": {
-                    "text": ["Want to enter more?"]
+                    "text": ["Enter interests"]
                   }
                 }
               ]
                 
             });
         });
-
   }
   else if(action=="getProjects"){
       
