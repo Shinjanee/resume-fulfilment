@@ -557,6 +557,15 @@ app.post('/',function(req,res){
            }
            var array = user.education;
            array.splice(index,1);
+           User.findByIdAndUpdate(id,{education:array}, function(err,user)
+           {
+             if(err)
+             {
+               console.log("cant be updated");
+               return;
+             }
+              console.log("updated");
+           });
            nextRes = "Your resume has been updated";
            return res.json(200,
             {
