@@ -129,7 +129,7 @@ app.post('/',function(req,res){
               "fulfillmentMessages": [
                 {
                   "text": {
-                    "text": ["Enter interests"]
+                    "text": ["Enter Education"]
                   }
                 }
               ]
@@ -261,14 +261,13 @@ app.post('/',function(req,res){
              }
               console.log("updated");
            });
+           var toSend = "Thank you! Your resume gas been recorded. Please note your id for accessing later. ID : " + id;
            return res.json(200,
             {
               "fulfillmentMessages": [
                 {
                   "text": {
-                    "text": ["Enter interests"]
-                  }
-                }
+                    "text": [String(toSend)]
               ]
                 
             });
