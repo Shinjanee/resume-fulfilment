@@ -342,9 +342,9 @@ app.post('/',function(req,res){
         });
   }
   else if(action == "getJobBySkills"){
-    var skill = req.body.queryResult.parameters["skill-name"];
+    var skill = req.body.queryResult.parameters["skill_name"];
 
-    https.get("https://jobs.github.com/positions.json?description="+String(skill).toLowerCa+"&location=new+york", (resp) => {
+    https.get("https://jobs.github.com/positions.json?description="+skill+"&location=new+york", (resp) => {
     let data = '';
 
     resp.on('data', (chunk) => {
