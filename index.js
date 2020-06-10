@@ -79,7 +79,7 @@ app.post('/',function(req,res){
 
   }
   else if(action=="getSkills"){
-    skill += " " + req.body.queryResult.queryText;
+    skill = String(skill) + " " + req.body.queryResult.queryText;
     User.findByIdAndUpdate(id,{"skills":skill},function(err,user)
         {
            if(err)
