@@ -25,12 +25,12 @@ app.post('/',function(req,res){
       User.create({
         name:req.body.queryResult.queryText,
         email:"N.A",
-        skills:"",
-        interests:"",
+        skills:" ",
+        interests:" ",
         education:[],
         project:[],
         experience:[],
-        achievements:"" 
+        achievements:" " 
     },function(err,user)
     {
         if(err)
