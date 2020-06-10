@@ -24,7 +24,7 @@ app.post('/',function(req,res){
     educationArray = [];
     projectArray = [];
       User.create({
-        name:req.body.queryResult.parameters["namelist"],
+        name:req.body.queryResult.parameters["namelist.given-name"],
         email:"N.A",
         skills:" ",
         interests:" ",
