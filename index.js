@@ -8,9 +8,9 @@ app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 var id;
 var field = "";
-var skills = "";
-var interests = "";
-var acievements = "";
+var skill = "";
+var interest = "";
+var acievement = "";
 var educationArray = [];
 var experienceArray=[];
 var projectArray = [];
@@ -79,8 +79,8 @@ app.post('/',function(req,res){
   }
   else if(action=="getSkills"){
 
-    skills += " " + req.body.queryResult.queryText;
-    User.findByIdAndUpdate(id,{"skills":skills},function(err,user)
+    skill += " " + req.body.queryResult.queryText;
+    User.findByIdAndUpdate(id,{"skills":skill},function(err,user)
         {
            if(err)
            {
@@ -104,8 +104,8 @@ app.post('/',function(req,res){
   }
   else if(action=="getInterest"){
 
-    interests += " " + req.body.queryResult.queryText;
-    User.findByIdAndUpdate(id,{"interests":interests},function(err,user)
+    interest += " " + req.body.queryResult.queryText;
+    User.findByIdAndUpdate(id,{"interests":interest},function(err,user)
         {
            if(err)
            {
@@ -236,8 +236,8 @@ app.post('/',function(req,res){
   }
     else if(action=="getAchievements"){
 
-    achievements += " " + req.body.queryResult.queryText
-    User.findByIdAndUpdate(id,{"achievements":achievements},function(err,user)
+    achievement += " " + req.body.queryResult.queryText
+    User.findByIdAndUpdate(id,{"achievements":achievement},function(err,user)
         {
            if(err)
            {
