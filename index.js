@@ -79,16 +79,14 @@ app.post('/',function(req,res){
 
   }
   else if(action=="getSkills"){
-    User.findOne({_id: id},function(err,user)
+    skill += " " + req.body.queryResult.queryText;
+    User.findByIdAndUpdate(id,{"skills":skill},function(err,user)
         {
            if(err)
            {
              console.log("cant be updated");
              return;
            }
-           skill = user.skills + req.body.queryResult.queryText;
-         });
-           User.findByIdAndUpdate(id,{"skills": skill});
            console.log("updated");
            return res.json(200,
             {
@@ -101,6 +99,7 @@ app.post('/',function(req,res){
               ]
                 
             });
+        });
 
   }
   else if(action=="getInterest"){
