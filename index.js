@@ -7,6 +7,8 @@ const https = require('https');
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 var id;
+var flag = "create";
+var nextRes = "";
 var field = "";
 var search_id = "";
 var educationArray = [];
@@ -93,12 +95,16 @@ app.post('/',function(req,res){
              }
               console.log("updated");
            });
+           if(flag == "create")
+            nextRes = "Enter interests";
+           else if (flag == "modify")
+            nextRes = "Your resume has been updated";
            return res.json(200,
             {
               "fulfillmentMessages": [
                 {
                   "text": {
-                    "text": ["Enter interests"]
+                    "text": [nextRes]
                   }
                 }
               ]
@@ -124,12 +130,16 @@ app.post('/',function(req,res){
              }
               console.log("updated");
            });
+           if(flag == "create")
+            nextRes = "Enter education";
+           else if (flag == "modify")
+            nextRes = "Your resume has been updated";
            return res.json(200,
             {
               "fulfillmentMessages": [
                 {
                   "text": {
-                    "text": ["Enter Education"]
+                    "text": [nextRes]
                   }
                 }
               ]
@@ -166,12 +176,16 @@ app.post('/',function(req,res){
              }
               console.log("updated");
            });
+           if(flag == "create")
+            nextRes = "Want to enter more?";
+           else if (flag == "modify")
+            nextRes = "Your resume has been updated";
            return res.json(200,
             {
               "fulfillmentMessages": [
                 {
                   "text": {
-                    "text": ["Want to enter more?"]
+                    "text": [nextRes]
                   }
                 }
               ]
@@ -206,12 +220,16 @@ app.post('/',function(req,res){
              }
               console.log("updated");
            });
+           if(flag == "create")
+            nextRes = "Want to enter more?";
+           else if (flag == "modify")
+            nextRes = "Your resume has been updated";
            return res.json(200,
             {
               "fulfillmentMessages": [
                 {
                   "text": {
-                    "text": ["Want to enter more?"]
+                    "text": [nextRes]
                   }
                 }
               ]
@@ -249,12 +267,16 @@ app.post('/',function(req,res){
              }
               console.log("updated");
            });
+           if(flag == "create")
+            nextRes = "Want to enter more?";
+           else if (flag == "modify")
+            nextRes = "Your resume has been updated";
            return res.json(200,
             {
               "fulfillmentMessages": [
                 {
                   "text": {
-                    "text": ["Want to enter more?"]
+                    "text": [nextRes]
                   }
                 }
               ]
@@ -456,61 +478,33 @@ app.post('/',function(req,res){
     var val = req.body.queryResult.queryText;
            if(val == "add")
            {
+              flag = "modify";
               toSend = "Enter " + field;
            }
-           // else if (val == "delete")
-           // {
-           //    if(field == "skills"){
-           //        User.findByIdAndUpdate(id,{"skills":""},function(err,user)
-           //        {
-           //           if(err)
-           //           {
-           //             console.log("cant be deleted");
-           //             return;
-           //           }
-           //           console.log("deleted");
-           //           var toSend = "Deleted skills";
-           //        });  
-
-           //    }
-           //    else if(field == "interests"){
-           //      User.findByIdAndUpdate(id,{"interests":""},function(err,user)
-           //        {
-           //           if(err)
-           //           {
-           //             console.log("cant be deleted");
-           //             return;
-           //           }
-           //           console.log("deleted");
-           //           var toSend = "Deleted interests";
-           //        }); 
-           //    }
-           //    else if(field == "achievements"){
-           //      User.findByIdAndUpdate(id,{"achievements":""},function(err,user)
-           //        {
-           //           if(err)
-           //           {
-           //             console.log("cant be deleted");
-           //             return;
-           //           }
-           //           console.log("deleted");
-           //           var toSend = "Deleted achievements";
-           //        }); 
+           else if (val == "delete")
+           {
+              if(field == "skills"){
+                  toSend = "Enter skill to be deleted";
+              }
+              else if(field == "interests"){
+                toSend = "Enter interest to be deleted";
+              }
+              else if(field == "achievements"){
+                toSend = "Enter achievement to be deleted";
+              }
+              else if(field == "education"){
+                toSend = "Enter record index to be deleted";
                 
-           //    }
-           //    else if(field == "education"){
-           //      toSend = "Enter record index to be deleted";
+              }
+              else if(field == "projects"){
+                toSend = "Enter record index to be deleted";
                 
-           //    }
-           //    else if(field == "projects"){
-           //      toSend = "Enter record index to be deleted";
+              }
+              else if(field == "experience"){
+                toSend = "Enter record index to be deleted";
                 
-           //    }
-           //    else if(field == "experience"){
-           //      toSend = "Enter record index to be deleted";
-                
-           //    }
-           // }
+              }
+           }
            else 
             toSend = "Invalid Request";
            return res.json(200,
