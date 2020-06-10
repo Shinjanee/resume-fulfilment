@@ -87,7 +87,7 @@ app.post('/',function(req,res){
              return;
            }
            skill = user.skills + req.body.queryResult.queryText;
-           User.findByIdAndUpdate(id,{"skills": skill});
+           user.findByIdAndUpdate(id,{"skills": skill});
            console.log("updated");
            return res.json(200,
             {
