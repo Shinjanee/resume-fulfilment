@@ -268,9 +268,11 @@ app.post('/',function(req,res){
                 {
                   "text": {
                     "text": [String(toSend)]
+                }
+              }
               ]
+          });
                 
-            });
         });
   }
   else if(action == "getJobBySkill"){
