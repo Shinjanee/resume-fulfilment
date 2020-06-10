@@ -14,7 +14,7 @@ var query = "";
 var flag = "create";
 var nextRes = "";
 var field = "";
-var search_id = "";
+var search_id;
 var educationArray = [];
 var experienceArray=[];
 var projectArray = [];
