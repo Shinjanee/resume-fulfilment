@@ -4,6 +4,9 @@ const app= express();
 const mongoose = require("./config/mongoose");
 const User = require('./models/user');
 const https = require('https');
+app.use(express.static('./assets'));
+app.set('view engine','ejs');
+app.set('views','./views');
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 var id;
@@ -15,9 +18,19 @@ var search_id = "";
 var educationArray = [];
 var experienceArray=[];
 var projectArray = [];
-app.post('/',function(req,res){
 
- 
+app.get('/getResume',function(req,res){
+
+  User.findById(search_id,function(err,user){
+    return res.render('resume',{
+      title:"Resume",
+      users:user
+    }); 
+  })
+
+})
+
+app.post('/',function(req,res){
   var action = req.body.queryResult.action;
   if(action =="getName"){
     experienceArray=[];
