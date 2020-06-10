@@ -10,7 +10,7 @@ var id;
 var field = "";
 var skill = "";
 var interest = "";
-var acievement = "";
+var achievement = "";
 var educationArray = [];
 var experienceArray=[];
 var projectArray = [];
