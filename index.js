@@ -8,9 +8,6 @@ app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 var id;
 var field = "";
-var skill = " ";
-var interest = " ";
-var achievement = " ";
 var search_id = "";
 var educationArray = [];
 var experienceArray=[];
@@ -86,15 +83,15 @@ app.post('/',function(req,res){
              console.log("cant be updated");
              return;
            }
-           skill = user.skills + " " + req.body.queryResult.queryText;
-           User.findByIdAndUpdate(id,{"skills":skill}, function(err,user)
+           var query = user.skills + " " + req.body.queryResult.queryText;
+           User.findByIdAndUpdate(id,{"skills":query}, function(err,user)
            {
              if(err)
              {
                console.log("cant be updated");
                return;
              }
-              console.log(skill);
+              console.log("updated");
            });
            return res.json(200,
             {
@@ -110,29 +107,35 @@ app.post('/',function(req,res){
         });
   }
   else if(action=="getInterest"){
-    interest += " " + req.body.queryResult.queryText;
-    User.findByIdAndUpdate(id,{"interests":interest},function(err,user)
+    User.findOne({_id:id},function(err,user)
         {
            if(err)
            {
              console.log("cant be updated");
              return;
            }
-           console.log("updated");
+           var query = user.interests + " " + req.body.queryResult.queryText;
+           User.findByIdAndUpdate(id,{"interests":query}, function(err,user)
+           {
+             if(err)
+             {
+               console.log("cant be updated");
+               return;
+             }
+              console.log("updated");
+           });
            return res.json(200,
             {
               "fulfillmentMessages": [
                 {
                   "text": {
-                    "text": ["Enter education"]
+                    "text": ["Enter interests"]
                   }
                 }
               ]
                 
             });
         });
-       
-
   }
 
   else if(action=="getEducation"){
@@ -240,31 +243,36 @@ app.post('/',function(req,res){
         }); 
 
   }
-    else if(action=="getAchievements"){
-
-    achievement += " " + req.body.queryResult.queryText;
-    User.findByIdAndUpdate(id,{"achievements":achievement},function(err,user)
+  else if(action=="getAchievements"){
+    User.findOne({_id:id},function(err,user)
         {
            if(err)
            {
              console.log("cant be updated");
              return;
            }
-           console.log("updated");
-           var toSend = "Thank you! Your resume has been recorded. Please note your id for accessing later. \n ID : " + id;
+           var query = user.achievements + " " + req.body.queryResult.queryText;
+           User.findByIdAndUpdate(id,{"achievements":query}, function(err,user)
+           {
+             if(err)
+             {
+               console.log("cant be updated");
+               return;
+             }
+              console.log("updated");
+           });
            return res.json(200,
             {
               "fulfillmentMessages": [
                 {
                   "text": {
-                    "text": [String(toSend)]
+                    "text": ["Enter interests"]
                   }
                 }
               ]
                 
             });
         });
-
   }
   else if(action == "getJobBySkill"){
     var skill = req.body.queryResult.parameters["skill_name"];
@@ -441,7 +449,7 @@ app.post('/',function(req,res){
            //             return;
            //           }
            //           console.log("deleted");
-           //           var toSend = "Deleted skils";
+           //           var toSend = "Deleted skills";
            //        });  
 
            //    }
