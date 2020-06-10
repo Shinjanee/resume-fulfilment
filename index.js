@@ -171,7 +171,7 @@ app.post('/',function(req,res){
               "fulfillmentMessages": [
                 {
                   "text": {
-                    "text": ["Enter interests"]
+                    "text": ["Want to enter more?"]
                   }
                 }
               ]
@@ -190,14 +190,22 @@ app.post('/',function(req,res){
        "description":description
     });
 
-    User.findByIdAndUpdate(id,{"project":projectArray},function(err,user)
+       User.findOne({_id:id},function(err,user)
         {
            if(err)
            {
              console.log("cant be updated");
              return;
            }
-           console.log("updated");
+           User.findByIdAndUpdate(id,{$push:{project:projectArray}}, function(err,user)
+           {
+             if(err)
+             {
+               console.log("cant be updated");
+               return;
+             }
+              console.log("updated");
+           });
            return res.json(200,
             {
               "fulfillmentMessages": [
@@ -210,7 +218,6 @@ app.post('/',function(req,res){
                 
             });
         });
-
   }
   else if(action=="getExperience"){
 
@@ -226,14 +233,22 @@ app.post('/',function(req,res){
       "company_name":company_name
     });
 
-    User.findByIdAndUpdate(id,{"experience":experienceArray},function(err,user)
+        User.findOne({_id:id},function(err,user)
         {
            if(err)
            {
              console.log("cant be updated");
              return;
            }
-           console.log("updated");
+           User.findByIdAndUpdate(id,{$push:{experience:experienceArray}}, function(err,user)
+           {
+             if(err)
+             {
+               console.log("cant be updated");
+               return;
+             }
+              console.log("updated");
+           });
            return res.json(200,
             {
               "fulfillmentMessages": [
@@ -245,8 +260,7 @@ app.post('/',function(req,res){
               ]
                 
             });
-        }); 
-
+        });
   }
   else if(action=="getAchievements"){
     User.findOne({_id:id},function(err,user)
