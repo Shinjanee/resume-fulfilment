@@ -79,7 +79,7 @@ app.post('/',function(req,res){
 
   }
   else if(action=="getSkills"){
-    skill = String(skill) + " " + req.body.queryResult.queryText;
+    skill += " " + req.body.queryResult.queryText;
     User.findByIdAndUpdate(id,{"skills":skill},function(err,user)
         {
            if(err)
@@ -87,7 +87,7 @@ app.post('/',function(req,res){
              console.log("cant be updated");
              return;
            }
-           console.log(id + " " + skill);
+           console.log(user.name);
            return res.json(200,
             {
               "fulfillmentMessages": [
