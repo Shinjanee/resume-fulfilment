@@ -22,6 +22,11 @@ var projectArray = [];
 app.get('/getResume',function(req,res){
 
   User.findOne({_id : search_id},function(err,user){
+    if(err)
+    {
+       console.log("User not found");
+       return;
+    }
     return res.render('resume',{
       title:"Resume",
       users:user
