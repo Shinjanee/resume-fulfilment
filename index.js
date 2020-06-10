@@ -7,6 +7,7 @@ const https = require('https');
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 var id;
+var query = "";
 var flag = "create";
 var nextRes = "";
 var field = "";
