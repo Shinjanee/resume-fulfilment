@@ -556,7 +556,7 @@ app.post('/',function(req,res){
              return;
            }
            var array = user.education;
-           array.splice(index,1);
+           array.splice(index-1,1);
            User.findByIdAndUpdate(id,{education:array}, function(err,user)
            {
              if(err)
@@ -589,7 +589,7 @@ app.post('/',function(req,res){
              return;
            }
            var array = user.project;
-           array.splice(index,1);
+           array.splice(index-1,1);
            User.findByIdAndUpdate(id,{project:array}, function(err,user)
            {
              if(err)
@@ -622,7 +622,7 @@ app.post('/',function(req,res){
              return;
            }
            var array = user.experience;
-           array.splice(index,1);
+           array.splice(index-1,1);
            User.findByIdAndUpdate(id,{experience:array}, function(err,user)
            {
              if(err)
