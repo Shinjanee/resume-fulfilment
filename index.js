@@ -24,7 +24,7 @@ app.post('/',function(req,res){
     educationArray = [];
     projectArray = [];
       User.create({
-        name:req.body.queryResult.queryText,
+        name:req.body.queryResult.parameters["namelist"],
         email:"N.A",
         skills:" ",
         interests:" ",
@@ -56,7 +56,7 @@ app.post('/',function(req,res){
     });
   }
   else if(action=="getEmail"){
-    User.findByIdAndUpdate(id,{"email":req.body.queryResult.queryText},function(err,user)
+    User.findByIdAndUpdate(id,{"email":req.body.queryResult.parameters["email"]},function(err,user)
         {
            if(err)
            {
@@ -546,7 +546,7 @@ app.post('/',function(req,res){
             });
      }
      else if (action == "getIndex"){
-      var index = req.body.queryResult.queryText;
+      var index = req.body.queryResult.parameters["number"];
       if(field == "education")
       {
         User.findOne({_id:id},function(err,user)
