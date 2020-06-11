@@ -21,6 +21,24 @@ var educationArray = [];
 var experienceArray = [];
 var projectArray = [];
 
+//Show resume of user with id = search_id from showResume
+app.get('/getResume', function(req, res) {
+
+    User.findOne({
+        _id: search_id
+    }, function(err, user) {
+        if (err) {
+            console.log("User not found");
+            return;
+        }
+        return res.render('resume', {
+            title: "Resume",
+            users: user
+        });
+    })
+
+});
+
 app.post('/', function(req, res) {
     var action = req.body.queryResult.action;
     if (action == "getName") {
@@ -577,24 +595,6 @@ app.post('/', function(req, res) {
 
         });
     }
-
-});
-
-//Show resume of user with id = search_id from showResume
-app.get('/getResume', function(req, res) {
-
-    User.findOne({
-        _id: search_id
-    }, function(err, user) {
-        if (err) {
-            console.log("User not found");
-            return;
-        }
-        return res.render('resume', {
-            title: "Resume",
-            users: user
-        });
-    })
 
 });
 
