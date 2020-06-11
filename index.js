@@ -40,86 +40,89 @@ app.get('/getResume', function(req, res) {
 
 app.post('/', function(req, res) {
     var action = req.body.queryResult.action;
-    if (action == "getName") {
-        experienceArray = [];
+    if(action =="getName"){
+      if(flag == "add")
+      {
+          query = req.body.queryResult.parameters["namelist"]["given-name"];
+          User.findByIdAndUpdate(id, {
+              "name": query
+          }, function(err, user) {
+              if (err) {
+                  console.log("cant be updated");
+                  return;
+              }
+              console.log("updated");
+          });
+          nextRes = "Resume Updated";
+          return res.json(200, {
+            "fulfillmentMessages": [{
+                "text": {
+                    "text": [nextRes]
+                }
+            }]
+
+        });
+      }else{
+        experienceArray=[];
         educationArray = [];
-        projectArray = [];
-        User.create({
-            name: req.body.queryResult.parameters["namelist"]["given-name"],
-            email: "N.A",
-            skills: "N.A",
-            interests: "N.A",
-            education: [],
-            project: [],
-            experience: [],
-            achievements: "N.A"
-        }, function(err, user) {
-            if (err) {
+        projectArray=[];
+          User.create({
+            name:req.body.queryResult.queryText,
+            email:"N.A",
+            education:[],
+            experience:[],
+            project:[],
+            skills:"N.A",
+            interests:"N.A",
+            achievements:"N.A"  
+          },function(err,user) {
+            
+            if(err)
+            {
                 console.log("Error");
                 return;
             }
             console.log(" user created \n");
             id = user._id;
-            console.log(id);
-            nextRes= "Enter email"
-            if(flag == "add")
-            {
-              query = req.body.queryResult.parameters["namelist"]["given-name"];
-              User.findByIdAndUpdate(id, {
-                  "name": query
-              }, function(err, user) {
-                  if (err) {
-                      console.log("cant be updated");
-                      return;
-                  }
-                  console.log("updated");
-              });
-              nextRes = "Resume Updated";
-          }
-            return res.json(200, {
+              console.log(id);
+              nextRes= "Enter email";
+              return res.json(200, {
                 "fulfillmentMessages": [{
                     "text": {
                         "text": [nextRes]
                     }
                 }]
-
             });
-        });
-    } else if (action == "getEmail") {
-        User.findByIdAndUpdate(id, {
-            "email": req.body.queryResult.parameters["email"]
-        }, function(err, user) {
-            if (err) {
-                console.log("cant be updated");
-                return;
-            }
-            console.log("updated");
-            nextRes = "Enter skills"
-            if(flag == "add")
-            {
-              query = req.body.queryResult.parameters["email"];
-              User.findByIdAndUpdate(id, {
-                  "email": query
-              }, function(err, user) {
-                  if (err) {
-                      console.log("cant be updated");
-                      return;
-                  }
-                  console.log("updated");
-              });
-              nextRes = "Resume Updated";
-          }
-            return res.json(200, {
-                "fulfillmentMessages": [{
+          });
+        }
+    }else if(action=="getEmail"){
+      User.findByIdAndUpdate(id,{"email":req.body.queryResult.parameters["email"]},function(err,user)
+          {
+             if(err)
+             {
+               console.log("cant be update");
+               return;
+             }
+             console.log(id);
+             console.log("updated");
+             nextRes = "Enter skills";
+              if(flag == "add")
+              {
+                nextRes = "Resume Updated";
+              }
+             return res.json(200,
+              {
+                "fulfillmentMessages": [
+                  {
                     "text": {
-                        "text": [nextRes]
+                      "text": [nextRes]
                     }
-                }]
-
-            });
-        });
-
-    } else if (action == "getSkills") {
+                  }
+                ]
+                  
+              });
+          });
+  } else if (action == "getSkills") {
         User.findOne({
             _id: id
         }, function(err, user) {
