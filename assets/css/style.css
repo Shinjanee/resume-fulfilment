@@ -172,6 +172,7 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address
         #name, #contactDetails {
             float: none;
             width: 100%;
+            text-align: center;
         }
         
         .sectionTitle, .sectionContent {
