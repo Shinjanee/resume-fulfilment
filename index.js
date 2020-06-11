@@ -74,8 +74,8 @@ app.post('/', function(req, res) {
                   return;
               }
             });
-            console.log(" user created \n");
-            id = user._id;
+              console.log(" user created \n");
+              id = user._id;
               console.log(id);
               nextRes= "Enter email";
             }
