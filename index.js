@@ -139,7 +139,7 @@ app.post('/', function(req, res) {
                 var main_str = user.skills;
                 var str = req.body.queryResult.queryText;
                 query = main_str.replace(str, "");
-                query = main_str.replaceAll(", $", "");
+                query = main_str.replace(", $", "");
             }
             User.findByIdAndUpdate(id, {
                 "skills": query
@@ -185,7 +185,7 @@ app.post('/', function(req, res) {
                 var main_str = user.interests;
                 var str = req.body.queryResult.queryText;
                 query = main_str.replace(str, "");
-                query = main_str.replaceAll(", $", "");
+                query = main_str.replace(", $", "");
             }
             User.findByIdAndUpdate(id, {
                 "interests": query
@@ -352,7 +352,7 @@ app.post('/', function(req, res) {
                 var main_str = user.achievements;
                 var str = req.body.queryResult.queryText;
                 query = main_str.replace(str, "");
-                query = main_str.replaceAll(", $", "");
+                query = main_str.replace(", $", "");
             }
             User.findByIdAndUpdate(id, {
                 "achievements": query
