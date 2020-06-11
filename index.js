@@ -114,20 +114,7 @@ app.post('/', function(req, res) {
               {
                 nextRes = "Resume Updated";
               }
-              return res.json(200, {
-                  "fulfillmentMessages": [
-                    {
-                      "platform": "ACTIONS_ON_GOOGLE",
-                      "simpleResponses": {
-                        "simpleResponses": [
-                          {
-                            "textToSpeech": [nextRes]
-                          }
-                        ]
-                      }
-                    }
-                  ]
-              });
+               response(nextRes);
           });
   } else if (action == "getSkills") {
         User.findOne({
@@ -162,20 +149,7 @@ app.post('/', function(req, res) {
                 nextRes = "Enter interests";
             else
                 nextRes = "Your resume has been updated";
-            return res.json(200, {
-                "fulfillmentMessages": [
-                  {
-                    "platform": "ACTIONS_ON_GOOGLE",
-                    "simpleResponses": {
-                      "simpleResponses": [
-                        {
-                          "textToSpeech": [nextRes]
-                        }
-                      ]
-                    }
-                  }
-                ]
-            });
+            response(nextRes);
         });
     } else if (action == "getInterest") {
         User.findOne({
@@ -210,20 +184,7 @@ app.post('/', function(req, res) {
                 nextRes = "Enter education";
             else
                 nextRes = "Your resume has been updated";
-            return res.json(200, {
-                "fulfillmentMessages": [
-                  {
-                    "platform": "ACTIONS_ON_GOOGLE",
-                    "simpleResponses": {
-                      "simpleResponses": [
-                        {
-                          "textToSpeech": [nextRes]
-                        }
-                      ]
-                    }
-                  }
-                ]
-            });
+            response(nextRes);
         });
     } else if (action == "getEducation") {
         educationArray = [];
@@ -252,20 +213,7 @@ app.post('/', function(req, res) {
             nextRes = "Want to enter more?";
         else
             nextRes = "Your resume has been updated";
-        return res.json(200, {
-            "fulfillmentMessages": [
-              {
-                "platform": "ACTIONS_ON_GOOGLE",
-                "simpleResponses": {
-                  "simpleResponses": [
-                    {
-                      "textToSpeech": [nextRes]
-                    }
-                  ]
-                }
-              }
-            ]
-        });
+        response(nextRes);
     } else if (action == "getProjects") {
         projectArray = [];
         var title = req.body.queryResult.parameters["title"];
@@ -291,20 +239,7 @@ app.post('/', function(req, res) {
             nextRes = "Want to enter more?";
         else
             nextRes = "Your resume has been updated";
-        return res.json(200, {
-            "fulfillmentMessages": [
-              {
-                "platform": "ACTIONS_ON_GOOGLE",
-                "simpleResponses": {
-                  "simpleResponses": [
-                    {
-                      "textToSpeech": [nextRes]
-                    }
-                  ]
-                }
-              }
-            ]
-        });
+        response(nextRes);
     } else if (action == "getExperience") {
         experienceArray = [];
         var position = req.body.queryResult.parameters["position"];
@@ -332,20 +267,7 @@ app.post('/', function(req, res) {
             nextRes = "Want to enter more?";
         else
             nextRes = "Your resume has been updated";
-        return res.json(200, {
-            "fulfillmentMessages": [
-              {
-                "platform": "ACTIONS_ON_GOOGLE",
-                "simpleResponses": {
-                  "simpleResponses": [
-                    {
-                      "textToSpeech": [nextRes]
-                    }
-                  ]
-                }
-              }
-            ]
-        });
+        response(nextRes);
     } else if (action == "getAchievements") {
         User.findOne({
             _id: id
@@ -379,20 +301,7 @@ app.post('/', function(req, res) {
                 nextRes = "Thank you! Your resume gas been recorded. Please note your id for accessing later. ID : " + id;
             else
                 nextRes = "Your resume has been updated";
-            return res.json(200, {
-                "fulfillmentMessages": [
-                  {
-                    "platform": "ACTIONS_ON_GOOGLE",
-                    "simpleResponses": {
-                      "simpleResponses": [
-                        {
-                          "textToSpeech": [nextRes]
-                        }
-                      ]
-                    }
-                  }
-                ]
-            });
+            response(nextRes);
         });
     } else if (action == "getJobBySkill") {
         var skill = req.body.queryResult.parameters["skill_name"];
@@ -411,20 +320,7 @@ app.post('/', function(req, res) {
                 for (var i = 0; i < jobsArray.length; i++) {
                     result += (i + 1).toString() + jobsArray[i].title + " and " + jobsArray[i].url + "  \n";
                 }
-                return res.json(200, {
-                    "fulfillmentMessages": [
-                      {
-                        "platform": "ACTIONS_ON_GOOGLE",
-                        "simpleResponses": {
-                          "simpleResponses": [
-                            {
-                              "textToSpeech": [result]
-                            }
-                          ]
-                        }
-                      }
-                     ]
-                });
+                response(result);
             });
 
         }).on("error", (err) => {
@@ -472,20 +368,7 @@ app.post('/', function(req, res) {
             else
                 toSend = "Not a valid query";
 
-            return res.json(200, {
-                "fulfillmentMessages": [
-                  {
-                    "platform": "ACTIONS_ON_GOOGLE",
-                    "simpleResponses": {
-                      "simpleResponses": [
-                        {
-                          "textToSpeech": [toSend]
-                        }
-                      ]
-                    }
-                  }
-                ]
-            });
+            response(toSend);
         });
 
     } else if (action == "updateResume") {
@@ -532,20 +415,7 @@ app.post('/', function(req, res) {
             else
                 toSend = "Not a valid query";
 
-            return res.json(200, {
-                "fulfillmentMessages": [
-                  {
-                    "platform": "ACTIONS_ON_GOOGLE",
-                    "simpleResponses": {
-                      "simpleResponses": [
-                        {
-                          "textToSpeech": [toSend]
-                        }
-                      ]
-                    }
-                  }
-                ]
-            });
+            response(toSend);
         });
 
     } else if (action == "modifyAction") {
@@ -574,20 +444,7 @@ app.post('/', function(req, res) {
             }
         } else
             toSend = "Invalid Request";
-        return res.json(200, {
-            "fulfillmentMessages": [
-              {
-                "platform": "ACTIONS_ON_GOOGLE",
-                "simpleResponses": {
-                  "simpleResponses": [
-                    {
-                      "textToSpeech": [toSend]
-                    }
-                  ]
-                }
-              }
-            ]
-        });
+        response(toSend);
     } else if (action == "getIndex") {
         var index = req.body.queryResult.parameters["number"];
         if (field == "education") {
@@ -654,37 +511,12 @@ app.post('/', function(req, res) {
                 nextRes = "Your resume has been updated";
             });
         }
-        return res.json(200, {
-            "fulfillmentMessages": [
-              {
-                "platform": "ACTIONS_ON_GOOGLE",
-                "simpleResponses": {
-                  "simpleResponses": [
-                    {
-                      "textToSpeech": [nextRes]
-                    }
-                  ]
-                }
-              }
-            ]
-        });
+        response(nextRes);
     } else if (action == "showResume") {
         resume_id = req.body.queryResult.parameters["id"];
         console.log(resume_id);
-        return res.json(200, {
-            "fulfillmentMessages": [
-              {
-                "platform": "ACTIONS_ON_GOOGLE",
-                "simpleResponses": {
-                  "simpleResponses": [
-                    {
-                      "textToSpeech": ["https://resume-fulfilment1.herokuapp.com/getResume"]
-                    }
-                  ]
-                }
-              }
-            ]
-        });
+        var resume_url = "https://resume-fulfilment1.herokuapp.com/getResume";
+        response(resume_url);
     }
 
 });
