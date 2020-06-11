@@ -124,7 +124,6 @@ app.post('/', function(req, res) {
               });
           });
   } else if (action == "getSkills") {
-        var final_str = "";
         User.findOne({
             _id: id
         }, function(err, user) {
@@ -139,8 +138,10 @@ app.post('/', function(req, res) {
             else if (flag == "delete") {
                 var main_str = user.skills;
                 var str = req.body.queryResult.queryText;
-                final_str = main_str.replace(str, "");
-                query = final_str.replace(/(^\s*,)|(,\s*$)/g, "");
+                if(main_str.includes(","))
+                  query = main_str.replace(" ," + str, "");
+                else
+                query = main_str.replace(str, "");
             }
             User.findByIdAndUpdate(id, {
                 "skills": query
