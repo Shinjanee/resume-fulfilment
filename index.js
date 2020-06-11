@@ -29,7 +29,7 @@ app.get('/getResume', function(req, res) {
         _id: search_id
     }, function(err, user) {
         if (err) {
-            console.log("User not found");
+            console.log("User not found" + search_id);
             return;
         }
         return res.render('resume', {
