@@ -327,7 +327,7 @@ app.post('/', function(req, res) {
             });
             if (flag == "create")
                 nextRes = "Thank you! Your resume gas been recorded. Please note your id for accessing later. ID : " + id;
-            else if (flag == "add")
+            else
                 nextRes = "Your resume has been updated";
             return res.json(200, {
                 "fulfillmentMessages": [{
