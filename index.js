@@ -176,36 +176,28 @@ app.post('/', function(req, res) {
             "location": location,
             "percentage": percentage
         });
-        User.findOne({
-            _id: id
+        User.findByIdAndUpdate(id, {
+            $push: {
+                education: educationArray
+            }
         }, function(err, user) {
             if (err) {
                 console.log("cant be updated");
                 return;
             }
-            User.findByIdAndUpdate(id, {
-                $push: {
-                    education: educationArray
+            console.log("updated");
+        });
+        if (flag == "create")
+            nextRes = "Want to enter more?";
+        else
+            nextRes = "Your resume has been updated";
+        return res.json(200, {
+            "fulfillmentMessages": [{
+                "text": {
+                    "text": [nextRes]
                 }
-            }, function(err, user) {
-                if (err) {
-                    console.log("cant be updated");
-                    return;
-                }
-                console.log("updated");
-            });
-            if (flag == "create")
-                nextRes = "Want to enter more?";
-            else
-                nextRes = "Your resume has been updated";
-            return res.json(200, {
-                "fulfillmentMessages": [{
-                    "text": {
-                        "text": [nextRes]
-                    }
-                }]
+            }]
 
-            });
         });
     } else if (action == "getProjects") {
 
@@ -217,41 +209,29 @@ app.post('/', function(req, res) {
             "year": year,
             "description": description
         });
-
-        User.findOne({
-            _id: id
+        User.findByIdAndUpdate(id, {
+            $push: {
+                project: projectArray
+            }
         }, function(err, user) {
             if (err) {
                 console.log("cant be updated");
                 return;
             }
-            User.findByIdAndUpdate(id, {
-                $push: {
-                    project: projectArray
+            console.log("updated");
+        });
+        if (flag == "create")
+            nextRes = "Want to enter more?";
+        else
+            nextRes = "Your resume has been updated";
+        return res.json(200, {
+            "fulfillmentMessages": [{
+                "text": {
+                    "text": [nextRes]
                 }
-            }, function(err, user) {
-                if (err) {
-                    console.log("cant be updated");
-                    return;
-                }
-                console.log("updated");
-            });
-            if (flag == "create")
-                nextRes = "Want to enter more?";
-            else
-                nextRes = "Your resume has been updated";
-            return res.json(200, {
-                "fulfillmentMessages": [{
-                    "text": {
-                        "text": [nextRes]
-                    }
-                }]
-
-            });
+            }]
         });
     } else if (action == "getExperience") {
-
-
         var position = req.body.queryResult.parameters["position"];
         var duration = req.body.queryResult.parameters["duration"];
         var location = req.body.queryResult.parameters["city"];
@@ -262,37 +242,28 @@ app.post('/', function(req, res) {
             "location": location,
             "company_name": company_name
         });
-
-        User.findOne({
-            _id: id
+        User.findByIdAndUpdate(id, {
+            $push: {
+                experience: experienceArray
+            }
         }, function(err, user) {
             if (err) {
                 console.log("cant be updated");
                 return;
             }
-            User.findByIdAndUpdate(id, {
-                $push: {
-                    experience: experienceArray
+            console.log("updated");
+        });
+        if (flag == "create")
+            nextRes = "Want to enter more?";
+        else
+            nextRes = "Your resume has been updated";
+        return res.json(200, {
+            "fulfillmentMessages": [{
+                "text": {
+                    "text": [nextRes]
                 }
-            }, function(err, user) {
-                if (err) {
-                    console.log("cant be updated");
-                    return;
-                }
-                console.log("updated");
-            });
-            if (flag == "create")
-                nextRes = "Want to enter more?";
-            else
-                nextRes = "Your resume has been updated";
-            return res.json(200, {
-                "fulfillmentMessages": [{
-                    "text": {
-                        "text": [nextRes]
-                    }
-                }]
+            }]
 
-            });
         });
     } else if (action == "getAchievements") {
         User.findOne({
