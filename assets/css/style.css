@@ -33,7 +33,6 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address
         padding: 25px 35px;
         border-bottom: 2px solid #cf8a05;
         background: #ededed;
-        float: left;
     }
     
     #name h1 {
@@ -68,11 +67,19 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address
         border-radius: 50px;
     }
     
+    #name {
+        float: left;
+    }
+    
+    #contactDetails {
+        float: left;
+    }
     
     #contactDetails ul {
         list-style-type: none;
         font-size: 0.9em;
         margin-top: 70px;
+        margin-left: 0px;
     }
     
     #contactDetails ul li {
