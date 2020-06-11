@@ -58,8 +58,8 @@ app.post('/', function(req, res) {
         experienceArray=[];
         educationArray = [];
         projectArray=[];
-          User.create({
-            name:req.body.queryResult.queryText,
+        User.create({
+            name:req.body.queryResult.parameters["namelist"]["given-name"],
             email:"N.A",
             education:[],
             experience:[],
@@ -73,13 +73,13 @@ app.post('/', function(req, res) {
                   console.log("Error");
                   return;
               }
-            });
               console.log(" user created \n");
               id = user._id;
               console.log(id);
               nextRes= "Enter email";
-            }
-            return res.json(200, {
+            });
+          }
+          return res.json(200, {
                 "fulfillmentMessages": [
                   {
                     "platform": "ACTIONS_ON_GOOGLE",
