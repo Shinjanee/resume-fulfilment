@@ -138,8 +138,7 @@ app.post('/', function(req, res) {
             else if (flag == "delete") {
                 var main_str = user.skills;
                 var str = req.body.queryResult.queryText;
-                query = main_str.replace(str, "");
-                query = main_str.replace(", $", "");
+                query = main_str.replace(str, "").replace(", $", "");
             }
             User.findByIdAndUpdate(id, {
                 "skills": query
