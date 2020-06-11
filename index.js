@@ -74,7 +74,7 @@ app.post('/', function(req, res) {
                   }
                   console.log("updated");
               });
-              nextRes = "Resume Updated"
+              nextRes = "Resume Updated";
           }
             return res.json(200, {
                 "fulfillmentMessages": [{
@@ -107,7 +107,7 @@ app.post('/', function(req, res) {
                   }
                   console.log("updated");
               });
-              nextRes = "Resume Updated"
+              nextRes = "Resume Updated";
           }
             return res.json(200, {
                 "fulfillmentMessages": [{
@@ -438,9 +438,9 @@ app.post('/', function(req, res) {
             else if (field == "email")
                 toSend = user.email + " \n Add new?";
             else if (field == "skills")
-                toSend = user.skills + "\n Delete all or add new?";
+                toSend = user.skills + "\n Delete or add new?";
             else if (field == "interests")
-                toSend = user.interests + "\n Delete all or add new?";
+                toSend = user.interests + "\n Delete or add new?";
             else if (field == "education") {
                 toSend = "";
                 len = user.education.length;
