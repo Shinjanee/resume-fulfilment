@@ -19,6 +19,7 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address
         font-size: 1em;
         line-height: 1.4em;
         color: #444;
+        text-transform: capitalize;
     }
     
     #cv {
@@ -39,12 +40,14 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address
         font-weight: 700;
         font-family: 'Rokkitt', Helvetica, Arial, sans-serif;
         margin-bottom: -6px;
+        text-transform: capitalize;
     }
     
     #name h2 {
         font-size: 2em;
         margin-left: 2px;
         font-family: 'Rokkitt', Helvetica, Arial, sans-serif;
+        text-transform: capitalize;
     }
     
     #mainArea {
@@ -126,18 +129,21 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address
         font-style: italic;
         font-size: 1.5em;
         color: #cf8a05;
+        text-transform: capitalize;
     }
     
     .sectionContent h2 {
         font-family: 'Rokkitt', Helvetica, Arial, sans-serif;
         font-size: 1.5em;
         margin-bottom: -2px;
+        text-transform: capitalize;
     }
     
     .subDetails {
         font-size: 0.8em;
         font-style: italic;
         margin-bottom: 3px;
+        text-transform: capitalize;
     }
     
     .keySkills {
@@ -148,10 +154,16 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address
         margin-bottom: 20px;
         font-size: 1em;
         color: #444;
+        text-transform: capitalize;
     }
     
     .keySkills ul li {
         margin-bottom: 3px;
+        text-transform: capitalize;
+    }
+
+    .lastItem {
+        margin-bottom: 20px;
     }
     
     @media all and (min-width: 602px) and (max-width: 800px) {
