@@ -36,7 +36,7 @@
 			    <% for(experience of users.experience){ %>
 				<article>
 					<h2><%= experience.company_name %></h2>
-					<p class="subDetails"><%= experience.duration %> &nbsp;&nbsp; <%= experience.location %></p>
+					<p class="subDetails"><%= experience.duration %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= experience.location %></p>
 					<p class = "lastItem"><%= experience.position %></p>
 				</article>
 				<%} %>
@@ -52,7 +52,7 @@
 			    <% for(education of users.education){ %>
 				<article>
 					<h2><%= education.university_name %></h2>
-					<p class="subDetails"><%= education.location %> &nbsp; &nbsp;<%= education.percentage %></p>
+					<p class="subDetails"><%= education.location %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= education.percentage %></p>
 					<p class = "lastItem"><%= education.degree %></p>
 				</article>
 				<%} %>
