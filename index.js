@@ -28,7 +28,7 @@ app.get('/getResume', function(req, res) {
         _id: resume_id
     }, function(err, user) {
         if (err) {
-            console.log("User not found" + search_id);
+            console.log("User not found" + resume_id);
             return;
         }
         return res.render('resume', {
@@ -556,7 +556,7 @@ app.post('/', function(req, res) {
         }
     } else if (action == "showResume") {
         resume_id = req.body.queryResult.parameters["id"];
-        console.log(search_id);
+        console.log(resume_id);
         return res.json(200, {
             "fulfillmentMessages": [{
                 "text": {
