@@ -143,7 +143,7 @@ app.post('/', function(req, res) {
                 query = main_str.replace(", $", "");
             }
             User.findByIdAndUpdate(id, {
-                "skills": final_str
+                "skills": query
             }, function(err, user) {
                 if (err) {
                     console.log("cant be updated");
