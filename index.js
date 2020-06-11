@@ -198,7 +198,7 @@ app.post('/', function(req, res) {
             });
         });
     } else if (action == "getEducation") {
-
+        educationArray = [];
         var degree = req.body.queryResult.parameters["degree"];
         var university_name = req.body.queryResult.parameters["university_name"];
         var location = req.body.queryResult.parameters["city"];
@@ -233,7 +233,7 @@ app.post('/', function(req, res) {
 
         });
     } else if (action == "getProjects") {
-
+        projectArray = [];
         var title = req.body.queryResult.parameters["title"];
         var year = req.body.queryResult.parameters["year"];
         var description = req.body.queryResult.parameters["description"];
@@ -265,6 +265,7 @@ app.post('/', function(req, res) {
             }]
         });
     } else if (action == "getExperience") {
+        experienceArray = [];
         var position = req.body.queryResult.parameters["position"];
         var duration = req.body.queryResult.parameters["duration"];
         var location = req.body.queryResult.parameters["city"];
@@ -435,7 +436,7 @@ app.post('/', function(req, res) {
             if (field == "name")
                 toSend = user.name + " \n Add new?";
             else if (field == "email")
-                toSend = user.name + " \n Add new?";
+                toSend = user.email + " \n Add new?";
             else if (field == "skills")
                 toSend = user.skills + "\n Delete all or add new?";
             else if (field == "interests")
