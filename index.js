@@ -138,10 +138,8 @@ app.post('/', function(req, res) {
             else if (flag == "delete") {
                 var main_str = user.skills;
                 var str = req.body.queryResult.queryText;
-                if(main_str.includes(",",0))
-                  query = main_str.replace(", " + str, "");
-                else
-                  query = main_str.replace(str, "");
+                query = main_str.replace(str, "");
+                query = main_str.replaceAll(", $", "");
             }
             User.findByIdAndUpdate(id, {
                 "skills": query
@@ -186,10 +184,8 @@ app.post('/', function(req, res) {
             else if (flag == "delete") {
                 var main_str = user.interests;
                 var str = req.body.queryResult.queryText;
-                if(main_str.includes(",",0))
-                  query = main_str.replace(", " + str, "");
-                else
-                  query = main_str.replace(str, "");
+                query = main_str.replace(str, "");
+                query = main_str.replaceAll(", $", "");
             }
             User.findByIdAndUpdate(id, {
                 "interests": query
@@ -355,10 +351,8 @@ app.post('/', function(req, res) {
             else if (flag == "delete") {
                 var main_str = user.achievements;
                 var str = req.body.queryResult.queryText;
-                if(main_str.includes(",",0))
-                  query = main_str.replace(", " + str, "");
-                else
-                  query = main_str.replace(str, "");
+                query = main_str.replace(str, "");
+                query = main_str.replaceAll(", $", "");
             }
             User.findByIdAndUpdate(id, {
                 "achievements": query
