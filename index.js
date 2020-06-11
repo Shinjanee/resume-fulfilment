@@ -140,7 +140,7 @@ app.post('/', function(req, res) {
                 var main_str = user.skills;
                 var str = req.body.queryResult.queryText;
                 query = main_str.replace(str, "");
-                final_str = query.replace(", $", "");
+                final_str = main_str.replace(", $", "");
             }
             User.findByIdAndUpdate(id, {
                 "skills": final_str
