@@ -47,12 +47,12 @@ app.post('/', function(req, res) {
         User.create({
             name: req.body.queryResult.parameters["namelist"]["given-name"],
             email: "N.A",
-            skills: " ",
-            interests: " ",
+            skills: "N.A",
+            interests: "N.A",
             education: [],
             project: [],
             experience: [],
-            achievements: " "
+            achievements: "N.A"
         }, function(err, user) {
             if (err) {
                 console.log("Error");
@@ -61,10 +61,25 @@ app.post('/', function(req, res) {
             console.log(" user created \n");
             id = user._id;
             console.log(id);
+            nextRes= "Enter email"
+            if(flag == "add")
+            {
+              query = req.body.queryResult.parameters["namelist"]["given-name"];
+              User.findByIdAndUpdate(id, {
+                  "name": query
+              }, function(err, user) {
+                  if (err) {
+                      console.log("cant be updated");
+                      return;
+                  }
+                  console.log("updated");
+              });
+              nextRes = "Resume Updated"
+          }
             return res.json(200, {
                 "fulfillmentMessages": [{
                     "text": {
-                        "text": ["Enter email"]
+                        "text": [nextRes]
                     }
                 }]
 
@@ -79,10 +94,25 @@ app.post('/', function(req, res) {
                 return;
             }
             console.log("updated");
+            nextRes = "Enter skills"
+            if(flag == "add")
+            {
+              query = req.body.queryResult.parameters["email"];
+              User.findByIdAndUpdate(id, {
+                  "email": query
+              }, function(err, user) {
+                  if (err) {
+                      console.log("cant be updated");
+                      return;
+                  }
+                  console.log("updated");
+              });
+              nextRes = "Resume Updated"
+          }
             return res.json(200, {
                 "fulfillmentMessages": [{
                     "text": {
-                        "text": ["Enter skills"]
+                        "text": [nextRes]
                     }
                 }]
 
@@ -97,8 +127,10 @@ app.post('/', function(req, res) {
                 console.log("cant be updated");
                 return;
             }
-            if (flag == "add" || flag == "create")
-                query = user.skills + " " + req.body.queryResult.queryText;
+            if (flag == "create")
+                query = req.body.queryResult.queryText;
+            else if (flag == "add")
+                query = user.skills + ", " + req.body.queryResult.queryText;
             else if (flag == "delete") {
                 var main_str = user.skills;
                 var str = req.body.queryResult.queryText;
@@ -134,10 +166,12 @@ app.post('/', function(req, res) {
                 console.log("cant be updated");
                 return;
             }
-            if (flag == "add" || flag == "create")
-                query = user.interests + " " + req.body.queryResult.queryText;
+            if (flag == "create")
+                query = req.body.queryResult.queryText;
+            else if (flag == "add")
+              query = user.interests + ", " + req.body.queryResult.queryText;
             else if (flag == "delete") {
-                var main_str = user.skills;
+                var main_str = user.interests;
                 var str = req.body.queryResult.queryText;
                 query = main_str.replace(str, "");
             }
@@ -272,10 +306,12 @@ app.post('/', function(req, res) {
                 console.log("cant be updated");
                 return;
             }
-            if (flag == "add" || flag == "create")
-                query = user.achievements + " " + req.body.queryResult.queryText;
+            if (flag == "create")
+                query = req.body.queryResult.queryText;
+            else if (flag == "add")
+                query = user.achievements + ", " + req.body.queryResult.queryText;
             else if (flag == "delete") {
-                var main_str = user.skills;
+                var main_str = user.achievements;
                 var str = req.body.queryResult.queryText;
                 query = main_str.replace(str, "");
             }
