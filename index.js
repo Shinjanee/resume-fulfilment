@@ -396,7 +396,11 @@ app.post('/', function(req, res) {
                 return;
             }
             console.log("found");
-            if (field == "skills")
+            if (field == "name")
+                toSend = user.name + " \n Add new?";
+            else if (field == "email")
+                toSend = user.name + " \n Add new?";
+            else if (field == "skills")
                 toSend = user.skills + "\n Delete all or add new?";
             else if (field == "interests")
                 toSend = user.interests + "\n Delete all or add new?";
