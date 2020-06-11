@@ -78,6 +78,8 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address
     #contactDetails ul {
         list-style-type: none;
         font-size: 0.9em;
+        margin-top: 70px;
+        margin-left: 0px;
     }
     
     #contactDetails ul li {
