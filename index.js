@@ -22,6 +22,25 @@ var educationArray = [];
 var experienceArray = [];
 var projectArray = [];
 
+function response(resp)
+{
+            return res.json(200, {
+                "fulfillmentMessages": [
+                  {
+                    "platform": "ACTIONS_ON_GOOGLE",
+                    "simpleResponses": {
+                      "simpleResponses": [
+                        {
+                          "textToSpeech": [resp]
+                        }
+                      ]
+                    }
+                  }
+                ]
+            });
+
+}
+
 //Show resume of user with id = search_id from showResume
 app.get('/getResume', function(req, res) {
     User.findOne({
@@ -79,20 +98,7 @@ app.post('/', function(req, res) {
               nextRes= "Enter email";
             });
           }
-          return res.json(200, {
-                "fulfillmentMessages": [
-                  {
-                    "platform": "ACTIONS_ON_GOOGLE",
-                    "simpleResponses": {
-                      "simpleResponses": [
-                        {
-                          "textToSpeech": [nextRes]
-                        }
-                      ]
-                    }
-                  }
-                ]
-            });
+          response(nextRes);
     }else if(action=="getEmail"){
       User.findByIdAndUpdate(id,{"email":req.body.queryResult.parameters["email"]},function(err,user)
           {
