@@ -359,12 +359,18 @@ app.post('/', function(req, res) {
                     result += (i + 1).toString() + jobsArray[i].title + " and " + jobsArray[i].url + "  \n";
                 }
                 return res.json(200, {
-                    "fulfillmentMessages": [{
-                        "text": {
-                            "text": [result]
+                    "fulfillmentMessages": [
+                      {
+                        "platform": "ACTIONS_ON_GOOGLE",
+                        "simpleResponses": {
+                          "simpleResponses": [
+                            {
+                              "textToSpeech": [result]
+                            }
+                          ]
                         }
-                    }]
-
+                      }
+                    ]
                 });
             });
 
