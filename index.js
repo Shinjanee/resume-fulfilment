@@ -54,14 +54,6 @@ app.post('/', function(req, res) {
               console.log("updated");
           });
           nextRes = "Resume Updated";
-          return res.json(200, {
-            "fulfillmentMessages": [{
-                "text": {
-                    "text": [nextRes]
-                }
-            }]
-
-        });
       }else{
         experienceArray=[];
         educationArray = [];
@@ -76,25 +68,31 @@ app.post('/', function(req, res) {
             interests:"N.A",
             achievements:"N.A"  
           },function(err,user) {
-            
-            if(err)
-            {
-                console.log("Error");
-                return;
-            }
+              if(err)
+              {
+                  console.log("Error");
+                  return;
+              }
+            });
             console.log(" user created \n");
             id = user._id;
               console.log(id);
               nextRes= "Enter email";
-              return res.json(200, {
-                "fulfillmentMessages": [{
-                    "text": {
-                        "text": [nextRes]
+            }
+            return res.json(200, {
+                "fulfillmentMessages": [
+                  {
+                    "platform": "ACTIONS_ON_GOOGLE",
+                    "simpleResponses": {
+                      "simpleResponses": [
+                        {
+                          "textToSpeech": [nextRes]
+                        }
+                      ]
                     }
-                }]
+                  }
+                ]
             });
-          });
-        }
     }else if(action=="getEmail"){
       User.findByIdAndUpdate(id,{"email":req.body.queryResult.parameters["email"]},function(err,user)
           {
@@ -110,16 +108,19 @@ app.post('/', function(req, res) {
               {
                 nextRes = "Resume Updated";
               }
-             return res.json(200,
-              {
-                "fulfillmentMessages": [
-                  {
-                    "text": {
-                      "text": [nextRes]
+              return res.json(200, {
+                  "fulfillmentMessages": [
+                    {
+                      "platform": "ACTIONS_ON_GOOGLE",
+                      "simpleResponses": {
+                        "simpleResponses": [
+                          {
+                            "textToSpeech": [nextRes]
+                          }
+                        ]
+                      }
                     }
-                  }
-                ]
-                  
+                  ]
               });
           });
   } else if (action == "getSkills") {
@@ -153,12 +154,18 @@ app.post('/', function(req, res) {
             else
                 nextRes = "Your resume has been updated";
             return res.json(200, {
-                "fulfillmentMessages": [{
-                    "text": {
-                        "text": [nextRes]
+                "fulfillmentMessages": [
+                  {
+                    "platform": "ACTIONS_ON_GOOGLE",
+                    "simpleResponses": {
+                      "simpleResponses": [
+                        {
+                          "textToSpeech": [nextRes]
+                        }
+                      ]
                     }
-                }]
-
+                  }
+                ]
             });
         });
     } else if (action == "getInterest") {
@@ -192,12 +199,18 @@ app.post('/', function(req, res) {
             else
                 nextRes = "Your resume has been updated";
             return res.json(200, {
-                "fulfillmentMessages": [{
-                    "text": {
-                        "text": [nextRes]
+                "fulfillmentMessages": [
+                  {
+                    "platform": "ACTIONS_ON_GOOGLE",
+                    "simpleResponses": {
+                      "simpleResponses": [
+                        {
+                          "textToSpeech": [nextRes]
+                        }
+                      ]
                     }
-                }]
-
+                  }
+                ]
             });
         });
     } else if (action == "getEducation") {
@@ -228,12 +241,18 @@ app.post('/', function(req, res) {
         else
             nextRes = "Your resume has been updated";
         return res.json(200, {
-            "fulfillmentMessages": [{
-                "text": {
-                    "text": [nextRes]
+            "fulfillmentMessages": [
+              {
+                "platform": "ACTIONS_ON_GOOGLE",
+                "simpleResponses": {
+                  "simpleResponses": [
+                    {
+                      "textToSpeech": [nextRes]
+                    }
+                  ]
                 }
-            }]
-
+              }
+            ]
         });
     } else if (action == "getProjects") {
         projectArray = [];
@@ -261,11 +280,18 @@ app.post('/', function(req, res) {
         else
             nextRes = "Your resume has been updated";
         return res.json(200, {
-            "fulfillmentMessages": [{
-                "text": {
-                    "text": [nextRes]
+            "fulfillmentMessages": [
+              {
+                "platform": "ACTIONS_ON_GOOGLE",
+                "simpleResponses": {
+                  "simpleResponses": [
+                    {
+                      "textToSpeech": [nextRes]
+                    }
+                  ]
                 }
-            }]
+              }
+            ]
         });
     } else if (action == "getExperience") {
         experienceArray = [];
@@ -295,12 +321,18 @@ app.post('/', function(req, res) {
         else
             nextRes = "Your resume has been updated";
         return res.json(200, {
-            "fulfillmentMessages": [{
-                "text": {
-                    "text": [nextRes]
+            "fulfillmentMessages": [
+              {
+                "platform": "ACTIONS_ON_GOOGLE",
+                "simpleResponses": {
+                  "simpleResponses": [
+                    {
+                      "textToSpeech": [nextRes]
+                    }
+                  ]
                 }
-            }]
-
+              }
+            ]
         });
     } else if (action == "getAchievements") {
         User.findOne({
@@ -333,13 +365,19 @@ app.post('/', function(req, res) {
             else
                 nextRes = "Your resume has been updated";
             return res.json(200, {
-                "fulfillmentMessages": [{
-                    "text": {
-                        "text": [nextRes]
+                "fulfillmentMessages": [
+                  {
+                    "platform": "ACTIONS_ON_GOOGLE",
+                    "simpleResponses": {
+                      "simpleResponses": [
+                        {
+                          "textToSpeech": [nextRes]
+                        }
+                      ]
                     }
-                }]
+                  }
+                ]
             });
-
         });
     } else if (action == "getJobBySkill") {
         var skill = req.body.queryResult.parameters["skill_name"];
@@ -370,7 +408,7 @@ app.post('/', function(req, res) {
                           ]
                         }
                       }
-                    ]
+                     ]
                 });
             });
 
@@ -420,12 +458,18 @@ app.post('/', function(req, res) {
                 toSend = "Not a valid query";
 
             return res.json(200, {
-                "fulfillmentMessages": [{
-                    "text": {
-                        "text": [String(toSend)]
+                "fulfillmentMessages": [
+                  {
+                    "platform": "ACTIONS_ON_GOOGLE",
+                    "simpleResponses": {
+                      "simpleResponses": [
+                        {
+                          "textToSpeech": [toSend]
+                        }
+                      ]
                     }
-                }]
-
+                  }
+                ]
             });
         });
 
@@ -474,12 +518,18 @@ app.post('/', function(req, res) {
                 toSend = "Not a valid query";
 
             return res.json(200, {
-                "fulfillmentMessages": [{
-                    "text": {
-                        "text": [String(toSend)]
+                "fulfillmentMessages": [
+                  {
+                    "platform": "ACTIONS_ON_GOOGLE",
+                    "simpleResponses": {
+                      "simpleResponses": [
+                        {
+                          "textToSpeech": [toSend]
+                        }
+                      ]
                     }
-                }]
-
+                  }
+                ]
             });
         });
 
@@ -510,12 +560,18 @@ app.post('/', function(req, res) {
         } else
             toSend = "Invalid Request";
         return res.json(200, {
-            "fulfillmentMessages": [{
-                "text": {
-                    "text": [String(toSend)]
+            "fulfillmentMessages": [
+              {
+                "platform": "ACTIONS_ON_GOOGLE",
+                "simpleResponses": {
+                  "simpleResponses": [
+                    {
+                      "textToSpeech": [toSend]
+                    }
+                  ]
                 }
-            }]
-
+              }
+            ]
         });
     } else if (action == "getIndex") {
         var index = req.body.queryResult.parameters["number"];
@@ -539,13 +595,6 @@ app.post('/', function(req, res) {
                     console.log("updated");
                 });
                 nextRes = "Your resume has been updated";
-                return res.json(200, {
-                    "fulfillmentMessages": [{
-                        "text": {
-                            "text": [nextRes]
-                        }
-                    }]
-                });
             });
         } else if (field == "projects") {
             User.findOne({
@@ -567,13 +616,6 @@ app.post('/', function(req, res) {
                     console.log("updated");
                 });
                 nextRes = "Your resume has been updated";
-                return res.json(200, {
-                    "fulfillmentMessages": [{
-                        "text": {
-                            "text": [nextRes]
-                        }
-                    }]
-                });
             });
         } else if (field == "experience") {
             User.findOne({
@@ -595,25 +637,38 @@ app.post('/', function(req, res) {
                     console.log("updated");
                 });
                 nextRes = "Your resume has been updated";
-                return res.json(200, {
-                    "fulfillmentMessages": [{
-                        "text": {
-                            "text": [nextRes]
-                        }
-                    }]
-                });
             });
         }
+        return res.json(200, {
+            "fulfillmentMessages": [
+              {
+                "platform": "ACTIONS_ON_GOOGLE",
+                "simpleResponses": {
+                  "simpleResponses": [
+                    {
+                      "textToSpeech": [nextRes]
+                    }
+                  ]
+                }
+              }
+            ]
+        });
     } else if (action == "showResume") {
         resume_id = req.body.queryResult.parameters["id"];
         console.log(resume_id);
         return res.json(200, {
-            "fulfillmentMessages": [{
-                "text": {
-                    "text": ["https://resume-fulfilment1.herokuapp.com/getResume"]
+            "fulfillmentMessages": [
+              {
+                "platform": "ACTIONS_ON_GOOGLE",
+                "simpleResponses": {
+                  "simpleResponses": [
+                    {
+                      "textToSpeech": ["https://resume-fulfilment1.herokuapp.com/getResume"]
+                    }
+                  ]
                 }
-            }]
-
+              }
+            ]
         });
     }
 
