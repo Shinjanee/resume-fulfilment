@@ -124,6 +124,7 @@ app.post('/', function(req, res) {
               });
           });
   } else if (action == "getSkills") {
+        var final_str = "";
         User.findOne({
             _id: id
         }, function(err, user) {
@@ -138,10 +139,11 @@ app.post('/', function(req, res) {
             else if (flag == "delete") {
                 var main_str = user.skills;
                 var str = req.body.queryResult.queryText;
-                query = main_str.replace(str, "").replace(", $", "");
+                query = main_str.replace(str, "");
+                final_str = query.replace(", $", "");
             }
             User.findByIdAndUpdate(id, {
-                "skills": query
+                "skills": final_str
             }, function(err, user) {
                 if (err) {
                     console.log("cant be updated");
