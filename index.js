@@ -23,12 +23,11 @@ var projectArray = [];
 
 //Show resume of user with id = search_id from showResume
 app.get('/getResume', function(req, res) {
-
     User.findOne({
         _id: search_id
     }, function(err, user) {
         if (err) {
-            console.log("User not found");
+            console.log("User not found" + search_id);
             return;
         }
         return res.render('resume', {
@@ -557,6 +556,7 @@ app.post('/', function(req, res) {
         }
     } else if (action == "showResume") {
         search_id = req.body.queryResult.parameters["id"];
+        console.log(search_id);
         return res.json(200, {
             "fulfillmentMessages": [{
                 "text": {
