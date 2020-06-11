@@ -35,10 +35,10 @@
 			<div class="sectionContent">
 			    <% for(experience of users.experience){ %>
 				<article>
-					<h2>Company:  <%= experience.company_name %></h2>
-					<p class="subDetails">Duration:  <%= experience.duration %></p>
-					<p>Position: <%= experience.position %></p>
-					<p>Location:  <%= experience.location %></p>
+					<h2><%= experience.company_name %></h2>
+					<p class="subDetails"><%= experience.duration %></p>
+					<p><%= experience.position %></p>
+					<p><%= experience.location %></p>
 				</article>
 				<%} %>
             </div>
@@ -52,10 +52,10 @@
 			<div class="sectionContent">
 			    <% for(education of users.education){ %>
 				<article>
-					<h2>School Name:   <%= education.university_name %></h2>
-					<p class="subDetails">Location:   <%= education.location %></p>
-					<p>Degree:  <%= education.degree %></p>
-					<p>Percentage:  <%= education.percentage %></p>
+					<h2><%= education.university_name %></h2>
+					<p class="subDetails"><%= education.location %></p>
+					<p><%= education.degree %></p>
+					<p><%= education.percentage %></p>
 				</article>
 				<%} %>
             </div>
@@ -69,9 +69,9 @@
 			<div class="sectionContent">
 				<% for(project of users.project){ %>
 				<article>
-					<h2>Title:   <%= project.title %></h2>
-					<p class="subDetails">Duration:  <%= project.year %></p>
-					<p>Description:  <%= project.description %></p>
+					<h2><%= project.title %></h2>
+					<p class="subDetails"><%= project.year %></p>
+					<p><%= project.description %></p>
 				</article>
 				<%} %>
             </div>
