@@ -836,8 +836,7 @@ app.post('/', function(req, res) {
         resume_id = req.body.queryResult.parameters["id"];
         console.log(resume_id);
         var reply = "hello";
-        User.findOne({
-              _id: resume_id
+        User.findById({ resume_id
           }, function(err, user) {
               if (err) {
                   reply = "Incorrect ID";
