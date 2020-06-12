@@ -597,35 +597,36 @@ app.post('/', function(req, res) {
                 console.log("cant be found");
                 toSend = "Please enter a valid ID";
             }
-            console.log("found");
-            if (val == "name")
-                toSend = "Name : " + user.name;
-            else if (val == "email")
-                toSend = "E-mail : " + user.email;
-            else if (val == "skills")
-                toSend = "Skills : " + user.skills;
-            else if (val == "interests")
-                toSend = "Interests : " + user.interests;
-            else if (val == "education") {
-                toSend = "";
-                len = user.education.length;
-                for (i = 0; i < len; i++)
-                    toSend += (i + 1).toString() + " Degree: " + String(user.education[i].degree) + " School Name: " + String(user.education[i].university_name) + " Location: " + String(user.education[i].location) + " Percentage: " + String(user.education[i].percentage) + "\n";
-            } else if (val == "projects") {
-                toSend = "";
-                len = user.project.length;
-                for (i = 0; i < len; i++)
-                    toSend += (i + 1).toString() + " Title: " + String(user.project[i].title) + " Year: " + String(user.project[i].year) + " Description: " + String(user.project[i].description) + "\n";
-            } else if (val == "experience") {
-                toSend = "";
-                len = user.experience.length;
-                for (i = 0; i < len; i++)
-                    toSend += (i + 1).toString() + " Position: " + String(user.experience[i].position) + " Company: " + String(user.experience[i].company_name) + " Location: " + String(user.experience[i].location) + " Duration: " + String(user.experience[i].duration) + "\n";
-            } else if (val == "achievements")
-                toSend = user.achievements;
-            else
-                toSend = "Not a valid query";
-
+            else{
+                console.log("found");
+                if (val == "name")
+                    toSend = "Name : " + user.name;
+                else if (val == "email")
+                    toSend = "E-mail : " + user.email;
+                else if (val == "skills")
+                    toSend = "Skills : " + user.skills;
+                else if (val == "interests")
+                    toSend = "Interests : " + user.interests;
+                else if (val == "education") {
+                    toSend = "";
+                    len = user.education.length;
+                    for (i = 0; i < len; i++)
+                        toSend += (i + 1).toString() + " Degree: " + String(user.education[i].degree) + " School Name: " + String(user.education[i].university_name) + " Location: " + String(user.education[i].location) + " Percentage: " + String(user.education[i].percentage) + "\n";
+                } else if (val == "projects") {
+                    toSend = "";
+                    len = user.project.length;
+                    for (i = 0; i < len; i++)
+                        toSend += (i + 1).toString() + " Title: " + String(user.project[i].title) + " Year: " + String(user.project[i].year) + " Description: " + String(user.project[i].description) + "\n";
+                } else if (val == "experience") {
+                    toSend = "";
+                    len = user.experience.length;
+                    for (i = 0; i < len; i++)
+                        toSend += (i + 1).toString() + " Position: " + String(user.experience[i].position) + " Company: " + String(user.experience[i].company_name) + " Location: " + String(user.experience[i].location) + " Duration: " + String(user.experience[i].duration) + "\n";
+                } else if (val == "achievements")
+                    toSend = user.achievements;
+                else
+                    toSend = "Not a valid query";
+            }
             return res.json(200, {
                 "fulfillmentMessages": [
                   {
