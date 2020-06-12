@@ -835,7 +835,7 @@ app.post('/', function(req, res) {
     } else if (action == "showResume") {
         resume_id = req.body.queryResult.parameters["id"];
         console.log(resume_id);
-        var toSend = "";
+        var toSend = "hello";
         User.findOne({
               _id: resume_id
           }, function(err, user) {
