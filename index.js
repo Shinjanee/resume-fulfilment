@@ -841,10 +841,11 @@ app.post('/', function(req, res) {
           }, function(err, user) {
               if (err) {
                   toSend = "Incorrect ID";
+                  console.log(error);
                   return;
               }
               else
-                toSend = "https://resume-fulfilment1.herokuapp.com/getResume"
+                toSend = "https://resume-fulfilment1.herokuapp.com/getResume";
             });
           return res.json(200, {
             "fulfillmentMessages": [
@@ -853,7 +854,7 @@ app.post('/', function(req, res) {
                 "simpleResponses": {
                   "simpleResponses": [
                     {
-                      "textToSpeech": [toSend]
+                      "textToSpeech": [String(toSend)]
                     }
                   ]
                 }
