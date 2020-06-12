@@ -895,18 +895,7 @@ app.post('/', function(req, res) {
         if (val == "add") 
         {
             flag = "add";
-            if(field == "skills")
-            {
-              toSend = "Please enter new " + field;
-
-            } 
-            else if (field == "interests")
-              {
-                toSend = "Please enter new " + field;
-
-            }
-            else
-              toSend = "Please enter new " + field;
+            toSend = "Please enter new " + field;
 
         } else if (val == "delete") {
             flag = "delete";
