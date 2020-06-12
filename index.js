@@ -41,7 +41,6 @@ app.get('/getResume', function(req, res) {
 app.post('/', function(req, res) {
     var action = req.body.queryResult.action;
     if(action == "getName"){
-      nextRes = "";
       if(flag == "add")
       {
           query = req.body.queryResult.parameters["given-name"];
