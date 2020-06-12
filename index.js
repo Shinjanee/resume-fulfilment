@@ -73,8 +73,6 @@ app.post('/', function(req, res) {
               if(err)
               {
                   console.log("Error");
-                  nextRes = "Not able to identify name. Let's continue as Guest.";
-                  user.name = "Guest";
               }
               else{
                 console.log(" user created \n");
