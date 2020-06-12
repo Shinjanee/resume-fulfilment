@@ -509,10 +509,61 @@ app.post('/', function(req, res) {
                 return;
             }
             console.log("found");
-            if (field == "name")
+            if (field == "name"){
                 toSend = user.name + " \n Add new?";
+                return res.json(200, {
+                  "fulfillmentMessages": [
+                    {
+                      "platform": "ACTIONS_ON_GOOGLE",
+                      "simpleResponses": {
+                        "simpleResponses": [
+                          {
+                            "textToSpeech": [toSend]
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "platform": "ACTIONS_ON_GOOGLE",
+                      "suggestions": {
+                        "suggestions": [
+                          {
+                            "title": "add"
+                          },
+                        ]
+                      }
+                    }                 
+                  ]
+              });
+            }
             else if (field == "email")
-                toSend = user.email + " \n Add new?";
+                {
+                  toSend = user.email + " \n Add new?";
+                    return res.json(200, {
+                      "fulfillmentMessages": [
+                        {
+                          "platform": "ACTIONS_ON_GOOGLE",
+                          "simpleResponses": {
+                            "simpleResponses": [
+                              {
+                                "textToSpeech": [toSend]
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "platform": "ACTIONS_ON_GOOGLE",
+                          "suggestions": {
+                            "suggestions": [
+                              {
+                                "title": "add"
+                              },
+                            ]
+                          }
+                        }                 
+                      ]
+                  });
+                }
             else if (field == "skills")
                 toSend = user.skills + "\n Delete or add new?";
             else if (field == "interests")
