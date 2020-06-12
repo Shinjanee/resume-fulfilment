@@ -73,10 +73,12 @@ app.post('/', function(req, res) {
                   console.log("Error");
                   return;
               }
-              console.log(" user created \n");
-              id = user._id;
-              console.log(id);
-              nextRes= "Enter email";
+              else{
+                console.log(" user created \n");
+                id = user._id;
+                console.log(id);
+                nextRes= "Enter email";
+              }
             });
           }
           return res.json(200, {
