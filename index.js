@@ -551,7 +551,20 @@ app.post('/', function(req, res) {
                         }
                       ]
                     }
-                  }
+                  },
+                  {
+                    "platform": "ACTIONS_ON_GOOGLE",
+                    "suggestions": {
+                      "suggestions": [
+                        {
+                          "title": "add"
+                        },
+                        {
+                          "title": "delete"
+                        }
+                      ]
+                    }
+                  }                 
                 ]
             });
         });
