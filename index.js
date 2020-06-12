@@ -45,7 +45,7 @@ app.post('/', function(req, res) {
     if(flag == "add")
     {
         var name = req.body.queryResult.parameters["namelist"]["given-name"];
-        console.log(name.length);
+        console.log("name : " + name);
         // if(name.length != 0)
         //   query = req.body.queryResult.parameters["namelist"]["given-name"];
         // else
@@ -80,7 +80,7 @@ app.post('/', function(req, res) {
       educationArray = [];
       projectArray=[];
         var name = req.body.queryResult.parameters["namelist"]["given-name"];
-        console.log(name.length);
+        console.log("name : " + name);
         // if(name.length != 0)
         //   query = req.body.queryResult.parameters["namelist"]["given-name"];
         // else
@@ -95,8 +95,7 @@ app.post('/', function(req, res) {
           skills:"N.A",
           interests:"N.A",
           achievements:"N.A"  
-        },function(err,user) {
-          
+        },function(err,user) { 
           if(err)
           {
               console.log("Error");
