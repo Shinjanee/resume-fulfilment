@@ -835,18 +835,17 @@ app.post('/', function(req, res) {
     } else if (action == "showResume") {
         resume_id = req.body.queryResult.parameters["id"];
         console.log(resume_id);
-        var reply = "hello";
         User.findById({ resume_id
           }, function(err, user) {
               if (err) {
-                  reply = "Incorrect ID";
+                  nextRes = "Incorrect ID";
                   console.log(error);
                   return;
               }
               else
                 {
                   console.log(success);
-                  reply = "https://resume-fulfilment1.herokuapp.com/getResume";
+                  nextRes = "https://resume-fulfilment1.herokuapp.com/getResume";
                 }
             });
           return res.json(200, {
@@ -856,7 +855,7 @@ app.post('/', function(req, res) {
                 "simpleResponses": {
                   "simpleResponses": [
                     {
-                      "textToSpeech": [reply]
+                      "textToSpeech": [nextRes]
                     }
                   ]
                 }
