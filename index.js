@@ -127,8 +127,74 @@ app.post('/', function(req, res) {
              }
              console.log(id);
              console.log("updated");
-             nextRes = "Please enter skills";
-              if(flag == "add")
+             if (flag == "create")
+             {            
+              nextRes = "Please enter skills";
+              return res.json(200, {
+                      "fulfillmentMessages": [
+                        {
+                          "platform": "ACTIONS_ON_GOOGLE",
+                          "simpleResponses": {
+                            "simpleResponses": [
+                              {
+                                "textToSpeech": [nextRes]
+                              }
+                            ]
+                          }
+                        },
+                        {
+                        "platform": "ACTIONS_ON_GOOGLE",
+                        "suggestions": {
+                          "suggestions": [
+                            {
+                              "title": "C"
+                            },
+                            {
+                              "title": "C++"
+                            },
+                            {
+                              "title": "App Development"
+                            },
+                            {
+                              "title": "Web Development"
+                            },
+                            {
+                              "title": "NodeJs"
+                            },
+                            {
+                              "title": "Javascript"
+                            },
+                            {
+                              "title": "Java"
+                            },
+                            {
+                              "title": "Git"
+                            },
+                            {
+                              "title": "Machine Learning"
+                            },
+                            {
+                              "title": "Internet of Things"
+                            },
+                            {
+                              "title": "Python"
+                            },
+                            {
+                              "title": "Data Science"
+                            },
+                            {
+                              "title": "Databases"
+                            },
+                            {
+                              "title": "Cloud"
+                            }
+                          ]
+                        }
+                      }
+                      ]
+                  });
+            }
+            else if(flag == "add")
               {
                 nextRes = "Resume Updated";
               }
@@ -187,7 +253,125 @@ app.post('/', function(req, res) {
                 console.log("updated");
             });
             if (flag == "create")
-                nextRes = "Please enter interests";
+                {
+                  nextRes = "Please enter interests";
+                  return res.json(200, {
+                      "fulfillmentMessages": [
+                        {
+                          "platform": "ACTIONS_ON_GOOGLE",
+                          "simpleResponses": {
+                            "simpleResponses": [
+                              {
+                                "textToSpeech": [nextRes]
+                              }
+                            ]
+                          }
+                        },
+                        {
+                        "platform": "ACTIONS_ON_GOOGLE",
+                        "suggestions": {
+                          "suggestions": [
+                            {
+                              "title": "Travelling"
+                            },
+                            {
+                              "title": "Chess"
+                            },
+                            {
+                              "title": "Reading Books"
+                            },
+                            {
+                              "title": "Swimming"
+                            },
+                            {
+                              "title": "Music"
+                            },
+                            {
+                              "title": "Dancing"
+                            },
+                            {
+                              "title": "Coding"
+                            },
+                            {
+                              "title": "Sports"
+                            },
+                            {
+                              "title": "Writing"
+                            }
+                          ]
+                        }
+                      }
+                      ]
+                  });
+                  
+                }
+            else if (flag == "add")
+            {
+              nextRes = "Resume Updated";
+              return res.json(200, {
+                      "fulfillmentMessages": [
+                        {
+                          "platform": "ACTIONS_ON_GOOGLE",
+                          "simpleResponses": {
+                            "simpleResponses": [
+                              {
+                                "textToSpeech": [nextRes]
+                              }
+                            ]
+                          }
+                        },
+                        {
+                        "platform": "ACTIONS_ON_GOOGLE",
+                        "suggestions": {
+                          "suggestions": [
+                            {
+                              "title": "C"
+                            },
+                            {
+                              "title": "C++"
+                            },
+                            {
+                              "title": "App Development"
+                            },
+                            {
+                              "title": "Web Development"
+                            },
+                            {
+                              "title": "NodeJs"
+                            },
+                            {
+                              "title": "Javascript"
+                            },
+                            {
+                              "title": "Java"
+                            },
+                            {
+                              "title": "Git"
+                            },
+                            {
+                              "title": "Machine Learning"
+                            },
+                            {
+                              "title": "Internet of Things"
+                            },
+                            {
+                              "title": "Python"
+                            },
+                            {
+                              "title": "Data Science"
+                            },
+                            {
+                              "title": "Databases"
+                            },
+                            {
+                              "title": "Cloud"
+                            }
+                          ]
+                        }
+                      }
+                      ]
+                  });
+            }
             else
                 nextRes = "Resume Updated";
             return res.json(200, {
@@ -245,6 +429,58 @@ app.post('/', function(req, res) {
             });
             if (flag == "create")
                 nextRes = "Please enter education";
+            else if (flag == "add")
+            {
+              nextRes = "Resume Updated";
+              return res.json(200, {
+                      "fulfillmentMessages": [
+                        {
+                          "platform": "ACTIONS_ON_GOOGLE",
+                          "simpleResponses": {
+                            "simpleResponses": [
+                              {
+                                "textToSpeech": [nextRes]
+                              }
+                            ]
+                          }
+                        },
+                        {
+                        "platform": "ACTIONS_ON_GOOGLE",
+                        "suggestions": {
+                          "suggestions": [
+                            {
+                              "title": "Travelling"
+                            },
+                            {
+                              "title": "Chess"
+                            },
+                            {
+                              "title": "Reading Books"
+                            },
+                            {
+                              "title": "Swimming"
+                            },
+                            {
+                              "title": "Music"
+                            },
+                            {
+                              "title": "Dancing"
+                            },
+                            {
+                              "title": "Coding"
+                            },
+                            {
+                              "title": "Sports"
+                            },
+                            {
+                              "title": "Writing"
+                            }
+                          ]
+                        }
+                      }
+                      ]
+                  });
+            }
             else
                 nextRes = "Resume Updated";
             return res.json(200, {
