@@ -835,19 +835,15 @@ app.post('/', function(req, res) {
     } else if (action == "showResume") {
         resume_id = req.body.queryResult.parameters["id"];
         console.log(resume_id);
-        User.findById({ resume_id
+        User.findOne({_id : resume_id
           }, function(err, user) {
               if (err) {
-                  nextRes = "Incorrect ID";
-                  console.log(error);
+                  console.log("cant be updated");
                   return;
               }
-              else
-                {
-                  console.log(success);
-                  nextRes = "https://resume-fulfilment1.herokuapp.com/getResume";
-                }
-            });
+              console.log("updated");
+              nextRes = "https://resume-fulfilment1.herokuapp.com/getResume";
+          });
           return res.json(200, {
             "fulfillmentMessages": [
               {
