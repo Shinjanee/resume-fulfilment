@@ -42,7 +42,7 @@ app.post('/', function(req, res) {
     var action = req.body.queryResult.action;
     if(action =="getName"){
         var name = req.body.queryResult.parameters["namelist"]["given-name"];
-        if(name == "undefined")
+        if(name === undefined)
           query = req.body.queryResult.parameters["namelist"];
         else
           query = req.body.queryResult.parameters["namelist"]["given-name"];
