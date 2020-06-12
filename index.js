@@ -40,63 +40,81 @@ app.get('/getResume', function(req, res) {
 
 app.post('/', function(req, res) {
     var action = req.body.queryResult.action;
-    if(action == "getName"){
-      nextRes = "";
-      query = "";
-      if(flag == "add")
-      {
-          query = req.body.queryResult.parameters["given-name"];
-          User.findByIdAndUpdate(id, {
-              "name": query
-          }, function(err, user) {
-              if (err) {
-                  console.log("cant be updated");
-                  return;
-              }
-              console.log("updated");
-          });
-          nextRes = "Resume Updated";
-      }else if (flag == "create"){
-        experienceArray=[];
-        educationArray = [];
-        projectArray=[];
-        User.create({
-            name:req.body.queryResult.parameters["given-name"],
-            email:"N.A",
-            education:[],
-            experience:[],
-            project:[],
-            skills:"N.A",
-            interests:"N.A",
-            achievements:"N.A"  
-          },function(err,user) {
-              if(err)
-              {
-                  console.log("Error");
-              }
-              else{
-                console.log(" user created \n");
-                id = user._id;
-                console.log(id);
-                nextRes = "Please enter e-mail id";
-              }
-            });
-          }
-          return res.json(200, {
-                "fulfillmentMessages": [
+    if(action =="getName"){
+
+    if(flag == "add")
+    {
+        query = req.body.queryResult.parameters["given-name"];
+        User.findByIdAndUpdate(id, {
+            "name": query
+        }, function(err, user) {
+            if (err) {
+                console.log("cant be updated");
+                return;
+            }
+            console.log("updated");
+        });
+        nextRes = "Resume Updated";
+        return res.json(200, {
+          "fulfillmentMessages": [
+            {
+              "platform": "ACTIONS_ON_GOOGLE",
+              "simpleResponses": {
+                "simpleResponses": [
                   {
-                    "platform": "ACTIONS_ON_GOOGLE",
-                    "simpleResponses": {
-                      "simpleResponses": [
-                        {
-                          "textToSpeech": [nextRes]
-                        }
-                      ]
-                    }
+                    "textToSpeech": [nextRes]
                   }
                 ]
-            });
-    }else if(action=="getEmail"){
+              }
+            }
+          ]
+      });
+      
+    }else{
+      experienceArray=[];
+      educationArray = [];
+      projectArray=[];
+      query = req.body.queryResult.parameters["given-name"];
+      console.log(query);
+        User.create({
+          name: query,
+          email:"N.A",
+          education:[],
+          experience:[],
+          project:[],
+          skills:"N.A",
+          interests:"N.A",
+          achievements:"N.A"  
+        },function(err,user) {
+          
+          if(err)
+          {
+              console.log("Error");
+              return;
+          }
+          console.log(" user created \n");
+          id = user._id;
+            console.log(id);
+            nextRes= "Please nter email id";
+            return res.json(200, {
+              "fulfillmentMessages": [
+                {
+                  "platform": "ACTIONS_ON_GOOGLE",
+                  "simpleResponses": {
+                    "simpleResponses": [
+                      {
+                        "textToSpeech": [nextRes]
+                      }
+                    ]
+                  }
+                }
+              ]
+          });
+          
+          
+          });
+      }
+  }else if(action=="getEmail"){
       nextRes="";
       User.findByIdAndUpdate(id,{"email":req.body.queryResult.parameters["email"]},function(err,user)
           {
