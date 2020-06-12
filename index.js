@@ -838,10 +838,11 @@ app.post('/', function(req, res) {
         User.findOne({_id : resume_id
           }, function(err, user) {
               if (err) {
-                  console.log("cant be updated");
+                  nextRes = "Invalid ID";
+                  console.log("cant be found");
                   return;
               }
-              console.log("updated");
+              console.log("found");
               nextRes = "https://resume-fulfilment1.herokuapp.com/getResume";
           });
           return res.json(200, {
@@ -851,7 +852,7 @@ app.post('/', function(req, res) {
                 "simpleResponses": {
                   "simpleResponses": [
                     {
-                      "textToSpeech": [nextRes]
+                      "textToSpeech": [String(nextRes)]
                     }
                   ]
                 }
