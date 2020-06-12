@@ -416,19 +416,6 @@ app.post('/', function(req, res) {
                             }
                           ]
                         }
-                      },
-                      {
-                        "platform": "ACTIONS_ON_GOOGLE",
-                        "suggestions": {
-                          "suggestions": [
-                            {
-                              "title": "yes"
-                            },
-                            {
-                              "title": "no"
-                            }
-                          ]
-                        }
                       }
                      ]
                 });
