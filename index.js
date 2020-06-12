@@ -41,14 +41,14 @@ app.get('/getResume', function(req, res) {
 app.post('/', function(req, res) {
     var action = req.body.queryResult.action;
     if(action =="getName"){
-
-    if(flag == "add")
-    {
         var name = req.body.queryResult.parameters["namelist"]["given-name"];
         if(name == "undefined")
           query = req.body.queryResult.parameters["namelist"];
         else
           query = req.body.queryResult.parameters["namelist"]["given-name"];
+
+    if(flag == "add")
+    {
         User.findByIdAndUpdate(id, {
             "name": query
         }, function(err, user) {
@@ -78,11 +78,6 @@ app.post('/', function(req, res) {
       experienceArray=[];
       educationArray = [];
       projectArray=[];
-        var name = req.body.queryResult.parameters["namelist"]["given-name"];
-        if(name == "undefined")
-          query = req.body.queryResult.parameters["namelist"];
-        else
-          query = req.body.queryResult.parameters["namelist"]["given-name"];
       console.log(query);
         User.create({
           name: query,
