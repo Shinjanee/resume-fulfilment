@@ -243,23 +243,53 @@ app.post('/', function(req, res) {
             console.log("updated");
         });
         if (flag == "create")
-            nextRes = "Want to enter more?";
-        else
-            nextRes = "Your resume has been updated";
-        return res.json(200, {
-            "fulfillmentMessages": [
-              {
-                "platform": "ACTIONS_ON_GOOGLE",
-                "simpleResponses": {
-                  "simpleResponses": [
-                    {
-                      "textToSpeech": [nextRes]
+            {
+              nextRes = "Want to enter more?";
+              return res.json(200, {
+                "fulfillmentMessages": [
+                  {
+                    "platform": "ACTIONS_ON_GOOGLE",
+                    "simpleResponses": {
+                      "simpleResponses": [
+                        {
+                          "textToSpeech": [nextRes]
+                        }
+                      ]
                     }
-                  ]
-                }
-              }
-            ]
-        });
+                  },
+                  {
+                    "platform": "ACTIONS_ON_GOOGLE",
+                    "suggestions": {
+                      "suggestions": [
+                        {
+                          "title": "yes"
+                        },
+                        {
+                          "title": "no"
+                        }
+                      ]
+                    }
+                  }
+                ]
+            });
+          }
+        else{
+            nextRes = "Your resume has been updated";
+            return res.json(200, {
+                "fulfillmentMessages": [
+                  {
+                    "platform": "ACTIONS_ON_GOOGLE",
+                    "simpleResponses": {
+                      "simpleResponses": [
+                        {
+                          "textToSpeech": [nextRes]
+                        }
+                      ]
+                    }
+                  },
+                ]
+            });
+          }
     } else if (action == "getProjects") {
         projectArray = [];
         var title = req.body.queryResult.parameters["title"];
@@ -282,23 +312,53 @@ app.post('/', function(req, res) {
             console.log("updated");
         });
         if (flag == "create")
-            nextRes = "Want to enter more?";
-        else
-            nextRes = "Your resume has been updated";
-        return res.json(200, {
-            "fulfillmentMessages": [
-              {
-                "platform": "ACTIONS_ON_GOOGLE",
-                "simpleResponses": {
-                  "simpleResponses": [
-                    {
-                      "textToSpeech": [nextRes]
+            {
+              nextRes = "Want to enter more?";
+              return res.json(200, {
+                "fulfillmentMessages": [
+                  {
+                    "platform": "ACTIONS_ON_GOOGLE",
+                    "simpleResponses": {
+                      "simpleResponses": [
+                        {
+                          "textToSpeech": [nextRes]
+                        }
+                      ]
                     }
-                  ]
-                }
-              }
-            ]
-        });
+                  },
+                  {
+                    "platform": "ACTIONS_ON_GOOGLE",
+                    "suggestions": {
+                      "suggestions": [
+                        {
+                          "title": "yes"
+                        },
+                        {
+                          "title": "no"
+                        }
+                      ]
+                    }
+                  }
+                ]
+            });
+          }
+        else{
+            nextRes = "Your resume has been updated";
+            return res.json(200, {
+                "fulfillmentMessages": [
+                  {
+                    "platform": "ACTIONS_ON_GOOGLE",
+                    "simpleResponses": {
+                      "simpleResponses": [
+                        {
+                          "textToSpeech": [nextRes]
+                        }
+                      ]
+                    }
+                  }
+                ]
+            });
+          }
     } else if (action == "getExperience") {
         experienceArray = [];
         var position = req.body.queryResult.parameters["position"];
@@ -323,23 +383,53 @@ app.post('/', function(req, res) {
             console.log("updated");
         });
         if (flag == "create")
-            nextRes = "Want to enter more?";
-        else
-            nextRes = "Your resume has been updated";
-        return res.json(200, {
-            "fulfillmentMessages": [
-              {
-                "platform": "ACTIONS_ON_GOOGLE",
-                "simpleResponses": {
-                  "simpleResponses": [
-                    {
-                      "textToSpeech": [nextRes]
+            {
+              nextRes = "Want to enter more?";
+              return res.json(200, {
+                "fulfillmentMessages": [
+                  {
+                    "platform": "ACTIONS_ON_GOOGLE",
+                    "simpleResponses": {
+                      "simpleResponses": [
+                        {
+                          "textToSpeech": [nextRes]
+                        }
+                      ]
                     }
-                  ]
-                }
-              }
-            ]
-        });
+                  },
+                  {
+                    "platform": "ACTIONS_ON_GOOGLE",
+                    "suggestions": {
+                      "suggestions": [
+                        {
+                          "title": "yes"
+                        },
+                        {
+                          "title": "no"
+                        }
+                      ]
+                    }
+                  }
+                ]
+            });
+          }
+        else{
+            nextRes = "Your resume has been updated";
+            return res.json(200, {
+                "fulfillmentMessages": [
+                  {
+                    "platform": "ACTIONS_ON_GOOGLE",
+                    "simpleResponses": {
+                      "simpleResponses": [
+                        {
+                          "textToSpeech": [nextRes]
+                        }
+                      ]
+                    }
+                  }
+                ]
+            });
+          }
     } else if (action == "getAchievements") {
         User.findOne({
             _id: id
