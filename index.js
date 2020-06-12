@@ -834,6 +834,7 @@ app.post('/', function(req, res) {
         });
     } else if (action == "showResume") {
         resume_id = req.body.queryResult.parameters["id"];
+        nextRes = "";
          User.findOne({
                     _id: resume_id
                 }, function(err, user) {
