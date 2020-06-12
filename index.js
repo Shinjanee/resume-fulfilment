@@ -894,7 +894,127 @@ app.post('/', function(req, res) {
         var val = req.body.queryResult.queryText;
         if (val == "add") {
             flag = "add";
-            toSend = "Please enter new " + field;
+            if(field == "skills")
+            {
+              toSend = "Please enter new skill";
+              return res.json(200, {
+                      "fulfillmentMessages": [
+                        {
+                          "platform": "ACTIONS_ON_GOOGLE",
+                          "simpleResponses": {
+                            "simpleResponses": [
+                              {
+                                "textToSpeech": [nextRes]
+                              }
+                            ]
+                          }
+                        },
+                        {
+                        "platform": "ACTIONS_ON_GOOGLE",
+                        "suggestions": {
+                          "suggestions": [
+                            {
+                              "title": "C"
+                            },
+                            {
+                              "title": "C++"
+                            },
+                            {
+                              "title": "App Development"
+                            },
+                            {
+                              "title": "Web Development"
+                            },
+                            {
+                              "title": "NodeJs"
+                            },
+                            {
+                              "title": "Javascript"
+                            },
+                            {
+                              "title": "Java"
+                            },
+                            {
+                              "title": "Git"
+                            },
+                            {
+                              "title": "Machine Learning"
+                            },
+                            {
+                              "title": "Internet of Things"
+                            },
+                            {
+                              "title": "Python"
+                            },
+                            {
+                              "title": "Data Science"
+                            },
+                            {
+                              "title": "Databases"
+                            },
+                            {
+                              "title": "Cloud"
+                            }
+                          ]
+                        }
+                      }
+                      ]
+                  });
+            }
+            else if (field == "interests")
+            {
+              toSend = "Please enter new interest";
+                  return res.json(200, {
+                      "fulfillmentMessages": [
+                        {
+                          "platform": "ACTIONS_ON_GOOGLE",
+                          "simpleResponses": {
+                            "simpleResponses": [
+                              {
+                                "textToSpeech": [nextRes]
+                              }
+                            ]
+                          }
+                        },
+                        {
+                        "platform": "ACTIONS_ON_GOOGLE",
+                        "suggestions": {
+                          "suggestions": [
+                            {
+                              "title": "Travelling"
+                            },
+                            {
+                              "title": "Chess"
+                            },
+                            {
+                              "title": "Reading Books"
+                            },
+                            {
+                              "title": "Swimming"
+                            },
+                            {
+                              "title": "Music"
+                            },
+                            {
+                              "title": "Dancing"
+                            },
+                            {
+                              "title": "Coding"
+                            },
+                            {
+                              "title": "Sports"
+                            },
+                            {
+                              "title": "Writing"
+                            }
+                          ]
+                        }
+                      }
+                      ]
+                  });
+            }
+            else
+              toSend = "Please enter new " + field;
         } else if (val == "delete") {
             flag = "delete";
             if (field == "skills") {
