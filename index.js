@@ -137,17 +137,19 @@ app.post('/', function(req, res) {
                 console.log("cant be updated");
                 return;
             }
-            if (flag == "create")
+            if (flag == "create" || user.skills.length == 0)
                 query = req.body.queryResult.queryText;
-            else if (flag == "add")
+            else if (flag == "add" && user.skills.length != 0)
                 query = user.skills + ", " + req.body.queryResult.queryText;
             else if (flag == "delete") {
                 var main_str = user.skills;
                 var str = req.body.queryResult.queryText;
-                if(main_str.includes(","))
+                if(main_str.includes(", " + str))
                   query = main_str.replace(", " + str, "");
+                else if(main_str.includes(str + ","))
+                  query = main_str.replace(str + ",", "");
                 else
-                query = main_str.replace(str, "");
+                  query = main_str.replace(str, "");
             }
             User.findByIdAndUpdate(id, {
                 "skills": query
@@ -187,17 +189,19 @@ app.post('/', function(req, res) {
                 console.log("cant be updated");
                 return;
             }
-            if (flag == "create")
+            if (flag == "create" || user.interest.length == 0)
                 query = req.body.queryResult.queryText;
-            else if (flag == "add")
+            else if (flag == "add" && user.interest.length != 0)
               query = user.interests + ", " + req.body.queryResult.queryText;
             else if (flag == "delete") {
                 var main_str = user.interests;
                 var str = req.body.queryResult.queryText;
-                if(main_str.includes(","))
+                if(main_str.includes(", " + str))
                   query = main_str.replace(", " + str, "");
+                else if(main_str.includes(str + ","))
+                  query = main_str.replace(str + ",", "");
                 else
-                query = main_str.replace(str, "");
+                  query = main_str.replace(str, "");
             }
             User.findByIdAndUpdate(id, {
                 "interests": query
@@ -451,17 +455,19 @@ app.post('/', function(req, res) {
                 console.log("cant be updated");
                 return;
             }
-            if (flag == "create")
+            if (flag == "create" || user.achievements.length == 0)
                 query = req.body.queryResult.queryText;
-            else if (flag == "add")
+            else if (flag == "add" && user.achievements.length != 0)
                 query = user.achievements + ", " + req.body.queryResult.queryText;
             else if (flag == "delete") {
                 var main_str = user.achievements;
                 var str = req.body.queryResult.queryText;
-                if(main_str.includes(","))
+                if(main_str.includes(", " + str))
                   query = main_str.replace(", " + str, "");
+                else if(main_str.includes(str + ","))
+                  query = main_str.replace(str + ",", "");
                 else
-                query = main_str.replace(str, "");
+                  query = main_str.replace(str, "");
             }
             User.findByIdAndUpdate(id, {
                 "achievements": query
