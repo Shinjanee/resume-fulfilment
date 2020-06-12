@@ -44,12 +44,12 @@ app.post('/', function(req, res) {
 
     if(flag == "add")
     {
-        var name = req.body.queryResult.parameters["namelist"];
+        var name = req.body.queryResult.parameters["namelist"]["given-name"];
         console.log(name.length);
-        if(name.length != 0)
-          query = req.body.queryResult.parameters["namelist"]["given-name"];
-        else
-          query = req.body.queryResult.parameters["namelist"];
+        // if(name.length != 0)
+        //   query = req.body.queryResult.parameters["namelist"]["given-name"];
+        // else
+        //   query = req.body.queryResult.parameters["namelist"];
         User.findByIdAndUpdate(id, {
             "name": query
         }, function(err, user) {
@@ -79,12 +79,12 @@ app.post('/', function(req, res) {
       experienceArray=[];
       educationArray = [];
       projectArray=[];
-        var name = req.body.queryResult.parameters["namelist"];
+        var name = req.body.queryResult.parameters["namelist"]["given-name"];
         console.log(name.length);
-        if(name.length != 0)
-          query = req.body.queryResult.parameters["namelist"]["given-name"];
-        else
-          query = req.body.queryResult.parameters["namelist"];
+        // if(name.length != 0)
+        //   query = req.body.queryResult.parameters["namelist"]["given-name"];
+        // else
+        //   query = req.body.queryResult.parameters["namelist"];
       console.log(query);
         User.create({
           name: query,
