@@ -41,6 +41,7 @@ app.get('/getResume', function(req, res) {
 app.post('/', function(req, res) {
     var action = req.body.queryResult.action;
     if(action == "getName"){
+      nextRes = "hello";
       if(flag == "add")
       {
           query = req.body.queryResult.parameters["given-name"];
@@ -71,13 +72,14 @@ app.post('/', function(req, res) {
               if(err)
               {
                   console.log("Error");
-                  return;
+                  nextRes = "Not able to identify name. Let's continue as Guest.";
+                  user.name = "Guest";
               }
               else{
                 console.log(" user created \n");
                 id = user._id;
                 console.log(id);
-                nextRes = "Enter email";
+                nextRes = "Please enter e-mail id";
               }
             });
           }
@@ -106,7 +108,7 @@ app.post('/', function(req, res) {
              }
              console.log(id);
              console.log("updated");
-             nextRes = "Enter skills";
+             nextRes = "Please enter skills";
               if(flag == "add")
               {
                 nextRes = "Resume Updated";
@@ -166,9 +168,9 @@ app.post('/', function(req, res) {
                 console.log("updated");
             });
             if (flag == "create")
-                nextRes = "Enter interests";
+                nextRes = "Please enter interests";
             else
-                nextRes = "Your resume has been updated";
+                nextRes = "Resume Updated";
             return res.json(200, {
                 "fulfillmentMessages": [
                   {
@@ -223,9 +225,9 @@ app.post('/', function(req, res) {
                 console.log("updated");
             });
             if (flag == "create")
-                nextRes = "Enter education";
+                nextRes = "Please enter education";
             else
-                nextRes = "Your resume has been updated";
+                nextRes = "Resume Updated";
             return res.json(200, {
                 "fulfillmentMessages": [
                   {
@@ -267,7 +269,7 @@ app.post('/', function(req, res) {
         });
         if (flag == "create")
             {
-              nextRes = "Want to enter more?";
+              nextRes = "Do you want to enter more?";
               return res.json(200, {
                 "fulfillmentMessages": [
                   {
@@ -297,7 +299,7 @@ app.post('/', function(req, res) {
             });
           }
         else{
-            nextRes = "Your resume has been updated";
+            nextRes = "Resume Updated";
             return res.json(200, {
                 "fulfillmentMessages": [
                   {
@@ -337,7 +339,7 @@ app.post('/', function(req, res) {
         });
         if (flag == "create")
             {
-              nextRes = "Want to enter more?";
+              nextRes = "Do you want to enter more?";
               return res.json(200, {
                 "fulfillmentMessages": [
                   {
@@ -367,7 +369,7 @@ app.post('/', function(req, res) {
             });
           }
         else{
-            nextRes = "Your resume has been updated";
+            nextRes = "Resume Updated";
             return res.json(200, {
                 "fulfillmentMessages": [
                   {
@@ -409,7 +411,7 @@ app.post('/', function(req, res) {
         });
         if (flag == "create")
             {
-              nextRes = "Want to enter more?";
+              nextRes = "Do you want to enter more?";
               return res.json(200, {
                 "fulfillmentMessages": [
                   {
@@ -439,7 +441,7 @@ app.post('/', function(req, res) {
             });
           }
         else{
-            nextRes = "Your resume has been updated";
+            nextRes = "Resume Updated";
             return res.json(200, {
                 "fulfillmentMessages": [
                   {
@@ -496,7 +498,7 @@ app.post('/', function(req, res) {
             if (flag == "create")
                 nextRes = "Thank you! Your resume gas been recorded. Please note your id for accessing later. ID : " + id;
             else
-                nextRes = "Your resume has been updated";
+                nextRes = "Resume Updated";
             return res.json(200, {
                 "fulfillmentMessages": [
                   {
@@ -574,17 +576,17 @@ app.post('/', function(req, res) {
         }, function(err, user) {
             if (err) {
                 console.log("cant be found");
-                toSend = "Enter a valid ID";
+                toSend = "Please enter a valid ID";
             }
             console.log("found");
             if (val == "name")
-                toSend = user.name;
+                toSend = "Name : " + user.name;
             else if (val == "email")
-                toSend = user.email;
+                toSend = "E-mail : " + user.email;
             else if (val == "skills")
-                toSend = user.skills;
+                toSend = "Skills : " + user.skills;
             else if (val == "interests")
-                toSend = user.interests;
+                toSend = "Interests : " + user.interests;
             else if (val == "education") {
                 toSend = "";
                 len = user.education.length;
@@ -635,7 +637,7 @@ app.post('/', function(req, res) {
             }
             console.log("found");
             if (field == "name"){
-                toSend = user.name + " \n Add new?";
+                toSend = user.name + " \n Would you like to add a new name?";
                 return res.json(200, {
                   "fulfillmentMessages": [
                     {
@@ -663,7 +665,7 @@ app.post('/', function(req, res) {
             }
             else if (field == "email")
                 {
-                  toSend = user.email + " \n Add new?";
+                  toSend = user.email + " \n Would you like to add a new email?";
                     return res.json(200, {
                       "fulfillmentMessages": [
                         {
@@ -690,7 +692,7 @@ app.post('/', function(req, res) {
                   });
                 }
             else if (field == "skills")
-                toSend = user.skills + "\n Delete or add new?";
+                toSend = user.skills + "\n Would you like to delete or add a new skill?";
             else if (field == "interests")
                 toSend = user.interests + "\n Delete or add new?";
             else if (field == "education") {
@@ -698,21 +700,21 @@ app.post('/', function(req, res) {
                 len = user.education.length;
                 for (i = 0; i < len; i++)
                     toSend += (i + 1).toString() + " Degree: " + String(user.education[i].degree) + " School Name: " + String(user.education[i].university_name) + " Location: " + String(user.education[i].location) + " Percentage: " + String(user.education[i].percentage) + "\n";
-                toSend += "\n Delete some entry or add new?";
+                toSend += "\n Would you like to delete or add a new education?";
             } else if (field == "projects") {
                 toSend = "";
                 len = user.project.length;
                 for (i = 0; i < len; i++)
                     toSend += (i + 1).toString() + " Title: " + String(user.project[i].title) + " Year: " + String(user.project[i].year) + " Description: " + String(user.project[i].description) + "\n";
-                toSend += "\n Delete some entry or add new?";
+                toSend += "\n Would you like to delete or add a new project?";
             } else if (field == "experience") {
                 toSend = "";
                 len = user.experience.length;
                 for (i = 0; i < len; i++)
                     toSend += (i + 1).toString() + " Position: " + String(user.experience[i].position) + " Company: " + String(user.experience[i].company_name) + " Location: " + String(user.experience[i].location) + " Duration: " + String(user.experience[i].duration) + "\n";
-                toSend += "\n Delete some entry or add new?"
+                toSend += "\n Would you like to delete or add a new experience?"
             } else if (field == "achievements")
-                toSend = user.achievements + "\n Delete all or add new?";
+                toSend = user.achievements + "\n Would you like to delete or add a new achievement?";
             else
                 toSend = "Not a valid query";
 
@@ -750,23 +752,23 @@ app.post('/', function(req, res) {
         var val = req.body.queryResult.queryText;
         if (val == "add") {
             flag = "add";
-            toSend = "Enter " + field;
+            toSend = "Please enter new " + field;
         } else if (val == "delete") {
             flag = "delete";
             if (field == "skills") {
-                toSend = "Enter skill to be deleted";
+                toSend = "Please enter skill to be deleted";
             } else if (field == "interests") {
-                toSend = "Enter interest to be deleted";
+                toSend = "Please enter interest to be deleted";
             } else if (field == "achievements") {
-                toSend = "Enter achievement to be deleted";
+                toSend = "Please enter achievement to be deleted";
             } else if (field == "education") {
-                toSend = "Enter record index to be deleted";
+                toSend = "Please enter record index to be deleted";
 
             } else if (field == "projects") {
-                toSend = "Enter record index to be deleted";
+                toSend = "Please enter record index to be deleted";
 
             } else if (field == "experience") {
-                toSend = "Enter record index to be deleted";
+                toSend = "Please enter record index to be deleted";
 
             }
         } else
@@ -807,7 +809,7 @@ app.post('/', function(req, res) {
                     }
                     console.log("updated");
                 });
-                nextRes = "Your resume has been updated";
+                nextRes = "Resume Updated";
             });
         } else if (field == "projects") {
             User.findOne({
@@ -828,7 +830,7 @@ app.post('/', function(req, res) {
                     }
                     console.log("updated");
                 });
-                nextRes = "Your resume has been updated";
+                nextRes = "Resume Updated";
             });
         } else if (field == "experience") {
             User.findOne({
@@ -849,7 +851,7 @@ app.post('/', function(req, res) {
                     }
                     console.log("updated");
                 });
-                nextRes = "Your resume has been updated";
+                nextRes = "Resume Updated";
             });
         }
         return res.json(200, {
@@ -874,10 +876,10 @@ app.post('/', function(req, res) {
                 }, function(err, user) {
                     if (err) {
                         console.log("cant be updated");
-                        nextRes = "Enter a valid id";
+                        nextRes = "Please enter a valid id";
                     }
                     else {
-                        nextRes = "https://resume-fulfilment1.herokuapp.com/getResume";
+                        nextRes = "Please access your resume on on this URL : https://resume-fulfilment1.herokuapp.com/getResume";
                     }
                     return res.json(200, {
                       "fulfillmentMessages": [
