@@ -138,10 +138,15 @@ app.post('/', function(req, res) {
                 return;
             }
             console.log("length : " + String(user.skills).length)
-            if (flag == "create" || String(user.skills).length == 1)
+            if (flag == "create")
                 query = req.body.queryResult.queryText;
-            else if (flag == "add" && String(user.skills).length != 1)
-                query = user.skills + ", " + req.body.queryResult.queryText;
+            else if (flag == "add")
+            {
+                if(String(user.skills).length == 0)
+                  query = req.body.queryResult.queryText;
+                else
+                  query = user.skills + ", " + req.body.queryResult.queryText;
+            }
             else if (flag == "delete") {
                 var main_str = user.skills;
                 var str = req.body.queryResult.queryText;
@@ -190,10 +195,15 @@ app.post('/', function(req, res) {
                 console.log("cant be updated");
                 return;
             }
-            if (flag == "create" || String(user.interest).length == 1)
+            if (flag == "create")
                 query = req.body.queryResult.queryText;
-            else if (flag == "add" && String(user.interest).length != 1)
-              query = user.interests + ", " + req.body.queryResult.queryText;
+            else if (flag == "add")
+            {
+                if(String(user.interests).length == 0)
+                  query = req.body.queryResult.queryText;
+                else
+                  query = user.interests + ", " + req.body.queryResult.queryText;
+            }
             else if (flag == "delete") {
                 var main_str = user.interests;
                 var str = req.body.queryResult.queryText;
@@ -456,10 +466,15 @@ app.post('/', function(req, res) {
                 console.log("cant be updated");
                 return;
             }
-            if (flag == "create" || String(user.achievements).length == 1)
+            if (flag == "create")
                 query = req.body.queryResult.queryText;
-            else if (flag == "add" && String(user.achievements).length != 1)
-                query = user.achievements + ", " + req.body.queryResult.queryText;
+            else if (flag == "add")
+            {
+                if(String(user.achievements).length == 0)
+                  query = req.body.queryResult.queryText;
+                else
+                  query = user.achievements + ", " + req.body.queryResult.queryText;
+            }
             else if (flag == "delete") {
                 var main_str = user.achievements;
                 var str = req.body.queryResult.queryText;
