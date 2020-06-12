@@ -541,7 +541,7 @@ app.post('/', function(req, res) {
         }, function(err, user) {
             if (err) {
                 console.log("cant be found");
-                return;
+                toSend = "Enter a valid ID";
             }
             console.log("found");
             if (val == "name")
@@ -834,21 +834,32 @@ app.post('/', function(req, res) {
         });
     } else if (action == "showResume") {
         resume_id = req.body.queryResult.parameters["id"];
-        console.log(resume_id);
-        return res.json(200, {
-            "fulfillmentMessages": [
-              {
-                "platform": "ACTIONS_ON_GOOGLE",
-                "simpleResponses": {
-                  "simpleResponses": [
-                    {
-                      "textToSpeech": ["https://resume-fulfilment1.herokuapp.com/getResume"]
+         User.findOne({
+                    _id: resume_id
+                }, function(err, user) {
+                    if (err) {
+                        console.log("cant be updated");
+                        nextRes = "Enter a valid id";
                     }
-                  ]
-                }
-              }
-            ]
-        });
+                    else {
+                        nextRes = "https://resume-fulfilment1.herokuapp.com/getResume";
+                    }
+                    return res.json(200, {
+                      "fulfillmentMessages": [
+                        {
+                          "platform": "ACTIONS_ON_GOOGLE",
+                          "simpleResponses": {
+                            "simpleResponses": [
+                              {
+                                "textToSpeech": [nextRes]
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                  });
+          });
+        
     }
 
 });
