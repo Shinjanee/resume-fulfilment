@@ -412,7 +412,20 @@ app.post('/', function(req, res) {
                         "simpleResponses": {
                           "simpleResponses": [
                             {
-                              "textToSpeech": [result]
+                              "textToSpeech": [result + "\n Want to create resume?"]
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "platform": "ACTIONS_ON_GOOGLE",
+                        "suggestions": {
+                          "suggestions": [
+                            {
+                              "title": "yes"
+                            },
+                            {
+                              "title": "no"
                             }
                           ]
                         }
