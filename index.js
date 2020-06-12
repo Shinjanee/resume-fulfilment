@@ -130,6 +130,7 @@ app.post('/', function(req, res) {
   } else if (action == "getSkills") {
         nextRes="";
         query="";
+        console.log("length : " + String(user.skills).length)
         User.findOne({
             _id: id
         }, function(err, user) {
@@ -137,9 +138,9 @@ app.post('/', function(req, res) {
                 console.log("cant be updated");
                 return;
             }
-            if (flag == "create" || user.skills.length == 0)
+            if (flag == "create" || String(user.skills).length == 0)
                 query = req.body.queryResult.queryText;
-            else if (flag == "add" && user.skills.length != 0)
+            else if (flag == "add" && String(user.skills).length != 0)
                 query = user.skills + ", " + req.body.queryResult.queryText;
             else if (flag == "delete") {
                 var main_str = user.skills;
@@ -189,9 +190,9 @@ app.post('/', function(req, res) {
                 console.log("cant be updated");
                 return;
             }
-            if (flag == "create" || user.interest.length == 0)
+            if (flag == "create" || String(user.interest).length == 0)
                 query = req.body.queryResult.queryText;
-            else if (flag == "add" && user.interest.length != 0)
+            else if (flag == "add" && String(user.interest).length != 0)
               query = user.interests + ", " + req.body.queryResult.queryText;
             else if (flag == "delete") {
                 var main_str = user.interests;
@@ -455,9 +456,9 @@ app.post('/', function(req, res) {
                 console.log("cant be updated");
                 return;
             }
-            if (flag == "create" || user.achievements.length == 0)
+            if (flag == "create" || String(user.achievements).length == 0)
                 query = req.body.queryResult.queryText;
-            else if (flag == "add" && user.achievements.length != 0)
+            else if (flag == "add" && String(user.achievements).length != 0)
                 query = user.achievements + ", " + req.body.queryResult.queryText;
             else if (flag == "delete") {
                 var main_str = user.achievements;
