@@ -57,6 +57,7 @@ app.post('/', function(req, res) {
                 return;
             }
             console.log("updated");
+            flag="create";
         });
         nextRes = "Resume Updated";
         return res.json(200, {
