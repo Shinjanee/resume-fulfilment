@@ -41,6 +41,7 @@ app.get('/getResume', function(req, res) {
 app.post('/', function(req, res) {
     var action = req.body.queryResult.action;
     if(action =="getName"){
+      nextRes="";
       if(flag == "add")
       {
           query = req.body.queryResult.parameters["namelist"]["given-name"];
@@ -96,6 +97,7 @@ app.post('/', function(req, res) {
                 ]
             });
     }else if(action=="getEmail"){
+      nextRes="";
       User.findByIdAndUpdate(id,{"email":req.body.queryResult.parameters["email"]},function(err,user)
           {
              if(err)
@@ -126,6 +128,8 @@ app.post('/', function(req, res) {
               });
           });
   } else if (action == "getSkills") {
+        nextRes="";
+        query="";
         User.findOne({
             _id: id
         }, function(err, user) {
@@ -174,6 +178,8 @@ app.post('/', function(req, res) {
             });
         });
     } else if (action == "getInterest") {
+        query="";
+        nextRes="";
         User.findOne({
             _id: id
         }, function(err, user) {
@@ -222,6 +228,7 @@ app.post('/', function(req, res) {
             });
         });
     } else if (action == "getEducation") {
+        nextRes="";
         educationArray = [];
         var degree = req.body.queryResult.parameters["degree"];
         var university_name = req.body.queryResult.parameters["university_name"];
@@ -293,6 +300,7 @@ app.post('/', function(req, res) {
             });
           }
     } else if (action == "getProjects") {
+        nextRes="";
         projectArray = [];
         var title = req.body.queryResult.parameters["title"];
         var year = req.body.queryResult.parameters["year"];
@@ -362,6 +370,7 @@ app.post('/', function(req, res) {
             });
           }
     } else if (action == "getExperience") {
+        nextRes="";
         experienceArray = [];
         var position = req.body.queryResult.parameters["position"];
         var duration = req.body.queryResult.parameters["duration"];
@@ -433,6 +442,8 @@ app.post('/', function(req, res) {
             });
           }
     } else if (action == "getAchievements") {
+        query="";
+        nextRes="";
         User.findOne({
             _id: id
         }, function(err, user) {
@@ -481,6 +492,7 @@ app.post('/', function(req, res) {
             });
         });
     } else if (action == "getJobBySkill") {
+        toSend="";
         var skill = req.body.queryResult.parameters["skill_name"];
 
         https.get("https://jobs.github.com/positions.json?description=" + skill + "&location=new+york", (resp) => {
@@ -753,6 +765,7 @@ app.post('/', function(req, res) {
             ]
         });
     } else if (action == "getIndex") {
+        nextRes="";
         var index = req.body.queryResult.parameters["number"];
         if (field == "education") {
             User.findOne({
