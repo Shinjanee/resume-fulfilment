@@ -405,6 +405,7 @@ app.post('/', function(req, res) {
                 for (var i = 0; i < jobsArray.length; i++) {
                     result += (i + 1).toString() + jobsArray[i].title + " and " + jobsArray[i].url + "  \n";
                 }
+                var toSend = result + "\n Want to create resume?";
                 return res.json(200, {
                     "fulfillmentMessages": [
                       {
@@ -412,7 +413,7 @@ app.post('/', function(req, res) {
                         "simpleResponses": {
                           "simpleResponses": [
                             {
-                              "textToSpeech": [result + "\n Want to create resume?"]
+                              "textToSpeech": [toSend]
                             }
                           ]
                         }
