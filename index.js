@@ -892,11 +892,9 @@ app.post('/', function(req, res) {
     } else if (action == "modifyAction") {
         var toSend = "";
         var val = req.body.queryResult.queryText;
-        if (val == "add") 
-        {
+        if (val == "add") {
             flag = "add";
             toSend = "Please enter new " + field;
-
         } else if (val == "delete") {
             flag = "delete";
             if (field == "skills") {
