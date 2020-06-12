@@ -852,7 +852,7 @@ app.post('/', function(req, res) {
                 "simpleResponses": {
                   "simpleResponses": [
                     {
-                      "textToSpeech": ["https://resume-fulfilment1.herokuapp.com/getResume";]
+                      "textToSpeech": ["https://resume-fulfilment1.herokuapp.com/getResume"]
                     }
                   ]
                 }
