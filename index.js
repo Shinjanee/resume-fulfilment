@@ -95,7 +95,7 @@ app.post('/', function(req, res) {
           console.log(" user created \n");
           id = user._id;
             console.log(id);
-            nextRes= "Please nter email id";
+            nextRes= "Please enter email id";
             return res.json(200, {
               "fulfillmentMessages": [
                 {
