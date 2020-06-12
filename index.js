@@ -95,6 +95,7 @@ app.post('/', function(req, res) {
               return;
           }
           console.log(" user created \n");
+          flag = "create";
           id = user._id;
             console.log(id);
             nextRes= "Please enter email id";
