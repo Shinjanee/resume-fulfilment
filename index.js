@@ -130,7 +130,6 @@ app.post('/', function(req, res) {
   } else if (action == "getSkills") {
         nextRes="";
         query="";
-        console.log("length : " + String(user.skills).length)
         User.findOne({
             _id: id
         }, function(err, user) {
@@ -138,6 +137,7 @@ app.post('/', function(req, res) {
                 console.log("cant be updated");
                 return;
             }
+            console.log("length : " + String(user.skills).length)
             if (flag == "create" || String(user.skills).length == 0)
                 query = req.body.queryResult.queryText;
             else if (flag == "add" && String(user.skills).length != 0)
