@@ -44,7 +44,7 @@ app.post('/', function(req, res) {
       nextRes="";
       if(flag == "add")
       {
-          query = req.body.queryResult.parameters"given-name"];
+          query = req.body.queryResult.parameters["given-name"];
           User.findByIdAndUpdate(id, {
               "name": query
           }, function(err, user) {
