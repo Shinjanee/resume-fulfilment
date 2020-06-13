@@ -403,7 +403,10 @@ app.post('/',function(req,res){
                         "title": "Sports"
                       },
                       {
-                        "title": "Writing"
+                        "title": "Writing Blogs"
+                      },
+                      {
+                        "title": "Cooking"
                       }
                     ]
                   }
@@ -1443,7 +1446,10 @@ app.post('/',function(req,res){
                               "title": "Sports"
                             },
                             {
-                              "title": "Writing"
+                              "title": "Writing Blogs"
+                            },
+                            {
+                              "title": "Cooking"
                             }
                           ]
                         }
