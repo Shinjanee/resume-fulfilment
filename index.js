@@ -906,7 +906,7 @@ app.post('/', function(req, res) {
                 console.log("cant be updated");
                 nextRes = "Please enter a valid id";
             } else {
-                nextRes = "You can access your resume at this URL : http://resume-fulfilment.herokuapp.com/getResume/?search_id=" + String(search_id);
+                nextRes = "You can access your resume at this URL : http://resume-fulfilment1.herokuapp.com/getResume/?search_id=" + String(search_id);
 
             }
             return res.json(200, {
