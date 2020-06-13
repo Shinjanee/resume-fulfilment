@@ -23,19 +23,15 @@ var experienceArray = [];
 var projectArray = [];
 
 //Show resume of user with id = search_id from showResume
-app.get('/getResume', function(req, res) {
-    User.findOne({
-        _id: resume_id
-    }, function(err, user) {
-        if (err) {
-            console.log("User not found" + resume_id);
-            return;
-        }
-        return res.render('resume', {
-            title: "Resume",
-            users: user
-        });
-    })
+app.get('/getResume/',function(req,res){
+  User.findById(req.query.resume_id,function(err,user){
+    return res.render('resume',{
+      title:"Resume",
+      users:user,
+      resume_id:req.query.resume_id
+    }); 
+  })
+
 })
 
 app.post('/', function(req, res) {
