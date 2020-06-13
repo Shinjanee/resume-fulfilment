@@ -101,7 +101,7 @@ app.post('/', function(req, res) {
                 console.log(" user created \n");
                 var id = user._id;
                 console.log(id);
-                nextRes = "Enter email";
+                nextRes = "Please enter email";
                 return res.json(200, {
                     "fulfillmentMessages": [{
                         "platform": "ACTIONS_ON_GOOGLE",
@@ -1466,7 +1466,7 @@ app.post('/', function(req, res) {
                             "platform": "ACTIONS_ON_GOOGLE",
                             "simpleResponses": {
                                 "simpleResponses": [{
-                                    "textToSpeech": [toSend]
+                                    "textToSpeech": [String(toSend)]
                                 }]
                             }
                         },
