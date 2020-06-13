@@ -1145,7 +1145,7 @@ app.post('/', function(req, res) {
                         nextRes = "Please enter a valid id";
                     }
                     else {
-                        nextRes = "Please access your resume on on this URL : https://resume-fulfilment1.herokuapp.com/getResume";
+                        nextRes = "Please access your resume on on this URL : https://resume-fulfilment1.herokuapp.com/getResume/?resume_id="+String(resume_id);
                     }
                     return res.json(200, {
                       "fulfillmentMessages": [
@@ -1154,7 +1154,7 @@ app.post('/', function(req, res) {
                           "simpleResponses": {
                             "simpleResponses": [
                               {
-                                "textToSpeech": [nextRes]
+                                "textToSpeech": [String(nextRes)]
                               }
                             ]
                           }
