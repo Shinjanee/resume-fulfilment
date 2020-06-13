@@ -937,16 +937,16 @@ app.post('/', function(req, res) {
                 result = "Please enter a valid ID";
             } else {
                 if (details == "name") {
-                    result = user.name;
+                    result = "Name : " + user.name;
                 }
                 if (details == "skills") {
-                    result = user.skills;
+                    result = "Skills : " + user.skills;
                 } else if (details == "interests") {
-                    result = user.interests;
+                    result = "Interests : " + user.interests;
                 } else if (details == "email") {
-                    result = user.email;
+                    result = "E-mail : " + user.email;
                 } else if (details == "achievements") {
-                    result = user.achievements;
+                    result = "Achievements : " + user.achievements;
                 } else if (details == "education") {
                     for (var i = 0; i < user.education.length; i++) {
                         result += "Degree: " + user.education[i].degree + "," +
@@ -954,8 +954,6 @@ app.post('/', function(req, res) {
                             "Location" + user.education[i].location + "," +
                             "Percentage: " + user.education[i].percentage
                     }
-                } else if (details == "name") {
-                    result = user.name;
                 } else if (details == "experience") {
                     for (var i = 0; i < user.experience.length; i++) {
                         result += "Position: " + user.experience[i].position + "," +
