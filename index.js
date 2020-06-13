@@ -27,8 +27,8 @@ app.get('/getResume/',function(req,res){
   User.findById(req.query.resume_id,function(err,user){
     return res.render('resume',{
       title:"Resume",
+      resume_id:req.query.resume_id,
       users:user,
-      resume_id:req.query.resume_id
     }); 
   })
 
