@@ -985,7 +985,7 @@ app.post('/', function(req, res) {
         User.findOne({
             _id: String(search_id)
         }, function(err, user) {
-            if (err) {
+            if (err || user.length === 0) {
                 console.log("cant be updated");
                 nextRes = "Invalid ID";
                 return res.json(200, {
