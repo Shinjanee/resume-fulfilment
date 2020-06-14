@@ -262,7 +262,16 @@ app.post('/', function(req, res) {
                             "textToSpeech": [nextRes]
                         }]
                     }
-                }]
+                }],
+                "outputContexts": [{
+                            "name": req.body.session + "/contexts/flag",
+                            "lifespanCount": 5,
+                            "parameters": {
+                                "flag": "create"
+                            }
+                        }
+
+                    ]  
             });
         });
 
@@ -399,7 +408,16 @@ app.post('/', function(req, res) {
                                 "textToSpeech": [nextRes]
                             }]
                         }
-                    }]
+                    }],
+                    "outputContexts": [{
+                                "name": req.body.session + "/contexts/flag",
+                                "lifespanCount": 5,
+                                "parameters": {
+                                    "flag": "create"
+                                }
+                            }
+    
+                        ]  
                 });
             });
         });
@@ -475,8 +493,19 @@ app.post('/', function(req, res) {
                     return;
                 }
                 console.log("updated");
-                if (flag == "create")
+                if (flag == "create"){
                     nextRes = "Please enter education";
+                    return res.json(200, {
+                      "fulfillmentMessages": [{
+                          "platform": "ACTIONS_ON_GOOGLE",
+                          "simpleResponses": {
+                              "simpleResponses": [{
+                                  "textToSpeech": [nextRes]
+                              }]
+                          }
+                      }]
+                  });
+                }
                 else if (flag == "add")
                     nextRes = "Resume Updated";
                 else
@@ -489,7 +518,15 @@ app.post('/', function(req, res) {
                                 "textToSpeech": [nextRes]
                             }]
                         }
-                    }]
+                    }],
+                    "outputContexts": [{
+                      "name": req.body.session + "/contexts/flag",
+                      "lifespanCount": 5,
+                      "parameters": {
+                          "flag": "create"
+                      }
+                  }]
+
                 });
             });
         });
@@ -595,7 +632,14 @@ app.post('/', function(req, res) {
                                 "textToSpeech": [nextRes]
                             }]
                         }
-                    }]
+                    }],
+                    "outputContexts": [{
+                      "name": req.body.session + "/contexts/flag",
+                      "lifespanCount": 5,
+                      "parameters": {
+                          "flag": "create"
+                      }
+                  }]
                 });
             }
 
@@ -702,7 +746,14 @@ app.post('/', function(req, res) {
                                 "textToSpeech": [nextRes]
                             }]
                         }
-                    }]
+                    }],
+                    "outputContexts": [{
+                      "name": req.body.session + "/contexts/flag",
+                      "lifespanCount": 5,
+                      "parameters": {
+                          "flag": "create"
+                      }
+                  }]
                 });
             }
         });
@@ -811,7 +862,14 @@ app.post('/', function(req, res) {
                                 "textToSpeech": [nextRes]
                             }]
                         }
-                    }]
+                    }],
+                    "outputContexts": [{
+                      "name": req.body.session + "/contexts/flag",
+                      "lifespanCount": 5,
+                      "parameters": {
+                          "flag": "create"
+                      }
+                  }]
                 });
             }
         });
@@ -887,8 +945,19 @@ app.post('/', function(req, res) {
                 }
                 console.log("updated");
             });
-            if (flag == "create")
+            if (flag == "create"){
                 nextRes = "Thank you! Your resume has been recorded. Please note your id for accessing later. ID : " + id;
+                return res.json(200, {
+                  "fulfillmentMessages": [{
+                      "platform": "ACTIONS_ON_GOOGLE",
+                      "simpleResponses": {
+                          "simpleResponses": [{
+                              "textToSpeech": [nextRes]
+                          }]
+                      }
+                  }]
+                });
+              }
             else
                 nextRes = "Resume Updated";
             return res.json(200, {
@@ -899,7 +968,14 @@ app.post('/', function(req, res) {
                             "textToSpeech": [nextRes]
                         }]
                     }
-                }]
+                }],
+                "outputContexts": [{
+                  "name": req.body.session + "/contexts/flag",
+                  "lifespanCount": 5,
+                  "parameters": {
+                      "flag": "create"
+                  }
+              }]
             });
 
         });
