@@ -92,13 +92,13 @@ app.post('/', function(req, res) {
             console.log(query);
             User.create({
                 name: query,
-                email: "",
+                email: " ",
                 education: [],
                 experience: [],
                 project: [],
-                skills: "",
-                interests: "",
-                achievements: ""
+                skills: " ",
+                interests: " ",
+                achievements: " "
             }, function(err, user) {
 
                 if (err) {
