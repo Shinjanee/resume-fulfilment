@@ -494,7 +494,7 @@ app.post('/', function(req, res) {
                 }
                 console.log("updated");
                 if (flag == "create"){
-                    nextRes = "Please enter education";
+                    nextRes = "Please enter education \n Example: I studied B.Tech in Computer Science from IIT in Delhi with 82%";
                     return res.json(200, {
                       "fulfillmentMessages": [{
                           "platform": "ACTIONS_ON_GOOGLE",
