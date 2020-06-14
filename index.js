@@ -76,12 +76,20 @@ app.post('/', function(req, res) {
                             "textToSpeech": [nextRes]
                         }]
                     }
-                }]
+                }],
+                "outputContexts": [{
+                            "name": req.body.session + "/contexts/flag",
+                            "lifespanCount": 5,
+                            "parameters": {
+                                "flag": "create"
+                            }
+                        }
+
+                    ]                
 
             });
 
         } else {
-
             console.log(query);
             User.create({
                 name: query,
@@ -1021,7 +1029,7 @@ app.post('/', function(req, res) {
                             "platform": "ACTIONS_ON_GOOGLE",
                             "suggestions": {
                                 "suggestions": [{
-                                    "title": "add"
+                                    "title": "change"
                                 }, ]
                             }
                         }
@@ -1045,7 +1053,7 @@ app.post('/', function(req, res) {
                     ]
                 });
             } else if (field == "email") {
-                toSend = user.email + " \n Add to change email?";
+                toSend = user.email + " \n Want to change email?";
                 return res.json(200, {
                     "fulfillmentMessages": [{
                             "platform": "ACTIONS_ON_GOOGLE",
@@ -1059,7 +1067,7 @@ app.post('/', function(req, res) {
                             "platform": "ACTIONS_ON_GOOGLE",
                             "suggestions": {
                                 "suggestions": [{
-                                    "title": "add"
+                                    "title": "change "
                                 }, ]
                             }
                         }
