@@ -982,7 +982,7 @@ app.post('/', function(req, res) {
         let nextRes;
         let search_id = req.body.queryResult.parameters["id"];
         User.find({
-            _id: search_id
+            _id: String(search_id)
         }, function(err, user) {
             if (err) {
                 console.log("cant be updated");
