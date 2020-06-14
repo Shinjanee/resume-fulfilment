@@ -983,7 +983,7 @@ app.post('/', function(req, res) {
         let search_id = req.body.queryResult.parameters["id"];
         console.log(search_id);
         User.findOne({
-            _id: String(search_id)
+            _id: search_id
         }, function(err, user) {
             if (err || user === null) {
                 console.log("cant be updated");
@@ -1036,7 +1036,7 @@ app.post('/', function(req, res) {
             _id: tokenId
         }, function(err, user) {
             var result = "";
-            if (err) {
+            if (err || user === null) {
                 result = "Invalid ID";
                 return res.json(200, {
                 "fulfillmentMessages": [{
@@ -1114,7 +1114,7 @@ app.post('/', function(req, res) {
         User.findOne({
             _id: updateid
         }, function(err, user) {
-            if (err) {
+            if (err || user === null) {
                 console.log("cant be found");
                 toSend = "Invalid ID";
                 return res.json(200, {
