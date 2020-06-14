@@ -1506,5 +1506,4 @@ app.listen(port, function(err) {
         console.log("Error in running server");
     }
     console.log("server started");
-
 });
