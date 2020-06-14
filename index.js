@@ -982,7 +982,6 @@ app.post('/', function(req, res) {
                             }
                         }
                     ]
-                  ]
               });
             } else {
                 if (details == "name") {
@@ -1062,7 +1061,6 @@ app.post('/', function(req, res) {
                             }
                         }
                     ]
-                  ]
               });
             }
             console.log("found");
