@@ -323,7 +323,7 @@ app.post('/', function(req, res) {
             if (flag == "create")
                 query = req.body.queryResult.queryText;
             else if (flag == "add") {
-                if (String(user.skills).length == 1)
+                if (String(user.skills).length == 1 && user.skills != "C")
                     query = req.body.queryResult.queryText;
                 else
                     query = user.skills + "," + req.body.queryResult.queryText;
