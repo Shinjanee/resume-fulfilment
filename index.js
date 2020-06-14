@@ -912,7 +912,7 @@ app.post('/', function(req, res) {
         }, function(err, user) {
             if (err) {
                 console.log("cant be updated");
-                nextRes = "Invalid ID. Action cannot be performed.";
+                nextRes = "Invalid ID";
                 return res.json(200, {
                 "fulfillmentMessages": [{
                     "platform": "ACTIONS_ON_GOOGLE",
@@ -963,7 +963,7 @@ app.post('/', function(req, res) {
         }, function(err, user) {
             var result = "";
             if (err) {
-                result = "Invalid ID. Action cannot be performed.";
+                result = "Invalid ID";
                 return res.json(200, {
                 "fulfillmentMessages": [{
                     "platform": "ACTIONS_ON_GOOGLE",
@@ -1043,7 +1043,7 @@ app.post('/', function(req, res) {
         }, function(err, user) {
             if (err) {
                 console.log("cant be found");
-                toSend = "Invalid ID. Action cannot be performed.";
+                toSend = "Invalid ID";
                 return res.json(200, {
                     "fulfillmentMessages": [{
                         "platform": "ACTIONS_ON_GOOGLE",
