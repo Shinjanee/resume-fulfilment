@@ -25,7 +25,6 @@ app.get('/getResume/', function(req, res) {
 })
 
 app.post('/', function(req, res) {
-
     var action = req.body.queryResult.action;
     console.log('action: ' + action);
     if (action == "getName") {
