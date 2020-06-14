@@ -942,7 +942,7 @@ app.post('/', function(req, res) {
         }, function(err, user) {
             var result = "";
             if (err) {
-                result = "Please enter a valid ID";
+                result = "Invalid ID. Action cannot be performed.";
             } else {
                 if (details == "name") {
                     result = "Name : " + user.name;
@@ -1001,7 +1001,7 @@ app.post('/', function(req, res) {
         }, function(err, user) {
             if (err) {
                 console.log("cant be found");
-                toSend = "Enter a valid ID";
+                toSend = "Invalid ID. Action cannot be performed.";
                 return res.json(200, {
                     "fulfillmentMessages": [{
                         "platform": "ACTIONS_ON_GOOGLE",
