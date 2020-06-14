@@ -318,12 +318,12 @@ app.post('/', function(req, res) {
                 if (String(user.skills).length == 0)
                     query = req.body.queryResult.queryText;
                 else
-                    query = user.skills + ", " + req.body.queryResult.queryText;
+                    query = user.skills + "," + req.body.queryResult.queryText;
             } else if (flag == "delete") {
                 var main_str = user.skills;
                 var str = req.body.queryResult.queryText;
-                if (main_str.includes(", " + str))
-                    query = main_str.replace(", " + str, "");
+                if (main_str.includes("," + str))
+                    query = main_str.replace("," + str, "");
                 else if (main_str.includes(str + ","))
                     query = main_str.replace(str + ",", "");
                 else
@@ -455,12 +455,12 @@ app.post('/', function(req, res) {
                 if (String(user.interests).length == 0)
                     query = req.body.queryResult.queryText;
                 else
-                    query = user.interests + ", " + req.body.queryResult.queryText;
+                    query = user.interests + "," + req.body.queryResult.queryText;
             } else if (flag == "delete") {
                 var main_str = user.interests;
                 var str = req.body.queryResult.queryText;
-                if (main_str.includes(", " + str))
-                    query = main_str.replace(", " + str, "");
+                if (main_str.includes("," + str))
+                    query = main_str.replace("," + str, "");
                 else if (main_str.includes(str + ","))
                     query = main_str.replace(str + ",", "");
                 else
@@ -867,12 +867,12 @@ app.post('/', function(req, res) {
                 if (String(user.achievements).length == 0)
                     query = req.body.queryResult.queryText;
                 else
-                    query = user.achievements + ", " + req.body.queryResult.queryText;
+                    query = user.achievements + "," + req.body.queryResult.queryText;
             } else if (flag == "delete") {
                 var main_str = user.achievements;
                 var str = req.body.queryResult.queryText;
-                if (main_str.includes(", " + str))
-                    query = main_str.replace(", " + str, "");
+                if (main_str.includes("," + str))
+                    query = main_str.replace("," + str, "");
                 else if (main_str.includes(str + ","))
                     query = main_str.replace(str + ",", "");
                 else
