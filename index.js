@@ -981,7 +981,7 @@ app.post('/', function(req, res) {
     } else if (action == "showResume") {
         let nextRes;
         let search_id = req.body.queryResult.parameters["id"];
-        User.findById({
+        User.find({
             _id: search_id
         }, function(err, user) {
             if (err) {
