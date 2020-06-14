@@ -912,7 +912,28 @@ app.post('/', function(req, res) {
         }, function(err, user) {
             if (err) {
                 console.log("cant be updated");
-                nextRes = "Please enter a valid id";
+                nextRes = "Invalid ID. Action cannot be performed.";
+                return res.json(200, {
+                "fulfillmentMessages": [{
+                    "platform": "ACTIONS_ON_GOOGLE",
+                    "simpleResponses": {
+                        "simpleResponses": [{
+                            "textToSpeech": [nextRes]
+                        }]
+                      }
+                  },
+                  {
+                            "platform": "ACTIONS_ON_GOOGLE",
+                            "suggestions": {
+                                "suggestions": [{
+                                        "title": "go to main menu"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                  ]
+              });
             } else {
                 nextRes = "You can access your resume at this URL : http://resume-fulfilment1.herokuapp.com/getResume/?search_id=" + String(search_id);
 
@@ -943,6 +964,27 @@ app.post('/', function(req, res) {
             var result = "";
             if (err) {
                 result = "Invalid ID. Action cannot be performed.";
+                return res.json(200, {
+                "fulfillmentMessages": [{
+                    "platform": "ACTIONS_ON_GOOGLE",
+                    "simpleResponses": {
+                        "simpleResponses": [{
+                            "textToSpeech": [result]
+                        }]
+                      }
+                  },
+                  {
+                            "platform": "ACTIONS_ON_GOOGLE",
+                            "suggestions": {
+                                "suggestions": [{
+                                        "title": "go to main menu"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                  ]
+              });
             } else {
                 if (details == "name") {
                     result = "Name : " + user.name;
@@ -1010,8 +1052,19 @@ app.post('/', function(req, res) {
                                 "textToSpeech": [toSend]
                             }]
                         }
-                    }]
-                });
+                    },
+                    {
+                            "platform": "ACTIONS_ON_GOOGLE",
+                            "suggestions": {
+                                "suggestions": [{
+                                        "title": "go to main menu"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                  ]
+              });
             }
             console.log("found");
             if (field == "name") {
