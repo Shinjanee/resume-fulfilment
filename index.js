@@ -1170,7 +1170,7 @@ app.post('/', function(req, res) {
             }
         }
         var val = req.body.queryResult.queryText;
-        if (val == "add") {
+        if (val == "add" || val == "change") {
             flag = "add";
             if (field == "skills") {
                 toSend = "Please enter new skill";
