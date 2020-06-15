@@ -97,12 +97,11 @@
 				<h1>Achievements</h1>
 			</div>
 			<div class="sectionContent">
+				<% for(achievement of users.achievements){ %>
 				<ul class="keySkills">
-				<% var achievementArray = users.achievements.split(',');
-				for(achievement of achievementArray){%>
-					<li><%= achievement %></li>
-					<%} %>
+					<li><%= achievement.achievement %></li>
 				</ul>
+				<%} %>
 			</div>
 			<div class="clear"></div>
 		</section>
