@@ -116,25 +116,25 @@ module.exports.updateResume = function(req,res)
             toSend = "";
             len = user.education.length;
             for (i = 0; i < len; i++)
-                toSend += (i + 1).toString() + " Degree: " + String(user.education[i].degree) + " School Name: " + String(user.education[i].university_name) + " Location: " + String(user.education[i].location) + " Percentage: " + String(user.education[i].percentage) + "\n";
+                toSend += (i + 1).toString() + ". Degree: " + String(user.education[i].degree) + " School Name: " + String(user.education[i].university_name) + " Location: " + String(user.education[i].location) + " Percentage: " + String(user.education[i].percentage) + "\n";
             toSend += "\n Want to delete or add a new education?";
         } else if (field == "projects") {
             toSend = "";
             len = user.project.length;
             for (i = 0; i < len; i++)
-                toSend += (i + 1).toString() + " Title: " + String(user.project[i].title) + " Year: " + String(user.project[i].year) + " Description: " + String(user.project[i].description) + "\n";
+                toSend += (i + 1).toString() + ". Title: " + String(user.project[i].title) + " Year: " + String(user.project[i].year) + " Description: " + String(user.project[i].description) + "\n";
             toSend += "\n Want to delete or add a new project?";
         } else if (field == "experience") {
             toSend = "";
             len = user.experience.length;
             for (i = 0; i < len; i++)
-                toSend += (i + 1).toString() + " Position: " + String(user.experience[i].position) + " Company: " + String(user.experience[i].company_name) + " Location: " + String(user.experience[i].location) + " Duration: " + String(user.experience[i].duration) + "\n";
+                toSend += (i + 1).toString() + ". Position: " + String(user.experience[i].position) + " Company: " + String(user.experience[i].company_name) + " Location: " + String(user.experience[i].location) + " Duration: " + String(user.experience[i].duration) + "\n";
             toSend += "\n Want to delete or add a new experience?"
         } else if (field == "achievements"){
             toSend = "";
             len = user.achievements.length;
             for (i = 0; i < len; i++)
-                toSend += (i + 1).toString() + String(user.achievements[i].achievement) + "\n";
+                toSend += (i + 1).toString() + ". " + String(user.achievements[i].achievement) + "\n";
             toSend += "\n Want to delete or add a new achievement?"
         }else
             toSend = "Not a valid query";

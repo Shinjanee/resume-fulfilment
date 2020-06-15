@@ -120,7 +120,7 @@ module.exports.getIndex = function(req,res)
             var array = user.achievements;
             array.splice(index - 1, 1);
             User.findByIdAndUpdate(id, {
-                project: array
+                achievements: array
             }, function(err, user) {
                 if (err) {
                     console.log("cant be updated");
