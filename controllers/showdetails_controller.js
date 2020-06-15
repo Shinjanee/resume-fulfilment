@@ -41,7 +41,8 @@ module.exports.showDetails = function(req,res)
                 } else if (details == "email") {
                     result = "E-mail : " + user.email;
                 } else if (details == "achievements") {
-                    result = "Achievements : " + user.achievements;
+                    for (var i = 0; i < user.achievements.length; i++) {
+                        result += String(i+1) + user.achievements[i].achievement + "\n "
                 } else if (details == "education") {
                     for (var i = 0; i < user.education.length; i++) {
                         result += String(i+1) + ". Degree: " + user.education[i].degree +

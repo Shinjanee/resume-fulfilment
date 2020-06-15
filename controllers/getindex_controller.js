@@ -109,5 +109,36 @@ module.exports.getIndex = function(req,res)
                 }]
             });
         });
+    }else if (field == "achievements") {
+        User.findOne({
+            _id: id
+        }, function(err, user) {
+            if (err) {
+                console.log("cant be updated");
+                return;
+            }
+            var array = user.achievements;
+            array.splice(index - 1, 1);
+            User.findByIdAndUpdate(id, {
+                project: array
+            }, function(err, user) {
+                if (err) {
+                    console.log("cant be updated");
+                    return;
+                }
+                console.log("updated");
+            });
+            nextRes = "Your resume has been updated";
+            return res.json(200, {
+                "fulfillmentMessages": [{
+                    "platform": "ACTIONS_ON_GOOGLE",
+                    "simpleResponses": {
+                        "simpleResponses": [{
+                            "textToSpeech": [nextRes]
+                        }]
+                    }
+                }]
+            });
+        });
     }
 }
