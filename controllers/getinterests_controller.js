@@ -90,7 +90,7 @@ module.exports.getInterests = function(req,res)
                 }
                 else if (flag == "add")
                     nextRes = "Resume Updated";
-                else if (flag == "delete" && found = 1)
+                else if (flag == "delete" && found == 1)
                     nextRes = "Resume Updated";
                 else
                     nextRes = "Interest not found."
