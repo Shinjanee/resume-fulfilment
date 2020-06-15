@@ -11,15 +11,15 @@ module.exports.submit = function(req,res)
             }
         }
 
-    
+    var nextRes = "Thank You! Your resume has been recorded. Please not your ID for accessing later. ID: " + id;
     return res.json(200, {
         "fulfillmentMessages": [{
             "platform": "ACTIONS_ON_GOOGLE",
                 "simpleResponses": {
                     "simpleResponses": [{
-                        "textToSpeech": "Thank You! Your resume has been recorded. Please not your ID for accessing later. ID: " + id;
+                        "textToSpeech": [String(nextRes)]
                         }]
                     }
-                }],
+                }]
     });
 }
