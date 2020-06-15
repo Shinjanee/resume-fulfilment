@@ -42,14 +42,14 @@ module.exports.showDetails = function(req,res)
                     result = "E-mail : " + user.email;
                 } else if (details == "achievements") {
                     for (var i = 0; i < user.achievements.length; i++) {
-                        result += String(i+1) + user.achievements[i].achievement + "\n "
+                        result += String(i+1)+". " + user.achievements[i].achievement + "\n "
                     }
                 } else if (details == "education") {
                     for (var i = 0; i < user.education.length; i++) {
                         result += String(i+1) + ". Degree: " + user.education[i].degree +
                             ", University Name: " + user.education[i].university_name +
                             ", Location: " + user.education[i].location + 
-                            ", Percentage: " + user.education[i].percentage + "\n "
+                            ", Percentage: " + user.education[i].percentage + "% \n "
                     }
                 } else if (details == "experience") {
                     for (var i = 0; i < user.experience.length; i++) {

@@ -130,9 +130,13 @@ module.exports.updateResume = function(req,res)
             for (i = 0; i < len; i++)
                 toSend += (i + 1).toString() + " Position: " + String(user.experience[i].position) + " Company: " + String(user.experience[i].company_name) + " Location: " + String(user.experience[i].location) + " Duration: " + String(user.experience[i].duration) + "\n";
             toSend += "\n Want to delete or add a new experience?"
-        } else if (field == "achievements")
-            toSend = user.achievements + "\n Want to delete or add a new achievement?";
-        else
+        } else if (field == "achievements"){
+            toSend = "";
+            len = user.achievements.length;
+            for (i = 0; i < len; i++)
+                toSend += (i + 1).toString() + String(user.achievements[i].achievement) + "\n";
+            toSend += "\n Want to delete or add a new achievement?"
+        }else
             toSend = "Not a valid query";
 
         return res.json(200, {
