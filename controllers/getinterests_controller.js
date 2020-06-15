@@ -55,7 +55,7 @@ module.exports.getInterests = function(req,res)
             } else if (flag == "delete") {
                 var main_str = user.interests;
                 var str = req.body.queryResult.queryText;
-                main_Str = main_Str.toLowerCase();
+                main_str = main_str.toLowerCase();
                 str = str.toLowerCase();
                 if (main_str.includes("," + str))
                     query = main_str.replace("," + str, "");
