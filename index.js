@@ -12,6 +12,7 @@ const geteducation_controller = require('./controllers/geteducation_controller')
 const getprojects_controller = require('./controllers/getprojects_controller');
 const getexperience_controller  = require('./controllers/getexperience_controller');
 const getachievements_controller  = require('./controllers/getachievements_controller');
+const submit_controller  = require('./controllers/submit_controller');
 const showresume_controller  = require('./controllers/showresume_controller');
 const showdetails_controller = require('./controllers/showdetails_controller');
 const updateresume_controller = require('./controllers/updateresume_controller');
@@ -82,7 +83,12 @@ app.post('/', function(req, res) {
         return (getachievements_controller.getAchievements(req,res));
         
 
-    } else if (action == "showResume") {
+    } else if (action == "submit") {
+
+        return (submit_controller.submit(req,res));
+        
+
+    }else if (action == "showResume") {
 
         return (showresume_controller.showResume(req,res));
         
