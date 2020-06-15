@@ -30,46 +30,46 @@ module.exports.modifyAction = function(req,res)
                             "platform": "ACTIONS_ON_GOOGLE",
                             "suggestions": {
                                 "suggestions": [{
-                                        "title": "C"
+                                        "title": "c"
                                     },
                                     {
-                                        "title": "C++"
+                                        "title": "c++"
                                     },
                                     {
-                                        "title": "App Development"
+                                        "title": "app development"
                                     },
                                     {
-                                        "title": "Web Development"
+                                        "title": "web development"
                                     },
                                     {
-                                        "title": "NodeJs"
+                                        "title": "nodeJs"
                                     },
                                     {
-                                        "title": "Javascript"
+                                        "title": "javascript"
                                     },
                                     {
-                                        "title": "Java"
+                                        "title": "java"
                                     },
                                     {
-                                        "title": "Git"
+                                        "title": "git"
                                     },
                                     {
-                                        "title": "Machine Learning"
+                                        "title": "machine learning"
                                     },
                                     {
-                                        "title": "Internet of Things"
+                                        "title": "internet of things"
                                     },
                                     {
-                                        "title": "Python"
+                                        "title": "python"
                                     },
                                     {
-                                        "title": "Data Science"
+                                        "title": "data science"
                                     },
                                     {
-                                        "title": "Databases"
+                                        "title": "databases"
                                     },
                                     {
-                                        "title": "Cloud"
+                                        "title": "cloud"
                                     }
                                 ]
                             }

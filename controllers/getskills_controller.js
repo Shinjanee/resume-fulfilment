@@ -85,34 +85,34 @@ module.exports.getSkills = function(req,res)
                             "platform": "ACTIONS_ON_GOOGLE",
                             "suggestions": {
                                 "suggestions": [{
-                                        "title": "Travelling"
+                                        "title": "travelling"
                                     },
                                     {
-                                        "title": "Chess"
+                                        "title": "chess"
                                     },
                                     {
-                                        "title": "Reading Books"
+                                        "title": "reading books"
                                     },
                                     {
-                                        "title": "Swimming"
+                                        "title": "swimming"
                                     },
                                     {
-                                        "title": "Music"
+                                        "title": "music"
                                     },
                                     {
-                                        "title": "Dancing"
+                                        "title": "dancing"
                                     },
                                     {
-                                        "title": "Coding"
+                                        "title": "coding"
                                     },
                                     {
-                                        "title": "Sports"
+                                        "title": "sports"
                                     },
                                     {
-                                        "title": "Writing Blogs"
+                                        "title": "writing blogs"
                                     },
                                     {
-                                        "title": "Cooking"
+                                        "title": "cooking"
                                     }
                                 ]
                             }
