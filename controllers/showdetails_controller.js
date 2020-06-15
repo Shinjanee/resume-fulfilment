@@ -44,24 +44,24 @@ module.exports.showDetails = function(req,res)
                     result = "Achievements : " + user.achievements;
                 } else if (details == "education") {
                     for (var i = 0; i < user.education.length; i++) {
-                        result += "Degree: " + user.education[i].degree + "," +
-                            "University_Name" + user.education[i].university_name + "," +
-                            "Location" + user.education[i].location + "," +
-                            "Percentage: " + user.education[i].percentage
+                        result += String(i+1) + ". Degree: " + user.education[i].degree +
+                            ", University_Name" + user.education[i].university_name +
+                            ", Location" + user.education[i].location + 
+                            ", Percentage: " + user.education[i].percentage + "\n "
                     }
                 } else if (details == "experience") {
                     for (var i = 0; i < user.experience.length; i++) {
-                        result += "Position: " + user.experience[i].position + "," +
-                            "Duration" + user.experience[i].duration + "," +
-                            "Location" + user.experience[i].location + "," +
-                            "Company Name: " + user.experience[i].company_name
+                        result += String(i+1) + ". Position: " + user.experience[i].position +
+                            ", Duration" + user.experience[i].duration +
+                            ", Location" + user.experience[i].location + 
+                            ", Company Name: " + user.experience[i].company_name + "\n "
                     }
 
                 } else if (details == "projects") {
                     for (var i = 0; i < user.project.length; i++) {
-                        result += "Title: " + user.project[i].title + "," +
-                            "Description" + user.project[i].description + "," +
-                            "Year" + user.project[i].year + ",";
+                        result += String(i+1) + ". Title: " + user.project[i].title + 
+                            ", Description" + user.project[i].description +
+                            ", Year" + user.project[i].year + "\n "
                     }
                 }
             }
