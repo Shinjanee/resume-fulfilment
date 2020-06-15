@@ -71,7 +71,7 @@ module.exports.getName = function(req,res)
                 project: [],
                 skills: " ",
                 interests: " ",
-                achievements: " "
+                achievements: []
             }, function(err, user) {
 
                 if (err) {

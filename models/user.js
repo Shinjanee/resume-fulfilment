@@ -79,11 +79,14 @@ const userSchema = new mongoose.Schema(
             }
            
         ],
-        achievements:{
-            type:String,
-            required:true,
+        achievements:[
+        {
+            achievement:{
+                type:String,
+                required:true,
+            }
         }
-    },
+    ],
     {
         timestamps:true
     }

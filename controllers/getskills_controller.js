@@ -14,6 +14,7 @@ module.exports.getSkills = function(req,res)
     console.log(flag);
 
     let id;
+    let found=1;
     if (flag == "create") {
 
         let contexts = req.body.queryResult.outputContexts;
@@ -59,8 +60,12 @@ module.exports.getSkills = function(req,res)
                 query = main_str.replace("," + str, "");
             else if (main_str.includes(str + ","))
                 query = main_str.replace(str + ",", "");
-            else
+            else if(main_str.includes(str))
                 query = main_str.replace(str, "");
+            else{
+                query = main_str;
+                found = 0;
+            }
         }
         User.findByIdAndUpdate(id, {
             "skills": query
@@ -85,34 +90,34 @@ module.exports.getSkills = function(req,res)
                             "platform": "ACTIONS_ON_GOOGLE",
                             "suggestions": {
                                 "suggestions": [{
-                                        "title": "travelling"
+                                        "title": "Travelling"
                                     },
                                     {
-                                        "title": "chess"
+                                        "title": "Chess"
                                     },
                                     {
-                                        "title": "reading books"
+                                        "title": "Reading Books"
                                     },
                                     {
-                                        "title": "swimming"
+                                        "title": "Swimming"
                                     },
                                     {
-                                        "title": "music"
+                                        "title": "Music"
                                     },
                                     {
-                                        "title": "dancing"
+                                        "title": "Dancing"
                                     },
                                     {
-                                        "title": "coding"
+                                        "title": "Coding"
                                     },
                                     {
-                                        "title": "sports"
+                                        "title": "Sports"
                                     },
                                     {
-                                        "title": "writing blogs"
+                                        "title": "Writing Blogs"
                                     },
                                     {
-                                        "title": "cooking"
+                                        "title": "Cooking"
                                     }
                                 ]
                             }
@@ -122,8 +127,10 @@ module.exports.getSkills = function(req,res)
 
             } else if (flag == "add")
                 nextRes = "Resume Updated";
-            else
+            else if(flag == "delete" && found ==1)
                 nextRes = "Resume Updated";
+            else
+                nextRes = "Skill not found."
             return res.json(200, {
                 "fulfillmentMessages": [{
                     "platform": "ACTIONS_ON_GOOGLE",

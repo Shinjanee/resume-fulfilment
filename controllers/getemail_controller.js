@@ -60,46 +60,46 @@ module.exports.getEmail =  function(req,res)
                         "platform": "ACTIONS_ON_GOOGLE",
                         "suggestions": {
                             "suggestions": [{
-                                    "title": "c"
+                                    "title": "C"
                                 },
                                 {
-                                    "title": "c++"
+                                    "title": "C++"
                                 },
                                 {
-                                    "title": "app development"
+                                    "title": "App Development"
                                 },
                                 {
-                                    "title": "web development"
+                                    "title": "Web Development"
                                 },
                                 {
-                                    "title": "nodeJs"
+                                    "title": "Node.Js"
                                 },
                                 {
-                                    "title": "javascript"
+                                    "title": "Javascript"
                                 },
                                 {
-                                    "title": "java"
+                                    "title": "Java"
                                 },
                                 {
-                                    "title": "git"
+                                    "title": "Git"
                                 },
                                 {
-                                    "title": "machine learning"
+                                    "title": "Machine Learning"
                                 },
                                 {
-                                    "title": "internet of things"
+                                    "title": "Internet of Things"
                                 },
                                 {
-                                    "title": "python"
+                                    "title": "Python"
                                 },
                                 {
-                                    "title": "data science"
+                                    "title": "Data Science"
                                 },
                                 {
-                                    "title": "databases"
+                                    "title": "Databases"
                                 },
                                 {
-                                    "title": "cloud"
+                                    "title": "Cloud"
                                 },
                                 {
                                     "title": "blockchain"

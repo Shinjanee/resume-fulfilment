@@ -13,6 +13,7 @@ module.exports.getInterests = function(req,res)
         }
         console.log(flag);
         let id;
+        let found = 1;
         if (flag == "create") {
 
             let contexts = req.body.queryResult.outputContexts;
@@ -58,8 +59,12 @@ module.exports.getInterests = function(req,res)
                     query = main_str.replace("," + str, "");
                 else if (main_str.includes(str + ","))
                     query = main_str.replace(str + ",", "");
-                else
+                else if(main_str.includes(str))
                     query = main_str.replace(str, "");
+                else{
+                    query = main_str;
+                    found = 0;
+                }
 
             }
             User.findByIdAndUpdate(id, {
@@ -85,8 +90,10 @@ module.exports.getInterests = function(req,res)
                 }
                 else if (flag == "add")
                     nextRes = "Resume Updated";
-                else
+                else if (flag == "delete" && found = 1)
                     nextRes = "Resume Updated";
+                else
+                    nextRes = "Interest not found."
                 return res.json(200, {
                     "fulfillmentMessages": [{
                         "platform": "ACTIONS_ON_GOOGLE",
