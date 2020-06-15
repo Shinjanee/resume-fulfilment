@@ -84,9 +84,10 @@ const userSchema = new mongoose.Schema(
             achievement:{
                 type:String,
                 required:true,
+                }
             }
-        }
-    ],
+        ],
+    },
     {
         timestamps:true
     }
