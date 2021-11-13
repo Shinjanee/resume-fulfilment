@@ -3,7 +3,7 @@ module.exports.getJobBySkill = function(req,res)
 {
     var skill = req.body.queryResult.parameters["skill_name"];
 
-    https.get("https://jobs.github.com/positions.json?description=" + skill + "&location=new+york", (resp) => {
+    https.get("https://in.indeed.com/jobs?q=" + skill + "&l=delhi", (resp) => {
         let data = '';
 
         resp.on('data', (chunk) => {
@@ -15,7 +15,7 @@ module.exports.getJobBySkill = function(req,res)
             var jobsArray = JSON.parse(data);
             var result = "";
             for (var i = 0; i < jobsArray.length; i++) {
-                result += (i + 1).toString() + jobsArray[i].title + " and " + jobsArray[i].url + "  \n";
+                result += (i + 1).toString() + jobsArray[i] + "  \n";
             }
             var toSend = result + " Want to create resume?";
             return res.json(200, {
